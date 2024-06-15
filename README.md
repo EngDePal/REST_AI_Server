@@ -12,5 +12,3 @@ This repository will contain the following:
 - Knowledge Graph (Ontology and Database)
 - AI Application
 - Docs
-
-- Sucuk mit Ei
