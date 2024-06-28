@@ -1,0 +1,1 @@
+"""Handles the logic of the core application, especially HTTP requests and access to different manager classes"""
