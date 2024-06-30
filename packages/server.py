@@ -12,6 +12,3 @@ app = Flask(__name__)
 @app.route('/<test>')
 def home(test):
     return f"Hello, {test}!"
-
-while True:
-    app.run()
