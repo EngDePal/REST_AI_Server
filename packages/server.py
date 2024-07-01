@@ -1,9 +1,15 @@
 """Handles the logic of the core application, especially HTTP requests and access to different manager classes"""
 #Importing necessary modules and classes from the Flask web framework
 from flask import Flask, request, jsonify
+#Importing the various managers
+from token_manager import TokenManager
 
 #Create a flask app
 app = Flask(__name__)
+
+#Creating instances of the managers
+tm = TokenManager()
+
 
 #The following sections defines the handling of incoming http requests
 #Token variable in most URI serves the identficiation of different clients
@@ -12,7 +18,11 @@ app = Flask(__name__)
 #Login response: Generated token is sent to client
 @app.route('/login', methods=['POST'])
 def login_response():
-    pass
+    data = {
+        "token" : tm.generate_token()
+    }
+    return jsonify(data)
+    
 
 #Response to command request: parameters object must be sent back
 @app.route('/newcommand/<token>', methods=['GET'])
@@ -34,6 +44,5 @@ def safeinfo_response(token):
 def safelog_response(token):
     pass
 
-if __name__=="__main__":
+if __name__ == "__main__":
     app.run()
-
