@@ -6,9 +6,34 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 #The following sections defines the handling of incoming http requests
+#Token variable in most URI serves the identficiation of different clients
 #For more details on the individual commands please check GitHub or the accompanying thesis
 
+#Login response: Generated token is sent to client
+@app.route('/login', methods=['POST'])
+def login_response():
+    pass
 
-@app.route('/<test>')
-def home(test):
-    return f"Hello, {test}!"
+#Response to command request: parameters object must be sent back
+@app.route('/newcommand/<token>', methods=['GET'])
+def command_response(token):
+    pass
+
+#Response to command confirmation: no return object, server can generate the next command
+@app.route('/newcommand/<token>', methods=['POST'])
+def command_confirmation(token):
+    pass
+
+#Response to info file from client: file is saved in database
+@app.route('/safeinfo/<token>', methods=['POST'])
+def safeinfo_response(token):
+    pass
+
+#Response to log file from client: file is saved in database
+@app.route('/safelog/<token>', methods=['POST'])
+def safelog_response(token):
+    pass
+
+if __name__=="__main__":
+    app.run()
+
