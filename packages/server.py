@@ -1,6 +1,6 @@
 """Handles the logic of the core application, especially HTTP requests and access to different manager classes"""
 #Importing necessary modules and classes from the Flask web framework
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
 #Importing the various managers
 from token_manager import TokenManager
 
