@@ -1,4 +1,4 @@
-"""This file handles operations revolving around the MongoDB database"""
+"""Handles operations involving the MongoDB database."""
 #Pymongo is a Python driver for MongoDB
 import pymongo
 #Additional imports allow to start mongodb 
@@ -96,7 +96,7 @@ class DataManager:
             print(f"Error stopping MongoDB: {str(e)}")
 
     #Saves the dictionary in the specified collection
-    def save_data(self, collection, dict):
+    def save_data(self, collection, dict:dict):
         chosen_collection = self.db[collection]
 
         #Regarding positions: In order to avoid complex queries and ensure the return of only the latest position, prior entries will be deleted
@@ -112,4 +112,4 @@ class DataManager:
         chosen_collection = self.db[collection]
         #Returns a cursor object and turns it into a list of dictionaries
         document = list(chosen_collection.find(query_dict))
-        return document      
+        return document

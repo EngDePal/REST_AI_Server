@@ -1,4 +1,4 @@
-"""TokenManager class is responsible for all operations regarding authentication tokens"""
+"""TokenManager class is responsible for all operations involving authentication tokens."""
 #importing modules
 import random
 
