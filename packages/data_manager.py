@@ -1,7 +1,7 @@
 """This file handles operations revolving around the MongoDB database"""
 #Pymongo is a Python driver for MongoDB
 import pymongo
-#Additional imports allow to run scripts 
+#Additional imports allow to start mongodb 
 import subprocess
 import os
 
@@ -17,6 +17,7 @@ class DataManager:
         self.client = pymongo.MongoClient("mongodb://localhost:27017")
         
         #Loads or creates database if necessary
+        #Change this to 'REST_AI_Server' during deployment
         self.db = self.client["test"]
 
         collections_list = ["positions", "logs", "infos"]
@@ -26,7 +27,19 @@ class DataManager:
             if collection not in self.db.list_collection_names():
                 new_col = self.db[collection]
                 if collection == "positons":
-                    dict = {"token" : "", "X": 0, "Y": 0, "Z": 0, "A": 0, "B": 0, "Z": 0}
+                    dict = {"token" : "", 
+                            "command" : "", 
+                            "parameters": {
+                                "type": "",
+                                "frame": {
+                                    "X": 0, 
+                                    "Y": 0, 
+                                    "Z": 0, 
+                                    "A": 0, 
+                                    "B": 0, 
+                                    "Z": 0}
+                            }
+                    }
                     base_entry = new_col.insert_one(dict)
                 elif collection == "logs":
                     dict = {"token" : "", "filename": "", "data": ""}
@@ -82,14 +95,21 @@ class DataManager:
         except Exception as e:
             print(f"Error stopping MongoDB: {str(e)}")
 
-    #saves data in the dictionary
-    def save_data(self, dict, collection):
-        pass
-    
-    #returns the requested document
-    def query_data(self, query):
-        pass
-    
+    #Saves the dictionary in the specified collection
+    def save_data(self, collection, dict):
+        chosen_collection = self.db[collection]
 
-dm = DataManager()
-dm.stop_mongodb()
+        #Regarding positions: In order to avoid complex queries and ensure the return of only the latest position, prior entries will be deleted
+        if collection == "positions":
+            token = dict["token"]
+            doc = self.query_data("positions", {"token": token})
+            if len(doc) != 0:
+                chosen_collection.delete_many({"token": token})
+        entry = chosen_collection.insert_one(dict)
+    
+    #Returns a list of the requested documents after taking in a query dictionary
+    def query_data(self, collection, query_dict):
+        chosen_collection = self.db[collection]
+        #Returns a cursor object and turns it into a list of dictionaries
+        document = list(chosen_collection.find(query_dict))
+        return document      
