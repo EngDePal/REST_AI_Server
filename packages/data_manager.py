@@ -55,8 +55,8 @@ class DataManager:
         # Define paths
         dir_path = os.path.dirname(os.path.realpath(__file__))
         mongodb_bin_path = os.path.join(dir_path, '../mongodb/macos/bin/mongod')
-        db_path = os.path.join(dir_path, '../data')
-        log_path = os.path.join(dir_path, '../logs/mongodb.log')
+        db_path = os.path.join(dir_path, '../mongodb/data')
+        log_path = os.path.join(dir_path, '../mongodb/logs/mongodb.log')
 
         # Ensure paths exist
         os.makedirs(db_path, exist_ok=True)
@@ -113,3 +113,4 @@ class DataManager:
         #Returns a cursor object and turns it into a list of dictionaries
         document = list(chosen_collection.find(query_dict))
         return document
+    

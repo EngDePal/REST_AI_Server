@@ -49,7 +49,10 @@ def safeinfo_response(token):
 #Response to log file from client: file is saved in database
 @app.route("/safelog/<token>", methods=["POST"])
 def safelog_response(token):
-    pass
+    data = request.get_json()
+    data["token"] = token
+    dm.save_data("logs", data)
+    return {}, 200
 
 #Defines the behaviour during server shutdown in the terminal
 def shutdown_server(sig, frame):
