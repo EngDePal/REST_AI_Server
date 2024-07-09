@@ -4,6 +4,7 @@ from flask import Flask, jsonify, request
 #Importing the various managers
 from token_manager import TokenManager
 from data_manager import DataManager
+from robot_logic_manager import RobotLogicManager
 #Importing signal to handle events
 import signal
 
@@ -13,6 +14,7 @@ app = Flask(__name__)
 #Creating instances of the managers
 tm = TokenManager()
 dm = DataManager()
+rlm = RobotLogicManager()
 
 
 #The following sections defines the handling of incoming http requests
@@ -41,18 +43,20 @@ def command_confirmation(token):
 #Response to info file from client: file is saved in database
 @app.route("/safeinfo/<token>", methods=["POST"])
 def safeinfo_response(token):
-    data = request.get_json()
-    data["token"] = token
-    dm.save_data("infos", data)
-    return {}, 200
+    if tm.check_token_authenticity(token):
+        data = request.get_json()
+        data["token"] = token
+        dm.save_data("infos", data)
+        return {}, 200
 
 #Response to log file from client: file is saved in database
 @app.route("/safelog/<token>", methods=["POST"])
 def safelog_response(token):
-    data = request.get_json()
-    data["token"] = token
-    dm.save_data("logs", data)
-    return {}, 200
+    if tm.check_token_authenticity(token):
+        data = request.get_json()
+        data["token"] = token
+        dm.save_data("logs", data)
+        return {}, 200
 
 #Defines the behaviour during server shutdown in the terminal
 def shutdown_server(sig, frame):

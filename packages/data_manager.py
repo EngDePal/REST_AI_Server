@@ -20,10 +20,10 @@ class DataManager:
         #Change this to 'REST_AI_Server' during deployment
         self.db = self.client["test"]
 
-        collections_list = ["positions", "logs", "infos"]
+        self.collections_list = ["positions", "logs", "infos"]
 
         #Inserts collections with base entry if necessary
-        for collection in collections_list:
+        for collection in self.collections_list:
             if collection not in self.db.list_collection_names():
                 new_col = self.db[collection]
                 if collection == "positons":
@@ -54,9 +54,9 @@ class DataManager:
     def start_mongodb(self):
         # Define paths
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        mongodb_bin_path = os.path.join(dir_path, '../mongodb/macos/bin/mongod')
-        db_path = os.path.join(dir_path, '../mongodb/data')
-        log_path = os.path.join(dir_path, '../mongodb/logs/mongodb.log')
+        mongodb_bin_path = os.path.join(dir_path, "../mongodb/macos/bin/mongod")
+        db_path = os.path.join(dir_path, "../mongodb/data")
+        log_path = os.path.join(dir_path, "../mongodb/logs/mongodb.log")
 
         # Ensure paths exist
         os.makedirs(db_path, exist_ok=True)
@@ -64,7 +64,7 @@ class DataManager:
 
         # Start MongoDB process
         process = subprocess.Popen(
-            [mongodb_bin_path, '--dbpath', db_path, '--logpath', log_path, '--fork'],
+            [mongodb_bin_path, "--dbpath", db_path, "--logpath", log_path, "--fork"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
@@ -80,11 +80,11 @@ class DataManager:
     def stop_mongodb(self):
         # Define paths
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        mongodb_bin_path = os.path.join(dir_path, '../mongodb/macos/bin/mongod')
+        mongodb_bin_path = os.path.join(dir_path, "../mongodb/macos/bin/mongod")
 
         # Find MongoDB process ID and stop it
         try:
-            result = subprocess.run(['pgrep', '-f', mongodb_bin_path], stdout=subprocess.PIPE)
+            result = subprocess.run(["pgrep", "-f", mongodb_bin_path], stdout=subprocess.PIPE)
             pid = int(result.stdout.strip())
 
             if pid:
@@ -109,8 +109,10 @@ class DataManager:
     
     #Returns a list of the requested documents after taking in a query dictionary
     def query_data(self, collection, query_dict):
-        chosen_collection = self.db[collection]
-        #Returns a cursor object and turns it into a list of dictionaries
-        document = list(chosen_collection.find(query_dict))
-        return document
+        if collection in self.collections_list:
+            chosen_collection = self.db[collection]
+            #Returns a cursor object and turns it into a list of dictionaries
+            document = list(chosen_collection.find(query_dict))
+            return document
+
     
