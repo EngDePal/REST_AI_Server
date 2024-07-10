@@ -11,7 +11,7 @@ class RobotLogicManager:
     def __init__(self):
         #Path is subject to change (improving project structure)
         self.dir_path = os.path.dirname(os.path.realpath(__file__))
-        self.plugin_directory = os.path.join(dir_path, "plugins")
+        self.plugin_directory = os.path.join(self.dir_path, "plugins")
         self.plugin_list = []
 
     #Prints all instantiated plugins
@@ -20,7 +20,7 @@ class RobotLogicManager:
 
     #Source: https://gist.github.com/dorneanu/cce1cd6711969d581873a88e0257e312
     #Allows for the dynamic loading of modules
-    def load_module(path):
+    def load_module(self, path):
         #Gets filename from path
         name = os.path.split(path)[-1]
         #Creates a module spec
@@ -32,3 +32,6 @@ class RobotLogicManager:
         return module
     
 
+rlm = RobotLogicManager()
+module = rlm.load_module("/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/test_plugin.py")
+print(module.run())

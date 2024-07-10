@@ -2,13 +2,13 @@
 from plugin_interface import PluginInterface
 
 #This is a test plug-in
-#It runs through every command in a total of 6 steps
 class TestPlugin(PluginInterface):
 
     def __init__(self):
         self.counter = 1
     
-    def run(self, command):
+    #Checks every command possible in a total of 6 steps
+    def run(self):
 
         if self.counter == 1:
             command == {"command" : "LIN",
@@ -77,5 +77,6 @@ class TestPlugin(PluginInterface):
             self.counter += 1
         return command
 
-                
-            
+#Testing import
+test = TestPlugin()
+print(test.show_all_plugins())

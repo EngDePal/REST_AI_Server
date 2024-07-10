@@ -1,9 +1,10 @@
 """This abstract class serves as an interface for all plug-ins"""
-#Importing from abc for abstraction
+#Importing modules
 from abc import ABC, abstractmethod
 import os
 from importlib import util
-import traceback
+#import traceback
+import inspect
 
 class PluginInterface(ABC):
 
@@ -20,8 +21,16 @@ class PluginInterface(ABC):
         super().__init_subclass__(**kwargs)
         cls.plugins.append(cls)
 
+    #Returns a list of all instantiated subclasses
+    @classmethod
     def show_all_plugins(cls):
         return cls.plugins
+    
+    #Returns the path of the class
+    @classmethod
+    def show_path(cls):
+        path = inspect.getfile(cls)
+        return os.path.realpath(path)
 
     #The core method of every plug-in
     #Will be called by the server

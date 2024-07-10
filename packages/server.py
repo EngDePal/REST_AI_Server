@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request
 #Importing the various managers
 from token_manager import TokenManager
 from data_manager import DataManager
-from robot_logic_manager import RobotLogicManager
+#from robot_logic_manager import RobotLogicManager
 #Importing signal to handle events
 import signal
 
@@ -14,7 +14,13 @@ app = Flask(__name__)
 #Creating instances of the managers
 tm = TokenManager()
 dm = DataManager()
-rlm = RobotLogicManager()
+#rlm = RobotLogicManager()
+
+#Testing module laoding
+#To be removed
+# path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/test_plugin.py"
+# plugin = rlm.load_module(path)
+# print(plugin.run())
 
 
 #The following sections defines the handling of incoming http requests
