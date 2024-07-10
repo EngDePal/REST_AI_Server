@@ -20,13 +20,13 @@ class DataManager:
         #Change this to 'REST_AI_Server' during deployment
         self.db = self.client["test"]
 
-        self.collections_list = ["positions", "logs", "infos"]
+        self.collections_list = ["robot_status", "logs", "infos"]
 
         #Inserts collections with base entry if necessary
         for collection in self.collections_list:
             if collection not in self.db.list_collection_names():
                 new_col = self.db[collection]
-                if collection == "positons":
+                if collection == "robot_status":
                     dict = {"token" : "", 
                             "command" : "", 
                             "parameters": {
@@ -99,10 +99,10 @@ class DataManager:
     def save_data(self, collection, dict:dict):
         chosen_collection = self.db[collection]
 
-        #Regarding positions: In order to avoid complex queries and ensure the return of only the latest position, prior entries will be deleted
-        if collection == "positions":
+        #Regarding robot_status: In order to avoid complex queries and ensure the return of only the latest position, prior entries will be deleted
+        if collection == "robot_status":
             token = dict["token"]
-            doc = self.query_data("positions", {"token": token})
+            doc = self.query_data("robot_status", {"token": token})
             if len(doc) != 0:
                 chosen_collection.delete_many({"token": token})
         entry = chosen_collection.insert_one(dict)
