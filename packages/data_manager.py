@@ -23,6 +23,7 @@ class DataManager:
         self.collections_list = ["robot_status", "logs", "infos", "plugins"]
 
         #Inserts collections with base entry if necessary
+        #View these as definitions, if not specified otherwise in the API -> robot_status
         for collection in self.collections_list:
             if collection not in self.db.list_collection_names():
                 new_col = self.db[collection]
@@ -124,6 +125,33 @@ class DataManager:
             document = list(chosen_collection.find(query_dict))
             return document
     
+    #Get plugin ID from server
+    #Does not need a query dict as an argument
+    #Shortens server code
+    def retrieve_id(self, token):
+        #Get the fitting document from MongoDB
+        try:
+            query = {"token" : token}
+            result = self.query_data("robot_status", query)
+            doc = result[0]
+            #Only returns the plugin ID
+            id = doc["plugin_id"]
+            return id
+        except IndexError:
+            return 0
+    
+    #Retrieves the robot_status
+    def retrieve_status(self, token):
+        #Get the fitting document from MongoDB
+        try:
+            query = {"token" : token}
+            result = self.query_data("robot_status", query)
+            doc = result[0]
+            return doc
+        except IndexError:
+            return {}
+
+    
     #Sets the confirmation status to true
     #After receiving a post /newcommand request
     def confirm_robot_command(self, token):
@@ -136,29 +164,25 @@ class DataManager:
 
 #Testing
 # dm = DataManager()
-# doc = {"token" : "1234678",
-#                             "confirmation" : False,
-#                             "command" : "", 
-#                             "parameters": {
-#                                 "type": "",
-#                                 "frame": {
-#                                     "X": 0, 
-#                                     "Y": 0, 
-#                                     "Z": 0, 
-#                                     "A": 0, 
-#                                     "B": 0, 
-#                                     "Z": 0}
-#                             }
-#                     }
-# dm.save_data("robot_status", doc)
-# print(dm.query_data("robot_status", doc))
-# dm.confirm_robot_command("1234678")
-# print(dm.query_data("robot_status", {"token" : "1234678"}))
+# # doc = {"token" : "1234678",
+# #                             "confirmation" : False,
+# #                             "command" : "", 
+# #                             "parameters": {
+# #                                 "type": "",
+# #                                 "frame": {
+# #                                     "X": 0, 
+# #                                     "Y": 0, 
+# #                                     "Z": 0, 
+# #                                     "A": 0, 
+# #                                     "B": 0, 
+# #                                     "Z": 0}
+# #                             }
+# #                     }
+# # dm.save_data("robot_status", doc)
+# result = dm.retrieve_status("1425255")
+# print(result)
+
 # dm.stop_mongodb()
-
-
-        
-
 
 
     

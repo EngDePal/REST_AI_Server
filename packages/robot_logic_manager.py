@@ -45,7 +45,7 @@ class RobotLogicManager:
         #Module management for further operations
         self.register_plugin(name, plugin_instance, plugin_id)
         
-        #Only for testing
+        #Only for testing, to be removed
         return plugin_instance
     
     #Creates and returns an instance of the main class of the plugin
@@ -69,6 +69,12 @@ class RobotLogicManager:
 
         #Allows the server to retrieve running instances of plugins for every client  
         self.plugin_mapping[plugin_id] = plugin_instance
+
+    #Returns the correct plugin instance
+    #According to the provided ID
+    def retrieve_plugin(self, plugin_id):
+        instance = self.plugin_mapping[plugin_id]
+        return instance
         
 #Test
 # rlm = RobotLogicManager()

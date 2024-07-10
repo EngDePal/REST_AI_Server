@@ -33,7 +33,7 @@ def login_response():
     #Dynamically load and register the plugin
     rlm.load_module(path, plugin_id)
     
-    #Generating and sending the token
+    #Generating and preparing the token
     generated_token = tm.generate_token()
     data = {
         "token" : generated_token
@@ -42,9 +42,8 @@ def login_response():
     #Saving the combination of token and plugin_id -> REST statelessness
     dict = {"token" : generated_token, "plugin_id": plugin_id}
     dm.save_data("plugins", dict)
-    print(data)
-    print(dict)
 
+    #Sending the token to the server
     return jsonify(data), 200
     
 #REST-API: GET /newcommand/<token> 200 {}
@@ -55,19 +54,45 @@ def command_response(token):
     #The correct plugin instance should be called according to a mapping token:plugin
     #For testing purposes, our barebones_plugin will suffice
     #Subject to change
-    global module
-    data = module.run()
+    
+    #Gets the robot status and plugin_id from MongoDB
+    status = dm.retrieve_status(token)
+    plugin_id = dm.retrieve_id(token)
 
-    return jsonify(data), 200
+    #For the first command there will be an empty list
+    #Sets the confirmation to true in this case
+    if len(status) == 0:
+        status["confirmation"] = True
+
+    #Checks for confirmed command and authentic token
+    if status["confirmation"]:
+        if tm.check_token_authenticity(token):
+            #Grab ID from MongoDB
+            plugin_id = dm.retrieve_id(token)
+            #Grab plugin instance
+            instance = rlm.retrieve_plugin(plugin_id) 
+            
+            #Run the plugin and return the output -> command object
+            command = instance.run()
+
+            #Save the robot command
+            dict = command
+            dict["token"] = token
+            dict["confirmation"] = False
+            dm.save_data("robot_status", dict)
+
+            return jsonify(command), 200
 
 
 #REST-API: POST /newcommand/<token> 200 {}
 #Response to command confirmation: no return object, server can generate the next command
 @app.route("/newcommand/<token>", methods=["POST"])
 def command_confirmation(token):
-    #Still not sure, what to do here: update robot_status as confirmed
-    #Could the be used to only generate a new_command if the confirmation is true
-    #Collection 'robot_status'
+
+    #Changes confirmation on the recent command to True
+    #Otherwise no new command will be generated in the next run
+    dm.confirm_robot_command(token)
+
     return {}, 200
 
 #REST-API: POST /safeinfo/<token> 200 {"msg" : String}
