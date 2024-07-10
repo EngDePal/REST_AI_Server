@@ -86,7 +86,3 @@ class TestPlugin(PluginInterface):
         if self.counter < 6:
             self.counter += 1
         return command
-
-#Testing import
-test = TestPlugin()
-print(test.show_all_plugins())

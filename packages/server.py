@@ -16,9 +16,6 @@ tm = TokenManager()
 dm = DataManager()
 rlm = RobotLogicManager()
 
-#For testing
-module = 0
-
 #The following sections defines the handling of incoming http requests
 #Token variable in most URI serves the identficiation of different clients
 #For more details on the individual commands please check GitHub or the accompanying thesis
@@ -30,14 +27,24 @@ def login_response():
 
     #During login a decision about the necessary plugin instance must be made
     #For testing purposes we will load one module
-    global module
-    path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/barebones_plugin.py"
-    module = rlm.load_module(path)
+    path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/prototypes/test_plugin.py"
+    #Generate a new plugin_id
+    plugin_id = tm.generate_id()
+    #Dynamically load and register the plugin
+    rlm.load_module(path, plugin_id)
     
     #Generating and sending the token
+    generated_token = tm.generate_token()
     data = {
-        "token" : tm.generate_token()
+        "token" : generated_token
     }
+
+    #Saving the combination of token and plugin_id -> REST statelessness
+    dict = {"token" : generated_token, "plugin_id": plugin_id}
+    dm.save_data("plugins", dict)
+    print(data)
+    print(dict)
+
     return jsonify(data), 200
     
 #REST-API: GET /newcommand/<token> 200 {}
@@ -58,7 +65,8 @@ def command_response(token):
 #Response to command confirmation: no return object, server can generate the next command
 @app.route("/newcommand/<token>", methods=["POST"])
 def command_confirmation(token):
-    #Still not sure, what to do here: probably overwrite the last command with the new command in MongoDB
+    #Still not sure, what to do here: update robot_status as confirmed
+    #Could the be used to only generate a new_command if the confirmation is true
     #Collection 'robot_status'
     return {}, 200
 
