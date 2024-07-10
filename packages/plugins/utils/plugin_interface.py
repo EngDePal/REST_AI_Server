@@ -36,7 +36,7 @@ class PluginInterface(ABC):
     #Will be called by the server
     #Free to take in various inputs
     @abstractmethod
-    def run(self, **kwargs):
+    def run(self, *args, **kwargs):
         #must always return a command object as specified by the API
         #Command object can be imported as a seprate class inside 'plugins'
         pass

@@ -4,6 +4,7 @@
 
 #Checks for the counter
 def read_counter():
+
     try:
         with open('counter_storage.txt', 'r') as file:
             return int(file.read().strip())
