@@ -2,11 +2,10 @@
 #In the current project structure
 #Pyhton is unable to detect the 'plugins' module despite seemingly correct setup with __init__.py
 #Manual change to sys.path is the only stable fix
-#Append these next 4 line at the top of every plugin
+#Append these next 3 lines at the top of every plugin
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-print(sys.path)
 
 #Importing the interface
 from plugins.utils.plugin_interface import PluginInterface
