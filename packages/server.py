@@ -26,9 +26,13 @@ rlm = RobotLogicManager()
 @app.route("/login", methods=["POST"])
 def login_response():
 
+    #Start of refined plugin loading proces
+    #available_plugins = rlm.get_discovery()
+
+
     #During login a decision about the necessary plugin instance must be made
     #For testing purposes we will load one module
-    path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/prototypes/test_plugin.py"
+    path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/prototypes/telepath_test.py"
     #Generate a new plugin_id
     plugin_id = tm.generate_id()
     #Dynamically load and register the plugin
@@ -43,12 +47,6 @@ def login_response():
     #Saving the combination of token and plugin_id -> REST statelessness
     db_file = {"token" : generated_token, "plugin_id": plugin_id}
     dm.save_data("plugins", db_file)
-
-    #Debugging
-    print("DB file: " + str(db_file))
-    print("plugin Mapping: " + str(rlm.plugin_mapping))
-    print("Plugin List: " + str(rlm.plugins))
-    print(dm.query_data("plugins", db_file))
 
     #Sending the token to the server
     return jsonify(data), 200
@@ -66,10 +64,6 @@ def command_response(token):
     status = dm.retrieve_status(token)
     plugin_id = dm.retrieve_id(token)
 
-    #Debugging
-    print("Status: " + str(status))
-    print("Plugin ID: " + str(plugin_id))
-
     #For the first command there will be an empty list
     #Sets the confirmation to true in this case
     if status == {}:
@@ -85,10 +79,6 @@ def command_response(token):
             
             #Run the plugin and return the output -> command object
             command = instance.run()
-            
-            #Debugging
-            print("COMMAND: " + str(command))
-            print(type(command))
 
             #Save the robot command
             db_file = dict(command)
