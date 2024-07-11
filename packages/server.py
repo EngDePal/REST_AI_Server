@@ -1,6 +1,7 @@
 """Handles the logic of the core application, especially HTTP requests and access to different manager classes."""
 #Importing necessary modules and classes from the Flask web framework
 from flask import Flask, jsonify, request
+import json
 #Importing the various managers
 from token_manager import TokenManager
 from data_manager import DataManager
@@ -40,8 +41,14 @@ def login_response():
     }
 
     #Saving the combination of token and plugin_id -> REST statelessness
-    dict = {"token" : generated_token, "plugin_id": plugin_id}
-    dm.save_data("plugins", dict)
+    db_file = {"token" : generated_token, "plugin_id": plugin_id}
+    dm.save_data("plugins", db_file)
+
+    #Debugging
+    print("DB file: " + str(db_file))
+    print("plugin Mapping: " + str(rlm.plugin_mapping))
+    print("Plugin List: " + str(rlm.plugins))
+    print(dm.query_data("plugins", db_file))
 
     #Sending the token to the server
     return jsonify(data), 200
@@ -59,9 +66,13 @@ def command_response(token):
     status = dm.retrieve_status(token)
     plugin_id = dm.retrieve_id(token)
 
+    #Debugging
+    print("Status: " + str(status))
+    print("Plugin ID: " + str(plugin_id))
+
     #For the first command there will be an empty list
     #Sets the confirmation to true in this case
-    if len(status) == 0:
+    if status == {}:
         status["confirmation"] = True
 
     #Checks for confirmed command and authentic token
@@ -74,12 +85,16 @@ def command_response(token):
             
             #Run the plugin and return the output -> command object
             command = instance.run()
+            
+            #Debugging
+            print("COMMAND: " + str(command))
+            print(type(command))
 
             #Save the robot command
-            dict = command
-            dict["token"] = token
-            dict["confirmation"] = False
-            dm.save_data("robot_status", dict)
+            db_file = dict(command)
+            db_file["token"] = token
+            db_file["confirmation"] = False
+            dm.save_data("robot_status", db_file)
 
             return jsonify(command), 200
 

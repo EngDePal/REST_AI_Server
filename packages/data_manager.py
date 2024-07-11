@@ -28,7 +28,7 @@ class DataManager:
             if collection not in self.db.list_collection_names():
                 new_col = self.db[collection]
                 if collection == "robot_status":
-                    dict = {"token" : "",
+                    db_file = {"token" : "",
                             "confirmation" : False,
                             "command" : "", 
                             "parameters": {
@@ -42,16 +42,16 @@ class DataManager:
                                     "Z": 0}
                             }
                     }
-                    base_entry = new_col.insert_one(dict)
+                    base_entry = new_col.insert_one(db_file)
                 elif collection == "logs":
-                    dict = {"token" : "", "filename": "", "data": ""}
-                    base_entry = new_col.insert_one(dict)
+                    db_file = {"token" : "", "filename": "", "data": ""}
+                    base_entry = new_col.insert_one(db_file)
                 elif collection == "infos":
-                    dict = {"token" : "", "msg": ""}
-                    base_entry = new_col.insert_one(dict)
+                    db_file = {"token" : "", "msg": ""}
+                    base_entry = new_col.insert_one(db_file)
                 elif collection == "plugins":
-                    dict = {"token": "", "plugin_id": ""}
-                    base_entry = new_col.insert_one(dict)
+                    db_file = {"token": "", "plugin_id": ""}
+                    base_entry = new_col.insert_one(db_file)
 
         print("Database is set-up!")
     
@@ -101,7 +101,7 @@ class DataManager:
             print(f"Error stopping MongoDB: {str(e)}")
 
     #Saves the dictionary in the specified collection
-    def save_data(self, collection, dict:dict):
+    def save_data(self, collection, db_file:dict):
         if collection in self.collections_list:
             chosen_collection = self.db[collection]
 
@@ -109,15 +109,16 @@ class DataManager:
             #ensure the return of only the latest position, prior entries will be deleted
             #Currently not checking correct formats -> separate method
             if collection == "robot_status":
-                token = dict["token"]
+                token = db_file["token"]
                 doc = self.query_data("robot_status", {"token": token})
                 #Checks for previous entries, deletes them
                 if len(doc) != 0:
                     chosen_collection.delete_many({"token": token})
-            chosen_collection.insert_one(dict)
+            chosen_collection.insert_one(db_file)
     
     #Returns a list of the requested documents after taking in a query dictionary
     #So far only used for database testing
+    #Empty dict will return the whole collection
     def query_data(self, collection, query_dict):
         if collection in self.collections_list:
             chosen_collection = self.db[collection]
@@ -132,7 +133,7 @@ class DataManager:
         #Get the fitting document from MongoDB
         try:
             query = {"token" : token}
-            result = self.query_data("robot_status", query)
+            result = self.query_data("plugins", query)
             doc = result[0]
             #Only returns the plugin ID
             id = doc["plugin_id"]
@@ -161,28 +162,6 @@ class DataManager:
         new_values = {"$set" : {"confirmation" : True}}
         #Updating database
         collection.update_one(query, new_values)
-
-#Testing
-# dm = DataManager()
-# # doc = {"token" : "1234678",
-# #                             "confirmation" : False,
-# #                             "command" : "", 
-# #                             "parameters": {
-# #                                 "type": "",
-# #                                 "frame": {
-# #                                     "X": 0, 
-# #                                     "Y": 0, 
-# #                                     "Z": 0, 
-# #                                     "A": 0, 
-# #                                     "B": 0, 
-# #                                     "Z": 0}
-# #                             }
-# #                     }
-# # dm.save_data("robot_status", doc)
-# result = dm.retrieve_status("1425255")
-# print(result)
-
-# dm.stop_mongodb()
 
 
     
