@@ -32,9 +32,9 @@ class PluginInterface(ABC):
 
     #The core method of every plug-in
     #Will be called by the server
-    #Free to take in various inputs
+    #Will always receive the last known robot position
     @abstractmethod
-    def run(self, *args, **kwargs):
+    def run(self, robot_status):
         #must always return a command object as specified by the API
         #Command object can be imported as a seprate class inside 'plugins'
         pass

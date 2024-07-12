@@ -79,7 +79,7 @@ class TokenManager:
     def check_id_conformity(self, plugin_id: str):
         counter = 0
         if len(plugin_id) == self.id_length:
-            for char in id:
+            for char in plugin_id:
                 if char in self.blocked_characters:
                     counter += 1
             if counter == 0: 

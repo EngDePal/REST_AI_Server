@@ -98,6 +98,8 @@ class Server:
 
                     print("Command sent.")
                     return jsonify(command), 200
+            else:
+                return 500
 
 
         #REST-API: POST /newcommand/<token> 200 {}
