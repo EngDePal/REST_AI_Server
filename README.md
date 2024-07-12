@@ -9,6 +9,6 @@ The goal of this project is to define the architecture and implement an AI serve
 This repository will contain the following:
 - my master's thesis for context (German or English)
 - REST API implementation on the server side
-- Knowledge Graph (Ontology and Database)
+- Knowledge Graph (Ontology)
 - AI Application
 - Docs
