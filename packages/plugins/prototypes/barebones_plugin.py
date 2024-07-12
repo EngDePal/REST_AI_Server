@@ -12,7 +12,7 @@ def read_counter():
         return 1
 
 #Writes the counter so it can be persistent    
-def write_counter(value):
+def write_counter(value: int):
     with open('counter_storage.txt', 'w') as file:
         file.write(str(value))
 

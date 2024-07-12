@@ -34,7 +34,7 @@ class TokenManager:
             
         
     #Takes in a token as a string and checks for blocked characters, returning True for correct tokens
-    def check_token_conformity(self, token):
+    def check_token_conformity(self, token: str):
         counter = 0
         if len(token) == self.token_length:
             for char in token:
@@ -49,7 +49,7 @@ class TokenManager:
 
 
     #Takes in a token as a string and compares to existing tokens, verifying the input, returning True for an existing token
-    def check_token_authenticity(self, token):
+    def check_token_authenticity(self, token: str):
         if token in  self.token_list:
             return True
         else:
@@ -76,9 +76,9 @@ class TokenManager:
     
     #Takes in an id as a string and checks for blocked characters, 
     #returning True for correct tokens
-    def check_id_conformity(self, id):
+    def check_id_conformity(self, plugin_id: str):
         counter = 0
-        if len(id) == self.id_length:
+        if len(plugin_id) == self.id_length:
             for char in id:
                 if char in self.blocked_characters:
                     counter += 1
@@ -92,17 +92,11 @@ class TokenManager:
     #Takes in an id as a string and compares to existing tokens, 
     #verifying the input, 
     #returning True for an existing token
-    def check_id_authenticity(self, id):
-        if id in  self.id_list:
+    def check_id_authenticity(self, plugin_id: str):
+        if plugin_id in  self.id_list:
             return True
         else:
             return False
-
-# #Testing        
-# tm = TokenManager()
-# tm.generate_id()
-# tm.generate_id()
-# print(tm.id_list)
 
 
 
