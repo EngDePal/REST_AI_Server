@@ -1,5 +1,5 @@
 #Importing the PyQt5 GUI framework and other modules
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QTextEdit, QComboBox, QTableWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QTextEdit, QComboBox, QTableWidget
 from PyQt5.QtGui import QFont
 import sys
 
@@ -240,8 +240,6 @@ class UserInterface(QWidget):
         self.info_label.move(0,0)
         self.info_label.setStyleSheet("color : grey")
         self.info_label.setFont(self.info_font)
-
-
 
     #Handling of logic and user inputs
 
