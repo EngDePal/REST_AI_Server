@@ -1,4 +1,5 @@
 """Language adapter: serves as an API which allows for integration of plugins in other programming languagues"""
+#UNTESTED!!!
 #Plugin main class can just inherit Rosetta
 
 #Importing plugin utilities

@@ -23,6 +23,7 @@ class Server:
 
         #Variables for data transmission to frontend
         self.available_plugins = dict()
+        self.client_count = 0
 
         # Register the shutdown function for SIGINT (Ctrl + C)
         #Allows manual shutdown in the terminal
@@ -56,6 +57,9 @@ class Server:
             #Saving the combination of token and plugin_id -> REST statelessness
             db_file = {"token" : generated_token, "plugin_id": plugin_id}
             self.dm.save_data("plugins", db_file)
+
+            #Update client count
+            self.client_count += 1
 
             #Sending the token to the server
             print("Login successful.")
@@ -91,6 +95,11 @@ class Server:
                     db_file["token"] = token
                     db_file["confirmation"] = False
                     self.dm.save_data("robot_status", db_file)
+
+                    #Handling log-out
+                    if command["command"] == "EXIT":
+                        self.logout(token= token, plugin_id= plugin_id)
+
 
                     print("Command sent.")
                     return jsonify(command), 200
@@ -140,6 +149,13 @@ class Server:
         def plugin_upload():
             return jsonify(self.available_plugins), 200
         
+        @self.app.route("/count", methods = ["GET"])
+        def count_upload():
+            input = {
+                "counter" : self.client_count
+            }
+            return jsonify(input), 200
+        
     
     #Starts the server
     def start_server(self):
@@ -157,6 +173,19 @@ class Server:
         self.dm.stop_mongodb()
         print("Server shut down")
         exit(0)
+
+    #Handling client logout
+    def logout(self, token: str, plugin_id: str):
+
+        #Reduce client count
+        self.client_count -= 1
+
+        #Removing token and ID from TokenManager
+        self.tm.delete_token(token)
+        self.tm.delete_id(plugin_id)
+
+        #Removing plugin instance and name from RobotLogicManager
+        self.rlm.remove_plugin(token= token, plugin_id= plugin_id)
 
     #Allows plugin choice in the terminal
     #Should be kept in every case as legacy code

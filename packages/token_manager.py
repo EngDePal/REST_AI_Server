@@ -54,6 +54,10 @@ class TokenManager:
             return True
         else:
             return False
+        
+    #Remove a token during log-out  
+    def delete_token(self, token: str):
+        self.token_list.remove(token)
     
     #Following methods operate on plugin IDs
     #Lots of redundant code, but this is more readable and can be individually upgraded
@@ -97,6 +101,10 @@ class TokenManager:
             return True
         else:
             return False
+        
+      #Remove an ID during log-out  
+    def delete_id(self, plugin_id: str):
+        self.token_list.remove(plugin_id)
 
 
 

@@ -4,7 +4,7 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QTimer
 import sys
 #Importing the server backend
-#from server import Server
+from server import Server
 #Allowing for updates from the backend
 import requests
 
@@ -19,18 +19,19 @@ class UserInterface(QWidget):
 
         #Starting backend logic
         #self.server = Server()
-        #for now
+        #In case of previous crash
         #self.server.dm.stop_mongodb()
 
         #Timer for data updates
-        self.timer = QTimer(self)
-        #self.timer.timeout.connect(self.update_dropdown)
-        self.timer.start(5000)
+        # self.timer = QTimer(self)
+        # self.timer.timeout.connect(self.update_counter)
+        # self.timer.start(5000)
 
     #Handling of logic and user inputs
 
     #Starting the server with the green start button
     def click_on_start(self):
+        #self.startServer()
         pass
     
     #Not working ATM
@@ -57,9 +58,18 @@ class UserInterface(QWidget):
 
     def click_on_load(self):
         pass
-
+    
+    #Updates the amount of active clients
     def update_counter(self):
+        # try:
+        #     response = requests.get('http://localhost:5000/counter')
+        # except requests.exceptions.RequestException:
+        #     pass
+        # else:
+        #     counter = response["counter"]
+        #     self.counter_label.setText(counter)
         pass
+
 
     def update_table(self):
         pass
@@ -308,7 +318,6 @@ class UserInterface(QWidget):
 def run_app():
     app = QApplication(sys.argv)
     gui = UserInterface()
-    #gui.server.dm.stop_mongodb()
     gui.show()
     sys.exit(app.exec_())
 
