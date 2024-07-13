@@ -76,12 +76,12 @@ class RobotLogicManager:
         return plugin_instance
     
     #Discovers all plugins adhering to naming convention in the plugin directory
-    #Naming convention: telepath_plugin_name (Telepath is be the software name)
+    #Naming convention: telepath_plugin_name (Telepath is the software name)
     def dicscover_plugins(self):
         discovered_plugins = {
             name: module_finder.find_spec(name).origin
             for module_finder, name, ispkg in pkgutil.iter_modules()
-            if name.startswith('telepath')
+            if name.startswith('telepath_')
         }
         
         return discovered_plugins
@@ -106,4 +106,3 @@ class RobotLogicManager:
     def retrieve_plugin(self, plugin_id: str):
         instance = self.plugin_mapping[plugin_id]
         return instance
-        

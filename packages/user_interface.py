@@ -4,7 +4,7 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QTimer
 import sys
 #Importing the server backend
-from server import Server
+#from server import Server
 #Allowing for updates from the backend
 import requests
 
@@ -18,13 +18,13 @@ class UserInterface(QWidget):
         self.design_interface()
 
         #Starting backend logic
-        self.server = Server()
+        #self.server = Server()
         #for now
-        self.server.dm.stop_mongodb()
+        #self.server.dm.stop_mongodb()
 
         #Timer for data updates
         self.timer = QTimer(self)
-        self.timer.timeout.connect(self.update_dropdown)
+        #self.timer.timeout.connect(self.update_dropdown)
         self.timer.start(5000)
 
     #Handling of logic and user inputs
@@ -42,18 +42,18 @@ class UserInterface(QWidget):
         pass
     
     #Grab the latest list of available plugins and update the dropdown menu
-    def update_dropdown(self):
-        #Get a dictionary of plugin names : paths
-        try:
-            response = requests.get('http://localhost:5000/plugins')
-        except requests.exceptions.RequestException:
-            pass
-        else:
-            #Populate the dropdown with plugin names
-            available_plugins = []
-            for key, value in response:
-                available_plugins.append(key)
-                self.plugin_list.addItems(available_plugins)
+    # def update_dropdown(self):
+    #     #Get a dictionary of plugin names : paths
+    #     try:
+    #         response = requests.get('http://localhost:5000/plugins')
+    #     except requests.exceptions.RequestException:
+    #         pass
+    #     else:
+    #         #Populate the dropdown with plugin names
+    #         available_plugins = []
+    #         for key, value in response:
+    #             available_plugins.append(key)
+    #             self.plugin_list.addItems(available_plugins)
 
     def click_on_load(self):
         pass
@@ -308,7 +308,7 @@ class UserInterface(QWidget):
 def run_app():
     app = QApplication(sys.argv)
     gui = UserInterface()
-    gui.server.dm.stop_mongodb()
+    #gui.server.dm.stop_mongodb()
     gui.show()
     sys.exit(app.exec_())
 

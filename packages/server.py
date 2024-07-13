@@ -65,10 +65,6 @@ class Server:
         #Response to command request: parameters object must be sent back
         @self.app.route("/newcommand/<token>", methods=["GET"])
         def command_response(token: str):
-            #This must be quite a bit more complex
-            #The correct plugin instance should be called according to a mapping token:plugin
-            #For testing purposes, our barebones_plugin will suffice
-            #Subject to change
             
             #Gets the robot status and plugin_id from MongoDB
             status = self.dm.retrieve_status(token)
@@ -111,7 +107,7 @@ class Server:
             self.dm.confirm_robot_command(token)
 
             print("Command confirmed.")
-            return {}, 200
+            return jsonify({}), 200
 
         #REST-API: POST /safeinfo/<token> 200 {"msg" : String}
         #Response to info file from client: file is saved in database
@@ -123,7 +119,7 @@ class Server:
                 self.dm.save_data("infos", data)
 
                 print("Info saved.")
-                return {}, 200
+                return jsonify({}), 200
 
         #REST-API: POST /safelog/<token> 200 {"filename" : String, "data" : String}
         #Response to log file from client: file is saved in database
@@ -135,7 +131,7 @@ class Server:
                 self.dm.save_data("logs", data)
 
                 print("Log file saved.")
-                return {}, 200
+                return jsonify({}), 200
         
         #The following requests are for UI updates
 
