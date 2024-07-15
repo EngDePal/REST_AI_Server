@@ -102,9 +102,9 @@ class TokenManager:
         else:
             return False
         
-      #Remove an ID during log-out  
+    #Remove an ID during log-out  
     def delete_id(self, plugin_id: str):
-        self.token_list.remove(plugin_id)
+        self.id_list.remove(plugin_id)
 
 
 

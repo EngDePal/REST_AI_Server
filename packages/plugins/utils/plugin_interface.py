@@ -34,7 +34,7 @@ class PluginInterface(ABC):
     #Will be called by the server
     #Will always receive the last known robot position
     @abstractmethod
-    def run(self, robot_status):
+    def run(self, robot_status: dict):
         #must always return a command object as specified by the API
         #Command object can be imported as a seprate class inside 'plugins'
         pass
