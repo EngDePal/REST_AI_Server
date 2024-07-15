@@ -34,7 +34,7 @@ class TokenManager:
             
         
     #Takes in a token as a string and checks for blocked characters, returning True for correct tokens
-    def check_token_conformity(self, token):
+    def check_token_conformity(self, token: str):
         counter = 0
         if len(token) == self.token_length:
             for char in token:
@@ -49,11 +49,15 @@ class TokenManager:
 
 
     #Takes in a token as a string and compares to existing tokens, verifying the input, returning True for an existing token
-    def check_token_authenticity(self, token):
+    def check_token_authenticity(self, token: str):
         if token in  self.token_list:
             return True
         else:
             return False
+        
+    #Remove a token during log-out  
+    def delete_token(self, token: str):
+        self.token_list.remove(token)
     
     #Following methods operate on plugin IDs
     #Lots of redundant code, but this is more readable and can be individually upgraded
@@ -76,10 +80,10 @@ class TokenManager:
     
     #Takes in an id as a string and checks for blocked characters, 
     #returning True for correct tokens
-    def check_id_conformity(self, id):
+    def check_id_conformity(self, plugin_id: str):
         counter = 0
-        if len(id) == self.id_length:
-            for char in id:
+        if len(plugin_id) == self.id_length:
+            for char in plugin_id:
                 if char in self.blocked_characters:
                     counter += 1
             if counter == 0: 
@@ -92,17 +96,15 @@ class TokenManager:
     #Takes in an id as a string and compares to existing tokens, 
     #verifying the input, 
     #returning True for an existing token
-    def check_id_authenticity(self, id):
-        if id in  self.id_list:
+    def check_id_authenticity(self, plugin_id: str):
+        if plugin_id in  self.id_list:
             return True
         else:
             return False
-
-# #Testing        
-# tm = TokenManager()
-# tm.generate_id()
-# tm.generate_id()
-# print(tm.id_list)
+        
+      #Remove an ID during log-out  
+    def delete_id(self, plugin_id: str):
+        self.token_list.remove(plugin_id)
 
 
 

@@ -101,7 +101,7 @@ class DataManager:
             print(f"Error stopping MongoDB: {str(e)}")
 
     #Saves the dictionary in the specified collection
-    def save_data(self, collection, db_file:dict):
+    def save_data(self, collection: str, db_file: dict):
         if collection in self.collections_list:
             chosen_collection = self.db[collection]
 
@@ -119,7 +119,7 @@ class DataManager:
     #Returns a list of the requested documents after taking in a query dictionary
     #So far only used for database testing
     #Empty dict will return the whole collection
-    def query_data(self, collection, query_dict):
+    def query_data(self, collection: str, query_dict: dict):
         if collection in self.collections_list:
             chosen_collection = self.db[collection]
             #Returns a cursor object and turns it into a list of dictionaries
@@ -129,7 +129,7 @@ class DataManager:
     #Get plugin ID from server
     #Does not need a query dict as an argument
     #Shortens server code
-    def retrieve_id(self, token):
+    def retrieve_id(self, token: str):
         #Get the fitting document from MongoDB
         try:
             query = {"token" : token}
@@ -142,7 +142,7 @@ class DataManager:
             return 0
     
     #Retrieves the robot_status
-    def retrieve_status(self, token):
+    def retrieve_status(self, token: str):
         #Get the fitting document from MongoDB
         try:
             query = {"token" : token}
@@ -155,7 +155,7 @@ class DataManager:
     
     #Sets the confirmation status to true
     #After receiving a post /newcommand request
-    def confirm_robot_command(self, token):
+    def confirm_robot_command(self, token: str):
         collection = self.db["robot_status"]
         query =  {"token" : token}
         #Setting new values
