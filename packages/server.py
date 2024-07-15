@@ -143,8 +143,9 @@ class Server:
 
                 print("Log file saved.")
                 return jsonify({}), 200
-    
-    #Methods for server handling and GUI integration
+            
+        
+    #Methods for server handling
 
     #Starts the server
     def start_server(self):

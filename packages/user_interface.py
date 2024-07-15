@@ -231,7 +231,7 @@ class UserInterface(QWidget):
             #Client is represented by the token
             #Additionaly shows the plugin and the last command type plus its confirmations status
             self.client_table = QTableWidget(self)
-            self.column_headers = ["No.", "Client", "Plugin", "Status"]
+            self.column_headers = ["No.", "Plugin", "Status"]
             self.client_table.setColumnCount(len(self.column_headers))
             self.client_table.setHorizontalHeaderLabels(self.column_headers)
             self.client_table.setGeometry(500, 150, 400, 330)
@@ -303,4 +303,6 @@ def run_gui():
     gui = UserInterface()
     gui.show()
     sys.exit(gui_app.exec_())
+
+run_gui()
 
