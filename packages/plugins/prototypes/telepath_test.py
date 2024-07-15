@@ -18,7 +18,7 @@ class TestPlugin(PluginInterface):
         self.counter = 1
     
     #Checks every command possible in a total of 6 steps
-    def run(self):
+    def run(self, robot_status: dict):
 
         if self.counter == 1:
             command = {"command" : "LIN",

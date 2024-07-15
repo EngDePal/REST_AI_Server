@@ -89,7 +89,8 @@ class Server:
                     instance = self.rlm.retrieve_plugin(plugin_id) 
                     
                     #Run the plugin and return the output -> command object
-                    command = instance.run()
+                    #Pass robot status as argument
+                    command = instance.run(status)
 
                     #Save the robot command
                     db_file = dict(command)
@@ -173,7 +174,10 @@ class Server:
         self.tm.delete_id(plugin_id)
 
         #Removing plugin instance and name from RobotLogicManager
-        self.rlm.remove_plugin(token= token, plugin_id= plugin_id)
+        self.rlm.remove_plugin(plugin_id= plugin_id)
+
+        #Removing relevant data from MongoDB: no errors if identical token is regenerated
+        self.dm.delete_data(token)
 
     #Allows plugin choice in the terminal
     #Should be kept in every case as legacy code
@@ -198,6 +202,5 @@ class Server:
         
         return path
     
-    #Retun the client count for a GUI update
-    def get_client_count(self):
-        return self.client_count
+server = Server()
+server.start_server()

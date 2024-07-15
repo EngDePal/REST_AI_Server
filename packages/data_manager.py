@@ -163,5 +163,18 @@ class DataManager:
         #Updating database
         collection.update_one(query, new_values)
 
+    #Deletes robot status and plugins, if a client logs out
+    def delete_data(self, token: str):
+
+        parameters = {"token" : token}
+        
+        for collection in ["robot_status", "plugins"]:
+            target_collection = self.db[collection]
+            target_collection.delete_one(parameters)
+
+dm = DataManager()
+status = dm.retrieve_status("SNUkWFPM")
+print(status)
+
 
     
