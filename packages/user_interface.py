@@ -1,12 +1,10 @@
+"""GUI for the REST AI Server"""
+#NOT FUNCTIONAL
 #Importing the PyQt5 GUI framework and other modules
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QTextEdit, QComboBox, QTableWidget
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QTimer
 import sys
-#Importing the server backend
-from server import Server
-#Allowing for updates from the backend
-import requests
 
 class UserInterface(QWidget):
 
@@ -17,22 +15,27 @@ class UserInterface(QWidget):
         super().__init__()
         self.design_interface()
 
-        #Starting backend logic
-        #self.server = Server()
-        #In case of previous crash
-        #self.server.dm.stop_mongodb()
 
-        #Timer for data updates
-        # self.timer = QTimer(self)
-        # self.timer.timeout.connect(self.update_counter)
-        # self.timer.start(5000)
+    #Methods handling logic and user inputs
 
-    #Handling of logic and user inputs
+    #Sets an update timer for all relevant UI elements
+    def update_GUI(self):
+
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.update_counter)
+        self.timer.start(5000)
 
     #Starting the server with the green start button
     def click_on_start(self):
-        #self.startServer()
-        pass
+
+        #Creating server instance
+        self.server = Server()
+        
+        #Start server
+        self.server.start_server()
+
+        #Starting GUI updates
+        self.update_GUI()
     
     #Not working ATM
     #Shutdown the server with the red shutdown button
@@ -42,34 +45,13 @@ class UserInterface(QWidget):
     def update_login_control(self):
         pass
     
-    #Grab the latest list of available plugins and update the dropdown menu
-    # def update_dropdown(self):
-    #     #Get a dictionary of plugin names : paths
-    #     try:
-    #         response = requests.get('http://localhost:5000/plugins')
-    #     except requests.exceptions.RequestException:
-    #         pass
-    #     else:
-    #         #Populate the dropdown with plugin names
-    #         available_plugins = []
-    #         for key, value in response:
-    #             available_plugins.append(key)
-    #             self.plugin_list.addItems(available_plugins)
-
     def click_on_load(self):
         pass
     
     #Updates the amount of active clients
     def update_counter(self):
-        # try:
-        #     response = requests.get('http://localhost:5000/counter')
-        # except requests.exceptions.RequestException:
-        #     pass
-        # else:
-        #     counter = response["counter"]
-        #     self.counter_label.setText(counter)
-        pass
-
+        counter = self.server.get_client_count()
+        self.counter_label.setText(counter)
 
     def update_table(self):
         pass
@@ -93,7 +75,7 @@ class UserInterface(QWidget):
             prefix_font.setBold(True)
 
             self.prefix_label = QLabel("Telepath", self)
-            self.prefix_label.setStyleSheet("color : purple; font : Lucida Console" )
+            self.prefix_label.setStyleSheet("color : purple; font : Lucida" )
             self.prefix_label.setFont(prefix_font)
             self.prefix_label.move(750,50)
 
@@ -101,7 +83,7 @@ class UserInterface(QWidget):
             suffix_font.setPointSize(22)
             suffix_font.setItalic(True)
             suffix_font.setBold(True)
-            suffix_font.setFamily("Calibri")
+            suffix_font.setFamily("Arial")
 
             self.suffix_label = QLabel("RemoteMind", self)
             self.suffix_label.setStyleSheet("color : dark grey;")
@@ -110,7 +92,7 @@ class UserInterface(QWidget):
 
             #Defining some general fonts
             self.button_font = QFont()
-            self.button_font.setFamily("Calibri")
+            self.button_font.setFamily("Arial")
             self.button_font.setPointSize(14)
 
             #Defining some general style sheets
@@ -139,7 +121,7 @@ class UserInterface(QWidget):
             #Setting one font for all section titles
             self.section_font = QFont()
             self.section_font.setBold(True)
-            self.section_font.setFamily("Calibri")
+            self.section_font.setFamily("Arial")
             self.section_font.setPointSize(20)
 
             #Operations section: Control server, load plugins
@@ -195,7 +177,7 @@ class UserInterface(QWidget):
             #Plugin DropDown list, label and button
             self.plugin_font = QFont()
             self.plugin_font.setPointSize(14)
-            self.plugin_font.setFamily("Calibri")
+            self.plugin_font.setFamily("Arial")
 
             self.plugin_label = QLabel("Available Plug-Ins", self)
             self.plugin_label.setGeometry(100, 370, 150, 50)
@@ -209,7 +191,7 @@ class UserInterface(QWidget):
                 QComboBox {
                     border: 3px solid black;  
                     border-radius: 7px;          
-                    font-family: Calibri;      
+                    font-family: Arial;      
                     font-size: 14px;
                     background-color: lightblue    
                 }
@@ -234,7 +216,7 @@ class UserInterface(QWidget):
             #Number of active clients
             self.counter_font = QFont()
             self.counter_font.setPointSize(14)
-            self.counter_font.setFamily("Calibri")
+            self.counter_font.setFamily("Arial")
 
             self.counter_label = QLabel("Active Clients: ", self)
             self.counter_label.setGeometry(500, 100, 300, 50)
@@ -254,25 +236,26 @@ class UserInterface(QWidget):
             self.client_table.setHorizontalHeaderLabels(self.column_headers)
             self.client_table.setGeometry(500, 150, 400, 330)
 
-            self.client_table.setStyleSheet(("""
-                QTableWidget {
-                    border: 3px solid grey;
-                    border-radius: 7px;
-                    font-family: Courier New;
-                    font-size: 12px;
-                }
-                QTableWidget::item {
-                    border-bottom: 1px solid black;
-                }
-                QTableWidget::item:selected {
-                    background-color: lightblue;
-                QHeaderView::section {
-                    background-color: grey;
-                    color: black;
-                    font-weight: bold;
-                    font-family: Calibri
-                }
-            """))
+            self.client_table.setStyleSheet("""
+                            QTableWidget {
+                                border: 3px solid grey;
+                                border-radius: 7px;
+                                font-family: "Courier New";
+                                font-size: 12px;
+                            }
+                            QTableWidget::item {
+                                border-bottom: 1px solid black;
+                            }
+                            QTableWidget::item:selected {
+                                background-color: lightblue;
+                            }
+                            QHeaderView::section {
+                                background-color: grey;
+                                color: black;
+                                font-weight: bold;
+                                font-family: "Arial";
+                            }
+                        """)
 
             #Access section: MongoDB queries
             self.access_label = QLabel("Access", self)
@@ -306,7 +289,7 @@ class UserInterface(QWidget):
             #Version and License
             self.info_font = QFont()
             self.info_font.setPointSize(8)
-            self.info_font.setFamily("Calibri")
+            self.info_font.setFamily("Arial")
 
             info = "@2024. Pre-release version"
             self.info_label = QLabel(info, self)
@@ -315,11 +298,9 @@ class UserInterface(QWidget):
             self.info_label.setFont(self.info_font)
 
 #We will put this inside main.py
-def run_app():
-    app = QApplication(sys.argv)
+def run_gui():
+    gui_app = QApplication(sys.argv)
     gui = UserInterface()
     gui.show()
-    sys.exit(app.exec_())
+    sys.exit(gui_app.exec_())
 
-if __name__ == '__main__':
-    run_app()

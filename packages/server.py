@@ -64,6 +64,7 @@ class Server:
             #Sending the token to the server
             print("Login successful.")
             return jsonify(data), 200
+    
             
         #REST-API: GET /newcommand/<token> 200 {}
         #Response to command request: parameters object must be sent back
@@ -141,22 +142,9 @@ class Server:
 
                 print("Log file saved.")
                 return jsonify({}), 200
-        
-        #The following requests are for UI updates
-
-        #Uploads a list of plugins for the UI to load
-        @self.app.route("/plugins", methods = ["GET"])
-        def plugin_upload():
-            return jsonify(self.available_plugins), 200
-        
-        @self.app.route("/count", methods = ["GET"])
-        def count_upload():
-            input = {
-                "counter" : self.client_count
-            }
-            return jsonify(input), 200
-        
     
+    #Methods for server handling and GUI integration
+
     #Starts the server
     def start_server(self):
         self.app.run()
@@ -209,7 +197,7 @@ class Server:
                 allowed_input = True
         
         return path
-
-
-server = Server()
-server.start_server()
+    
+    #Retun the client count for a GUI update
+    def get_client_count(self):
+        return self.client_count
