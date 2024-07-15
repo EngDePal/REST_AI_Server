@@ -172,9 +172,5 @@ class DataManager:
             target_collection = self.db[collection]
             target_collection.delete_one(parameters)
 
-dm = DataManager()
-status = dm.retrieve_status("SNUkWFPM")
-print(status)
-
 
     
