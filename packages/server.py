@@ -47,7 +47,7 @@ class Server:
             plugin_id = self.tm.generate_id()
             #Dynamically load and register the plugin
             self.rlm.load_module(path, plugin_id)
-            
+
             #Generating and preparing the token
             generated_token = self.tm.generate_token()
             data = {
@@ -61,6 +61,15 @@ class Server:
             #Update client count
             self.client_count += 1
 
+            #Getting starting state of the application
+            instance = self.rlm.retrieve_plugin(plugin_id)
+            app_state = instance.setup()
+            #Saving starting state of the application
+            app_state["token"] = generated_token
+            app_state["confirmation"] = True
+            self.dm.save_data("app_state", app_state)
+            print(app_state)
+
             #Sending the token to the server
             print("Login successful.")
             return jsonify(data), 200
@@ -72,31 +81,33 @@ class Server:
         def command_response(token: str):
             
             #Gets the robot status and plugin_id from MongoDB
-            status = self.dm.retrieve_status(token)
+            #State is a dict
+            state = self.dm.retrieve_state(token)
             plugin_id = self.dm.retrieve_id(token)
 
             #For the first command there will be an empty list
             #Sets the confirmation to true in this case
-            if status == {}:
-                status["confirmation"] = True
+            if state == {}:
+                state["confirmation"] = True
 
             #Checks for confirmed command and authentic token
-            if status["confirmation"]:
+            if state["confirmation"]:
                 if self.tm.check_token_authenticity(token):
                     #Grab ID from MongoDB
                     plugin_id = self.dm.retrieve_id(token)
                     #Grab plugin instance
                     instance = self.rlm.retrieve_plugin(plugin_id) 
                     
-                    #Run the plugin and return the output -> command object
-                    #Pass robot status as argument
-                    command = instance.run(status)
+                    #Run the plugin and return the output -> command object, state dict
+                    #Pass application state as argument
+                    command, app_state = instance.run(state)
 
-                    #Save the robot command
-                    db_file = dict(command)
+                    #Save the app state
+                    #Should be function in DM
+                    db_file = app_state
                     db_file["token"] = token
                     db_file["confirmation"] = False
-                    self.dm.save_data("robot_status", db_file)
+                    self.dm.save_data("app_state", db_file)
 
                     #Handling log-out
                     if command["command"] == "EXIT":
@@ -105,8 +116,6 @@ class Server:
 
                     print("Command sent.")
                     return jsonify(command), 200
-            else:
-                return 500
 
 
         #REST-API: POST /newcommand/<token> 200 {}
@@ -181,7 +190,7 @@ class Server:
         self.dm.delete_data(token)
 
     #Allows plugin choice in the terminal
-    #Should be kept in every case as legacy code
+    #Should be kept in case of GUI integration as legacy code
     def classic_plugin_selection(self, plugin_selection: dict):
         print("New client attempts to login!")
         print("Available plugins for robot logic:")

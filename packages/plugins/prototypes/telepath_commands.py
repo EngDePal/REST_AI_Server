@@ -12,11 +12,24 @@ from plugins.utils.commands import *
 class TestPlugin(PluginInterface):
 
     def __init__(self):
+        #Default state: first action
         self.counter = 1
     
+    #Returns default state
+    #Used during plug-in loading
+    def setup(self):
+        state = dict()
+        state["counter"] = self.counter
+        return state
+    
     #Checks every command possible in a total of 6 steps
-    def run(self, robot_status):
+    def run(self, state):
 
+        #Application state is restored from DB info
+        #State is passed as a dict
+        self.counter = state["counter"]
+
+        #Command generation
         if self.counter == 1:
             frame = {
                     "a" : 0,
@@ -63,6 +76,12 @@ class TestPlugin(PluginInterface):
             command = CommandINFO()
         elif self.counter == 6:
             command = CommandEXIT()
+
+        #Generation of state dictionary
+        app_state = dict()
         if self.counter < 6:
             self.counter += 1
-        return command
+        app_state["counter"] = self.counter
+
+        return command, app_state
+

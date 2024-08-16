@@ -20,14 +20,17 @@ class DataManager:
         #Change this to 'REST_AI_Server' during deployment
         self.db = self.client["test"]
 
-        self.collections_list = ["robot_status", "logs", "infos", "plugins"]
+        self.collections_list = ["app_state", "logs", "infos", "plugins"]
 
         #Inserts collections with base entry if necessary
-        #View these as definitions, if not specified otherwise in the API -> robot_status
+        #View these as examples or formats 
+        #Except for app state, which depends on the plugin
         for collection in self.collections_list:
             if collection not in self.db.list_collection_names():
                 new_col = self.db[collection]
-                if collection == "robot_status":
+                if collection == "app_state":
+                    #This is only an example of the robot coordinates as the state
+                    #Properties of the state file are determined by the plugin
                     db_file = {"token" : "",
                             "confirmation" : False,
                             "command" : "", 
@@ -105,12 +108,11 @@ class DataManager:
         if collection in self.collections_list:
             chosen_collection = self.db[collection]
 
-            #Regarding robot_status: In order to avoid complex queries and 
-            #ensure the return of only the latest position, prior entries will be deleted
-            #Currently not checking correct formats -> separate method
-            if collection == "robot_status":
+            #Regarding app_state: In order to avoid complex queries and 
+            #Ensure the return of only the latest state, prior entries will be deleted
+            if collection == "app_state":
                 token = db_file["token"]
-                doc = self.query_data("robot_status", {"token": token})
+                doc = self.query_data("app_state", {"token": token})
                 #Checks for previous entries, deletes them
                 if len(doc) != 0:
                     chosen_collection.delete_many({"token": token})
@@ -141,34 +143,34 @@ class DataManager:
         except IndexError:
             return 0
     
-    #Retrieves the robot_status
-    def retrieve_status(self, token: str):
+    #Retrieves the app_state
+    def retrieve_state(self, token: str):
         #Get the fitting document from MongoDB
         try:
             query = {"token" : token}
-            result = self.query_data("robot_status", query)
+            result = self.query_data("app_state", query)
             doc = result[0]
             return doc
         except IndexError:
             return {}
 
-    
+    #!!!Probably redundant -> to be redesigned!!!
     #Sets the confirmation status to true
     #After receiving a post /newcommand request
     def confirm_robot_command(self, token: str):
-        collection = self.db["robot_status"]
+        collection = self.db["app_state"]
         query =  {"token" : token}
         #Setting new values
         new_values = {"$set" : {"confirmation" : True}}
         #Updating database
         collection.update_one(query, new_values)
 
-    #Deletes robot status and plugins, if a client logs out
+    #Deletes app state and plugins, if a client logs out
     def delete_data(self, token: str):
 
         parameters = {"token" : token}
         
-        for collection in ["robot_status", "plugins"]:
+        for collection in ["app_state", "plugins"]:
             target_collection = self.db[collection]
             target_collection.delete_one(parameters)
 
