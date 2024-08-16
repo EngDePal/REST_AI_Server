@@ -53,7 +53,7 @@ class DataManager:
                     db_file = {"token" : "", "msg": ""}
                 #Plugin selection of clients
                 elif collection == "plugins":
-                    db_file = {"token": "", "plugin_id": ""}
+                    db_file = {"token": "", "plugin_name": ""}
                 #Saving generated command
                 elif collection == "commands":
                      db_file = {"token" : "",
@@ -143,6 +143,22 @@ class DataManager:
 
             chosen_collection.insert_one(db_file)
     
+    #Save functions to shorten server code
+
+    def save_plugin(self, token: str, plugin_name:str):
+        db_file = {"token" : token, "plugin_name": plugin_name}
+        self.save_data("plugins", db_file)
+
+    def save_state(self, token: str, state: dict):
+        db_file = state
+        db_file["token"] = token
+        self.save_data("app_state", db_file)
+
+    def save_command(self, token: str, command:dict):
+        db_file = command
+        db_file["token"] = token
+        self.save_data("commands", db_file)
+    
     #Returns a list of the requested documents after taking in a query dictionary
     #So far only used for database testing
     #Empty dict will return the whole collection
@@ -153,17 +169,17 @@ class DataManager:
             document = list(chosen_collection.find(query_dict))
             return document
     
-    #Get plugin ID from server
+    #Get plugin name from server
     #Does not need a query dict as an argument
     #Shortens server code
-    def retrieve_id(self, token: str):
+    def retrieve_plugin(self, token: str):
         #Get the fitting document from MongoDB
         try:
             query = {"token" : token}
             result = self.query_data("plugins", query)
             doc = result[0]
-            #Only returns the plugin ID
-            id = doc["plugin_id"]
+            #Only returns the plugin name
+            id = doc["plugin_name"]
             return id
         except IndexError:
             return 0

@@ -36,7 +36,7 @@ class PluginInterface(ABC):
     #The form of state depends on the plugin design
     @abstractmethod
     def run(self, state: dict):
-        #Must always return a tuple of acommand object as specified by the API
+        #Must always return a tuple of a command object as specified by the API
         #As well as application state dict
         #State must allow the plugin to resume functionality seemlessly
         #State will also be passed as a dict: plugin must access relevant keys
