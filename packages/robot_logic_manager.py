@@ -104,7 +104,7 @@ class RobotLogicManager:
 
     #Returns the correct plugin instance
     #According to the provided ID
-    def retrieve_plugin(self, plugin_id: str):
+    def get_plugin(self, plugin_id: str):
         instance = self.plugin_mapping[plugin_id]
         return instance
     

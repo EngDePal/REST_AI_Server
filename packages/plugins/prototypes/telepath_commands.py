@@ -11,15 +11,15 @@ from plugins.utils.commands import *
 #This is a test plug-in
 class TestPlugin(PluginInterface):
 
+    #Constructor not necessary here
     def __init__(self):
-        #Default state: first action
-        self.counter = 1
+        pass
     
     #Returns default state
     #Used during plug-in loading
     def setup(self):
         state = dict()
-        state["counter"] = self.counter
+        state["counter"] = 1
         return state
     
     #Checks every command possible in a total of 6 steps
@@ -84,4 +84,3 @@ class TestPlugin(PluginInterface):
         app_state["counter"] = self.counter
 
         return command, app_state
-
