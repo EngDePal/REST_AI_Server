@@ -20,22 +20,11 @@ class UserInterface(QWidget):
 
     #Sets an update timer for all relevant UI elements
     def update_GUI(self):
-
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.update_counter)
-        self.timer.start(5000)
+        pass
 
     #Starting the server with the green start button
     def click_on_start(self):
-
-        #Creating server instance
-        self.server = Server()
-        
-        #Start server
-        self.server.start_server()
-
-        #Starting GUI updates
-        self.update_GUI()
+        pass
     
     #Not working ATM
     #Shutdown the server with the red shutdown button
@@ -50,8 +39,7 @@ class UserInterface(QWidget):
     
     #Updates the amount of active clients
     def update_counter(self):
-        counter = self.server.get_client_count()
-        self.counter_label.setText(counter)
+        pass
 
     def update_table(self):
         pass
@@ -231,7 +219,7 @@ class UserInterface(QWidget):
             #Client is represented by the token
             #Additionaly shows the plugin and the last command type plus its confirmations status
             self.client_table = QTableWidget(self)
-            self.column_headers = ["No.", "Plugin", "Status"]
+            self.column_headers = ["Token", "Plugin", "Last Command"]
             self.client_table.setColumnCount(len(self.column_headers))
             self.client_table.setHorizontalHeaderLabels(self.column_headers)
             self.client_table.setGeometry(500, 150, 400, 330)
@@ -296,13 +284,4 @@ class UserInterface(QWidget):
             self.info_label.move(0,0)
             self.info_label.setStyleSheet("color : grey")
             self.info_label.setFont(self.info_font)
-
-#We will put this inside main.py
-def run_gui():
-    gui_app = QApplication(sys.argv)
-    gui = UserInterface()
-    gui.show()
-    sys.exit(gui_app.exec_())
-
-run_gui()
 

@@ -11,7 +11,7 @@ import signal
 from plugins.utils.commands import *
 
 
-#Server class
+# Server class
 class Server:
 
     def __init__(self):
@@ -151,13 +151,12 @@ class Server:
 
                 print("Log file saved.")
                 return jsonify({}), 200
-            
         
     #Methods for server handling
 
     #Starts the server
     def start_server(self):
-        self.app.run()
+        self.app.run(port=5000)
 
     #Shutting down server
     #To be implemented
