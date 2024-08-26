@@ -14,19 +14,18 @@ class RobotLogicManager:
     #Initalizes the Plug-In Manager
     def __init__(self):
 
-        #Path is subject to change (improving project structure)
+        #Plugin directory
         self.dir_path = os.path.dirname(os.path.realpath(__file__))
         self.plugin_directory = os.path.join(self.dir_path, "plugins")
 
         #Allows for Plugin discovery
         #Allows Python to search in the plugin directory
         sys.path.append(self.plugin_directory)
-        
+
         #Allows Python to search in newly added plugins-subdirectories
-        for folder in os.listdir(self.plugin_directory):
-            path = os.path.join(self.plugin_directory, folder)
-            if os.path.isdir(path) and path not in sys.path:
-                sys.path.append(path)
+        for root, dirs, files in os.walk(self.plugin_directory):
+            if root not in sys.path:
+                sys.path.append(root)
         
         #Creates a dict of discovered plugins and their paths
         self.dicscovered_plugins = self.dicscover_plugins()

@@ -24,10 +24,10 @@ class Server:
         self.rlm = RobotLogicManager()
 
         #Variables for data transmission to frontend
-        self.available_plugins = dict()
+        #Frontend not yet implemented
         self.client_count = 0
 
-        # Register the shutdown function for SIGINT (Ctrl + C)
+        #Register the shutdown function for SIGINT (Ctrl + C)
         #Allows manual shutdown in the terminal
         signal.signal(signal.SIGINT, self.manual_shutdown)
 

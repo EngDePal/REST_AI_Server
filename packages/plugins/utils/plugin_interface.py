@@ -4,6 +4,9 @@ from abc import ABC, abstractmethod
 import os
 import inspect
 
+#File names must adhere to the naming convention telepath_"filename"
+#There must only be one class in this file, which must implement the interface
+#However the plugin can consist of several other files of course
 class PluginInterface(ABC):
 
     plugins = []

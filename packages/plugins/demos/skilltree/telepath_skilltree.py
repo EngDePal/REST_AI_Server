@@ -17,7 +17,7 @@ class Skilltree(PluginInterface):
 
     #Init loads the ontology
     def __init__(self):
-        path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/skilltree/skilltree_ontology.rdf"
+        path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/demos/skilltree/skilltree_ontology.rdf"
         self.ontology = get_ontology(path).load()
         print("Ontology can be accessed.")
 
@@ -28,7 +28,7 @@ class Skilltree(PluginInterface):
         setup_file["level"] = initial_level
         return setup_file
     
-    def run(self, state):
+    def run(self, state: dict):
         
         #Access the current level and query the corresponding individual
         level_individual = self.ontology.search_one(hasValue=state["level"])
@@ -61,7 +61,7 @@ class Skilltree(PluginInterface):
         
         return command, new_state
 
-
+    #Creates the correct command based on ontology information
     def generate_command(self, skill: object):
         name = skill.hasName
         if name == "LOG":
@@ -90,11 +90,3 @@ class Skilltree(PluginInterface):
             destination = json.loads(dest_string)
             command = CommandCIRC(auxiliaryFrame, destination)
             return command
-       
-sk = Skilltree()
-state = {"level" : 1}
-for i in range(1, 7):
-    print(i)
-    command, state = sk.run(state)
-    print(command)
-    print(state)

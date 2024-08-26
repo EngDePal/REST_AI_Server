@@ -1,0 +1,1229 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder/"
+     xml:base="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:house_builder="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder">
+        <rdfs:comment>This is the ontology used in the telepath_reasoning plug-in. It is based on the prodcut model ontology and adds individuals, which model a (drawing of a) house as the product.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasAction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasAction">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasCorrespondingInstruction"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasCorrespondingInstruction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasCorrespondingInstruction">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasCorrespondingPart -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasCorrespondingPart">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasInstruction"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasCorrespondingProduct -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasCorrespondingProduct">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasPart"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Product"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasEnabledAction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasEnabledAction">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasNecessaryAction"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasEnabledPart -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasEnabledPart">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasNecessaryPart"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasInstruction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasInstruction">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasNecessaryAction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasNecessaryAction">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasNecessaryPart -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasNecessaryPart">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasPart -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasPart">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Product"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasProductConstraint -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasProductConstraint">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Product"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasActionName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasActionName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasAuxiliaryFrame -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasAuxiliaryFrame">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#TwoPointMovement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasCommand -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasCommand">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasDestination -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasDestination">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#TwoPointMovement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasFrame -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasFrame">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasInstructionDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasInstructionDescription">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasInstructionName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasInstructionName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasPartName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasPartName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasProductDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasProductDescription">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasProductName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasProductName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#isRobotManipulatable -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#isRobotManipulatable">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#utilizesTool -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#utilizesTool">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#ActionWithPrecondition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#ActionWithPrecondition">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasNecessaryAction"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#ActionWithoutPrecondition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#ActionWithoutPrecondition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#ActionWithoutPrecondition">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasNecessaryAction"/>
+                                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Communication -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Communication">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+        <rdfs:comment>Modes of communication including INFO, LOG and EXIT</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+        <rdfs:comment>Movements defined by one point/frame including LIN and PTP</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#PartWithPrecondition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#PartWithPrecondition">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasNecessaryPart"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#PartWithoutPrecondition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#PartWithoutPrecondition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#PartWithoutPrecondition">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasNecessaryPart"/>
+                                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Product -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Product"/>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#TwoPointMovement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#TwoPointMovement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+        <rdfs:comment>Movement defined by two points/frames -&gt; CIRC</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#door -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#door">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <house_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#doorInstruction"/>
+        <house_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#foundation"/>
+        <house_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#leftWall"/>
+        <house_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#rightWall"/>
+        <house_builder:hasPartName>Front Door</house_builder:hasPartName>
+        <house_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</house_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#doorInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#doorInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorLeft"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorRight"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorTop"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingDoorAssembly"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareDoorAssembly"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startDoorAssembly"/>
+        <house_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#sketchHouse"/>
+        <house_builder:hasInstructionDescription>Instruction for building the door, which is made up of 3 lines</house_builder:hasInstructionDescription>
+        <house_builder:hasInstructionName>Door Assembly</house_builder:hasInstructionName>
+        <house_builder:utilizesTool>sharpie</house_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorLeft -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorLeft">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startDoorAssembly"/>
+        <house_builder:hasActionName>Drawing left side of door</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorRight -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorRight">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorTop"/>
+        <house_builder:hasActionName>Drawing right side of door</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorTop -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorTop">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorLeft"/>
+        <house_builder:hasActionName>Drawing top of door</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingFoundation -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingFoundation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startFoundationConstruction"/>
+        <house_builder:hasActionName>Drawing foundation</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingLeftWall -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingLeftWall">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startLeftWallConstruction"/>
+        <house_builder:hasActionName>Drawing left wall</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRightWall -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRightWall">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startRightWallConstruction"/>
+        <house_builder:hasActionName>Drawing right wall</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRoofArc -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRoofArc">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#TwoPointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRoofBeam"/>
+        <house_builder:hasActionName>Drawing roof arc</house_builder:hasActionName>
+        <house_builder:hasAuxiliaryFrame>{
+                             &quot;a&quot; : 32,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasAuxiliaryFrame>
+        <house_builder:hasCommand>CIRC</house_builder:hasCommand>
+        <house_builder:hasDestination>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasDestination>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRoofBeam -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRoofBeam">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startRoofConstruction"/>
+        <house_builder:hasActionName>Draw roof beam</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowBottom -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowBottom">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowRight"/>
+        <house_builder:hasActionName>Drawing bottom of window</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowLeft -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowLeft">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startWindowAssembly"/>
+        <house_builder:hasActionName>Drawing left side of window</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowRight -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowRight">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowTop"/>
+        <house_builder:hasActionName>Drawing right side of window</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowTop -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowTop">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowLeft"/>
+        <house_builder:hasActionName>Drawing top of window</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingDoorAssembly -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingDoorAssembly">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingDoorRight"/>
+        <house_builder:hasActionName>Finishing door assembly</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingFoundation -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingFoundation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingFoundation"/>
+        <house_builder:hasActionName>Finishing construction of foundation</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingLeftWall -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingLeftWall">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingLeftWall"/>
+        <house_builder:hasActionName>Finishing left wall construction</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingRightWall -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingRightWall">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasActionName>Finishing right wall construction</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingRoof -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingRoof">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRoofArc"/>
+        <house_builder:hasActionName>Finishing roof</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingWindowAssembly -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingWindowAssembly">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowBottom"/>
+        <house_builder:hasActionName>Finishing window assembly</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#foundation -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#foundation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <house_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#foundationInstruction"/>
+        <house_builder:hasPartName>Foundation</house_builder:hasPartName>
+        <house_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</house_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#foundationInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#foundationInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingFoundation"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingFoundation"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareFoundationConstruction"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startFoundationConstruction"/>
+        <house_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#sketchHouse"/>
+        <house_builder:hasInstructionDescription>Instruction for the construction of the foundation, which consists of one line</house_builder:hasInstructionDescription>
+        <house_builder:hasInstructionName>Instruction for foundation construction</house_builder:hasInstructionName>
+        <house_builder:utilizesTool>sharpie</house_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#leftWall -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#leftWall">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <house_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#leftWallInstruction"/>
+        <house_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#foundation"/>
+        <house_builder:hasPartName>Left Wall</house_builder:hasPartName>
+        <house_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</house_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#leftWallInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#leftWallInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingLeftWall"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingLeftWall"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareLeftWallConstruction"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startLeftWallConstruction"/>
+        <house_builder:hasCorrespondingPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#leftWall"/>
+        <house_builder:hasInstructionDescription>Instructions for the construction of the left wall, which consists of one vertical wall</house_builder:hasInstructionDescription>
+        <house_builder:hasInstructionName>Instruction for construction of left wall</house_builder:hasInstructionName>
+        <house_builder:utilizesTool>sharpie</house_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareDoorAssembly -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareDoorAssembly">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasActionName>Preparation of door assembly</house_builder:hasActionName>
+        <house_builder:hasCommand>PTP</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareFoundationConstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareFoundationConstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasActionName>Preparing foundation construction</house_builder:hasActionName>
+        <house_builder:hasCommand>PTP</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareLeftWallConstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareLeftWallConstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasActionName>Preparing left wall construction</house_builder:hasActionName>
+        <house_builder:hasCommand>PTP</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareRightWallConstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareRightWallConstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasActionName>Preparing right wall construction</house_builder:hasActionName>
+        <house_builder:hasCommand>PTP</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareRoofConstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareRoofConstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasActionName>Preparing roof construction</house_builder:hasActionName>
+        <house_builder:hasCommand>PTP</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareWindowAssembly -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareWindowAssembly">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasActionName>Preparation of window assembly</house_builder:hasActionName>
+        <house_builder:hasCommand>PTP</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#rightWall -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#rightWall">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <house_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#rightWallInstruction"/>
+        <house_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#foundation"/>
+        <house_builder:hasPartName>Right Wall</house_builder:hasPartName>
+        <house_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</house_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#rightWallInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#rightWallInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRightWall"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingRightWall"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareRightWallConstruction"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startRightWallConstruction"/>
+        <house_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#sketchHouse"/>
+        <house_builder:hasInstructionDescription>Instructions for the construction of the right wall, which consists of one vertical line</house_builder:hasInstructionDescription>
+        <house_builder:hasInstructionName>Instruction for right wall construction</house_builder:hasInstructionName>
+        <house_builder:utilizesTool>sharpie</house_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#roof -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#roof">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <house_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#roofInstruction"/>
+        <house_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#foundation"/>
+        <house_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#leftWall"/>
+        <house_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#rightWall"/>
+        <house_builder:hasPartName>Roof</house_builder:hasPartName>
+        <house_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</house_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#roofInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#roofInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRoofArc"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRoofBeam"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingRoof"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareRoofConstruction"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startRoofConstruction"/>
+        <house_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#sketchHouse"/>
+        <house_builder:hasInstructionDescription>Instructions for the construction of the roof, which consists of a beam (horizontal line) and an arc</house_builder:hasInstructionDescription>
+        <house_builder:hasInstructionName>Intruction for roof construction</house_builder:hasInstructionName>
+        <house_builder:utilizesTool>sharpie</house_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#sketchHouse -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#sketchHouse">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Product"/>
+        <house_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#door"/>
+        <house_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#foundation"/>
+        <house_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#leftWall"/>
+        <house_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#rightWall"/>
+        <house_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#roof"/>
+        <house_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#window"/>
+        <house_builder:hasProductDescription>This is a square house with a round roof, a door and a window. Great place to live!</house_builder:hasProductDescription>
+        <house_builder:hasProductName>Robot&apos;s sketch of a house</house_builder:hasProductName>
+        <rdfs:comment>This is our product, a house which will be drawn by our robot. Despite the 2D nature of this house in terms of ontolgy logic, it wil be treated as a regular house. Therefore, you cannot construct the roof before the walls for example.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startDoorAssembly -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startDoorAssembly">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareDoorAssembly"/>
+        <house_builder:hasActionName>Starting door assembly</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startFoundationConstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startFoundationConstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareFoundationConstruction"/>
+        <house_builder:hasActionName>Starting construction of foundation</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startLeftWallConstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startLeftWallConstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareLeftWallConstruction"/>
+        <house_builder:hasActionName>Starting left wall construction</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startRightWallConstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startRightWallConstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareRightWallConstruction"/>
+        <house_builder:hasActionName>Start construction of right wall</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startRoofConstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startRoofConstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareRoofConstruction"/>
+        <house_builder:hasActionName>Start roof construction</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startWindowAssembly -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startWindowAssembly">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+        <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareWindowAssembly"/>
+        <house_builder:hasActionName>Start of window assembly</house_builder:hasActionName>
+        <house_builder:hasCommand>LIN</house_builder:hasCommand>
+        <house_builder:hasFrame>{
+                             &quot;a&quot; : 22,
+                             &quot;b&quot; : 60,
+                             &quot;c&quot; : 15,
+                             &quot;x&quot; : 150,
+                             &quot;z&quot; : 100,
+                             &quot;y&quot; : 123
+                             }</house_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#window -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#window">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+        <house_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#windowInstruction"/>
+        <house_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#foundation"/>
+        <house_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#leftWall"/>
+        <house_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#rightWall"/>
+        <house_builder:hasPartName>Window</house_builder:hasPartName>
+        <house_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</house_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#windowInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#windowInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowBottom"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowLeft"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowRight"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingWindowTop"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#finishingWindowAssembly"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#prepareWindowAssembly"/>
+        <house_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#startWindowAssembly"/>
+        <house_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#sketchHouse"/>
+        <house_builder:hasInstructionDescription>Instructions for window assembly. The window consists of 4 lines for the frame.</house_builder:hasInstructionDescription>
+        <house_builder:hasInstructionName>Window Assembly</house_builder:hasInstructionName>
+        <house_builder:utilizesTool>sharpie</house_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Instruction"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Part"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Product"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Communication"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#OnePointMovement"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#TwoPointMovement"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointProperties"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasAuxiliaryFrame"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasDestination"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#hasFrame"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+
