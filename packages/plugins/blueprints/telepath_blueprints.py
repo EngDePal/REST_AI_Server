@@ -382,14 +382,14 @@ class Blueprint(PluginInterface):
         
     
 #Testing
-reasoner = Blueprint()
-init = reasoner.setup()
-state = init
-print("Inital state:")
-print(state)
-for i in range(1, 32):
-    command, state = reasoner.run(state)
-    print("Results run "+str(i) + ":")
-    print(command)
-    print(state)
+# reasoner = Blueprint()
+# init = reasoner.setup()
+# state = init
+# print("Inital state:")
+# print(state)
+# for i in range(1, 32):
+#     command, state = reasoner.run(state)
+#     print("Results run "+str(i) + ":")
+#     print(command)
+#     print(state)
 
