@@ -12,6 +12,10 @@ from plugins.utils.commands import *
 from plugins.utils.plugin_interface import PluginInterface
 #Parsing string and converting to json
 import json
+#Random part selection
+import random
+
+#Info: The sketchHouse demo needs 31 iterations to finish -> range(1, 32)
 
 class Blueprint(PluginInterface):
 
@@ -26,6 +30,10 @@ class Blueprint(PluginInterface):
         with self.ontology:
             sync_reasoner()
         print("Reasoner active.")
+
+        #Create a random state with a specific seed
+        #For reproducing results enter a seed
+        self.random_state = random.Random()
 
     #The initial state of the plugin is determined by the parts of the house
     #That can be assembled without any preconditions
@@ -61,38 +69,64 @@ class Blueprint(PluginInterface):
     #This method selects the next building step by querying the ontology
     #It then returns a robot command and the application state
     def run(self, state: dict):
-
+        
+        current_product = None
         #Get the product instance from the ontology
         for product in self.ontology.Product.instances():
             if product.name == state["Product"]:
-                self.current_product = product
+                current_product = product
+        
+        #Raise error if no product is found
+        if current_product == None:
+            raise Exception("No matching product found in the ontology!")
         
         #Decision about the active part
 
         #If the current part has been marked as finished in a previous step
         #We will get the next one from the ontology
+        current_part = None
         if state["Current part"] in state["Finished parts"]:
-            self.current_part = self.get_next_part(self.current_product, state)
+            current_part = self.get_next_part(current_product, state)
             #Returns None if all parts have been assembled
-            #The plugin then returns an exit command
-            if self.current_part is None:
+            #The plugin then returns an exit command and an final state
+            if current_part is None:
+                
+                #Creating final state
+                final_state = dict()
+                final_state["Product"] = current_product
+                final_state["Status"] = "Finished"
+                final_state["Parts"] = state["Finished parts"]
+
                 exit_command = CommandEXIT()
-                return exit_command
+
+                #For testing
+                # print(exit_command)
+                # print(final_state)
+                return exit_command, final_state
         #Else we will directly grab the part instance
         else:
             #Get the current part
-            for part in self.current_product.hasPart:
+            for part in current_product.hasPart:
                 if  part.name == state["Current part"]:
-                    self.current_part = part
+                    current_part = part
+
+        #Raise error if no part is found
+        if current_part == None:
+            raise Exception("No matching part found in the ontology!")
 
         #Get the correct action
-        current_action = self.get_next_action(self.current_part, self.current_product, state["Finished actions"])
+        current_action = self.get_next_action(current_part, current_product, state["Finished actions"])
         
         #Extracting the command
         command = self.generate_command(current_action)
 
         #Creating a new state variable
-        state = self.generate_state(state, current_action, self.current_part)
+        state = self.generate_state(state, current_product, current_action, current_part)
+
+        #For testing
+        # print(command)
+        # print(state)
+        # print(current_product)
         
         return command, state
 
@@ -110,19 +144,16 @@ class Blueprint(PluginInterface):
             print(instance.name)
             available_products[instance.name] = instance
 
-        #Allowing and checing user input
-        # user_input = input("Please select the product to be built: ")
-        # allowed_input = False
-        # while allowed_input == False:
-        #     try:
-        #         product_to_build = available_products[user_input]
-        #     except KeyError:
-        #         user_input = input("Wrong input. Please try again: ")
-        #     else:
-        #         allowed_input = True
-
-        #To ease production
-        product_to_build = self.ontology.sketchHouse
+        #Allowing and checking user input
+        user_input = input("Please select the product to be built: ")
+        allowed_input = False
+        while allowed_input == False:
+            try:
+                product_to_build = available_products[user_input]
+            except KeyError:
+                user_input = input("Wrong input. Please try again: ")
+            else:
+                allowed_input = True
             
         return product_to_build
     
@@ -162,28 +193,46 @@ class Blueprint(PluginInterface):
         return command
     
     #Generates a new state
-    def generate_state(self, old_state: dict, current_action: object, current_part: object):
-        
-        #Fist step: Add the current action to the list of finished actions
-        new_state = old_state
-        new_state["Finished actions"].append(current_action.name)
+    def generate_state(self, old_state: dict, current_product: object, current_action: object, current_part: object):
 
-        #Second step: Check wether all actions of this part are completed
+        #Assigning new state variable
+        new_state = old_state
+
+        #First step: Overwrite the current part and delete the action list (for readability)
+        if current_part.name is not new_state["Current part"]:
+            new_state["Current part"] = current_part.name
+            new_state["Finished actions"] = list()
+        
+        #Second step: Add the current action to the list of finished actions
+        if current_action.name not in new_state["Finished actions"]:
+            new_state["Finished actions"].append(current_action.name)
+        #Raises an error, in case the current action is already part of the state variable
+        else:
+            raise Exception(f"An error has occurred. Step {current_action.name} might have been repeated!")
+
+        #Third step: Get the correct instructions for the action
+        current_instruction = None
+        for instruction in current_part.hasInstruction:
+            if instruction.hasProductConstraint == current_product:
+                current_instruction = instruction
+        if instruction is None:
+            raise Exception(f"Modelling error: Part {current_part.name} has no instructions for the product {current_product.name}!")
+
+        #Fourth step: Check wether all actions of this part are completed
         counter = 0
-        for action in current_part.hasAction:
+        for action in current_instruction.hasAction:
             if action.name not in new_state["Finished actions"]:
                 counter += 1
 
         #If this is true the current part will be added as well
         if counter == 0:
-            new_state["Finished parts"].append(self.current_part.name)
+            new_state["Finished parts"].append(current_part.name)
         #In the next run the system will then automatically select the next part
-        
+
         return new_state
         
     
     #Based on the provided part and a list of finished actions, the correct next action will be returned
-    #Also returns whether all actions of this part are completed or not
     def get_next_action(self, part: object, product: object, finished_actions: list):
         
         #Get the correct instructions for this product
@@ -201,22 +250,25 @@ class Blueprint(PluginInterface):
         for action in list_of_actions:
             if action not in actions_with_precondition:
                 actions_without_precondition.append(action)
+        #Raise Exception if several action would be available
+        if len(actions_without_precondition) != 1:
+            raise Exception("Modelling Error: There can only be one action without conditions per instruction!")
 
         #Determine the current action
-        current_action = actions_without_precondition[0]
-        #Checking the action chain modeled in the ontology
-        #Until the action is not part of the finished actions list
-        check = True
+        first_action = actions_without_precondition[0]
 
-        while check:
+        #If it has not been finished yet, the current action will always be the one without conditions
+        current_action = first_action
+
+        #Checking the action chain modeled in the ontology
+        #Until an unfinished action is found to overwrite the variable
+
+        while current_action.hasEnabledAction is not None:
             if current_action.name in finished_actions:
                 next_action = current_action.hasEnabledAction
-                if next_action is None:
-                    current_action = next_action
-                else:
-                    check = False
-            else:
-                check = False
+                current_action = next_action
+            else: 
+                break
 
         return current_action
     
@@ -284,7 +336,7 @@ class Blueprint(PluginInterface):
             for part in stage_two_list:
                 remaining_parts_list.remove(part)         
             #Calling recursive method to find possible parts
-            search_results = self.recursive_search(remaining_parts_list)
+            search_results = self.deep_search(remaining_parts_list, unfinished_parts)
             for result in search_results:
                 possible_parts.append(result)
 
@@ -295,27 +347,47 @@ class Blueprint(PluginInterface):
         #This will help to demonstrate the non-scripted nature of the application
         if len(possible_parts) != 0:
             #Random selection
-            current_part = None
+            current_part = self.random_selection(possible_parts)
             
         return current_part
     
-    def recursive_search(self, part_list: list):
-        search_result = list()
+    #Part of stage III of the search algorithm
+    #Check whether remaining parts have fulfilled conditions and are not finished yet
+    #If true, retuns them as search results
+    def deep_search(self, remaining_parts: list, unfinished_parts: list):
 
-        return search_result
+        search_results = list()
+
+        #Checking if conditions of these parts are met
+        for part in remaining_parts:
+            unfulfilled_conditions = 0
+            for condition in part.hasNecessaryPart:
+                if condition in unfinished_parts:
+                    unfulfilled_conditions += 1
+            #If all of the part's conditions are met
+            #And it is not finsihed
+            #Add it to the search results
+            if unfulfilled_conditions == 0:
+                if part in unfinished_parts:
+                    search_results.append(part)
+
+        return search_results
+    
+    #Returns a random element from a list
+    def random_selection(self, part_list: list):
+
+        random_element = self.random_state.choice(part_list)
+
+        return random_element
+        
     
 #Testing
 reasoner = Blueprint()
 init = reasoner.setup()
-# init["Finished actions"].append("prepareFoundationConstruction")
-# init["Finished actions"].append("startFoundationConstruction")
-# init["Finished actions"].append("drawingFoundation")
-# init["Finished parts"].append("foundation")
-
 state = init
 print("Inital state:")
 print(state)
-for i in range(1, 10):
+for i in range(1, 32):
     command, state = reasoner.run(state)
     print("Results run "+str(i) + ":")
     print(command)
