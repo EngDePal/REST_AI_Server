@@ -7,7 +7,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/product_model">
-        <rdfs:comment>This is the ontology for the telepath_reasoning plug-in. It model a product and its individual parts. All parts include instruction for assembling the complete product. Utilizing the reasoner the plug-in is able to deduct a correct sequence of assembly, which takes constraints into account.</rdfs:comment>
+        <rdfs:comment>This is the base ontology for the telepath_blueprints plug-in. It model a product and its individual parts. All parts include instruction for assembling the complete product. Utilizing the reasoner the plug-in is able to deduct a correct sequence of assembly, which takes constraints into account.</rdfs:comment>
     </owl:Ontology>
     
 

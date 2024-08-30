@@ -206,6 +206,7 @@ class Server:
                 user_input = input("Plugin not found. Please try again: ")
             else:
                 allowed_input = True
+                print("Plugin selection succesful.")
         
         return path
     

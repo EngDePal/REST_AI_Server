@@ -15,21 +15,16 @@ import json
 #Random part selection
 import random
 
-#Info: The sketchHouse demo needs 31 iterations to finish -> range(1, 32)
+#Info: 
+#The sketchHouse demo needs 31 iterations to finish -> range(1, 32)
+##The stickman demo needs 48 iterations to finish -> range(1, 49)
 
 class Blueprint(PluginInterface):
 
     #Init loads the ontology
     def __init__(self):
         #This ontology is based on the product model ontology and describes a house
-        path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/blueprints/house_builder.rdf"
-        self.ontology = get_ontology(path).load()
-        print("Ontology can be accessed.")
-
-        #Syncing reasoner
-        with self.ontology:
-            sync_reasoner()
-        print("Reasoner active.")
+        self.directory_path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/blueprints/products"
 
         #Create a random state with a specific seed
         #For reproducing results enter a seed
@@ -41,7 +36,7 @@ class Blueprint(PluginInterface):
     def setup(self):
 
         #Allowing the user to decide, which product to built
-        product = self.product_selection()
+        product, path = self.product_selection()
 
         #Querying the ontology for all parts without precondition
         parts_list = product.hasPart
@@ -63,13 +58,24 @@ class Blueprint(PluginInterface):
         state["Current part"] = first_part.name #Name of current part
         state["Finished actions"] = list() #Only instructions of the current part
         state["Finished parts"] = list() #Finished part to avoid repeating steps
+        state["Ontology path"] = path
 
         return state
 
     #This method selects the next building step by querying the ontology
     #It then returns a robot command and the application state
     def run(self, state: dict):
-        
+
+        #Loading ontology
+        path = state["Ontology path"]
+        self.ontology = get_ontology(path).load()
+        print("Ontology can be accessed.")
+
+        #Syncing reasoner
+        with self.ontology:
+            sync_reasoner()
+        print("Reasoner active.")
+
         current_product = None
         #Get the product instance from the ontology
         for product in self.ontology.Product.instances():
@@ -93,16 +99,13 @@ class Blueprint(PluginInterface):
                 
                 #Creating final state
                 final_state = dict()
-                final_state["Product"] = current_product
+                final_state["Product"] = current_product.name
                 final_state["Status"] = "Finished"
                 final_state["Parts"] = state["Finished parts"]
 
                 exit_command = CommandEXIT()
-
-                #For testing
-                # print(exit_command)
-                # print(final_state)
                 return exit_command, final_state
+            
         #Else we will directly grab the part instance
         else:
             #Get the current part
@@ -122,23 +125,53 @@ class Blueprint(PluginInterface):
 
         #Creating a new state variable
         state = self.generate_state(state, current_product, current_action, current_part)
-
-        #For testing
-        # print(command)
-        # print(state)
-        # print(current_product)
         
         return command, state
 
     #Returns the instance of the product to built after user selection
     def product_selection(self):
+
+        #Getting all of the ontology rdf files
+        files = dict()
+        for dirpath, dirnames, filenames in os.walk(self.directory_path):
+            for filename in filenames:
+                if filename.endswith('.rdf'):
+                    full_path = os.path.join(dirpath, filename)
+                    files[filename] = full_path
+
+        #Prints the filenames
+        print("The following ontologies are available: ")
+        for key in files.keys():
+            #Removing the file ending
+            print(key[:-4])
+        
+        #Allowing ontology selection
+        user_input = input("Please select an ontology: ")
+        allowed_input = False
+        while allowed_input == False:
+            try:
+                ontology_path = files[user_input + ".rdf"]
+            except KeyError:
+                user_input = input("Wrong input. Please try again: ")
+            else:
+                allowed_input = True
+                print("Ontology selection succesful.")
+
+        #Loading ontology
+        self.ontology = get_ontology(ontology_path).load()
+        print("Ontology can be accessed.")
+
+        #Syncing reasoner
+        with self.ontology:
+            sync_reasoner()
+        print("Reasoner active.")
         
         #Access the product class and its instances
         product_class = self.ontology.Product
         product_instances = product_class.instances()
         available_products = dict()
         
-        #Gatrhers the names of the instances
+        #Prints the names of the instances
         print("The following blueprints are available: ")
         for instance in product_instances:
             print(instance.name)
@@ -154,8 +187,9 @@ class Blueprint(PluginInterface):
                 user_input = input("Wrong input. Please try again: ")
             else:
                 allowed_input = True
+                print("Product selection succesful.")
             
-        return product_to_build
+        return product_to_build, ontology_path
     
 
     
@@ -382,14 +416,14 @@ class Blueprint(PluginInterface):
         
     
 #Testing
-# reasoner = Blueprint()
-# init = reasoner.setup()
-# state = init
-# print("Inital state:")
-# print(state)
-# for i in range(1, 32):
-#     command, state = reasoner.run(state)
-#     print("Results run "+str(i) + ":")
-#     print(command)
-#     print(state)
+reasoner = Blueprint()
+init = reasoner.setup()
+state = init
+print("Inital state:")
+print(state)
+for i in range(1, 49):
+    command, state = reasoner.run(state)
+    print("Results run "+str(i) + ":")
+    print(command)
+    print(state)
 
