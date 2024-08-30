@@ -121,5 +121,3 @@ class CommandCIRC(Command):
     def set_specifics(self, frame: dict, auxiliaryFrame: dict, destination: dict):
         self["parameters"]["auxiliaryFrame"] = auxiliaryFrame
         self["parameters"]["destination"] = destination
-
-

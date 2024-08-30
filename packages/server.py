@@ -7,9 +7,11 @@ from data_manager import DataManager
 from robot_logic_manager import RobotLogicManager
 #Importing signal to handle events
 import signal
+#Importing command classes
+from plugins.utils.commands import *
 
 
-#Server class
+# Server class
 class Server:
 
     def __init__(self):
@@ -22,10 +24,10 @@ class Server:
         self.rlm = RobotLogicManager()
 
         #Variables for data transmission to frontend
-        self.available_plugins = dict()
+        #Frontend not yet implemented
         self.client_count = 0
 
-        # Register the shutdown function for SIGINT (Ctrl + C)
+        #Register the shutdown function for SIGINT (Ctrl + C)
         #Allows manual shutdown in the terminal
         signal.signal(signal.SIGINT, self.manual_shutdown)
 
@@ -40,26 +42,33 @@ class Server:
 
             #Start of refined plugin loading proces
             self.available_plugins = dict(self.rlm.get_discovery())
-            #UI not yet operational, this is done in the terminal
-            path = self.classic_plugin_selection(self.available_plugins)
+            #Selecting plugin through user input in the terminal
+            path = self.select_plugin(self.available_plugins)
 
-            #Generate a new plugin_id
-            plugin_id = self.tm.generate_id()
             #Dynamically load and register the plugin
-            self.rlm.load_module(path, plugin_id)
-            
-            #Generating and preparing the token
+            plugin_name = self.rlm.load_module(path)
+
+            #Generating and preparing the token for messaging
             generated_token = self.tm.generate_token()
             data = {
                 "token" : generated_token
             }
 
-            #Saving the combination of token and plugin_id -> REST statelessness
-            db_file = {"token" : generated_token, "plugin_id": plugin_id}
-            self.dm.save_data("plugins", db_file)
+            #Saving the combination of token and plugin name -> REST statelessness
+            self.dm.save_plugin(generated_token, plugin_name)
 
             #Update client count
             self.client_count += 1
+
+            #Getting starting state of the application
+            instance = self.rlm.create_instance(plugin_name)
+            app_state = instance.setup()
+            #Saving starting state of the application
+            self.dm.save_state(generated_token, app_state)
+
+            #Saving an INFO command as the starting command of the client
+            base_command = CommandINFO()
+            self.dm.save_command(generated_token, base_command)
 
             #Sending the token to the server
             print("Login successful.")
@@ -70,54 +79,53 @@ class Server:
         #Response to command request: parameters object must be sent back
         @self.app.route("/newcommand/<token>", methods=["GET"])
         def command_response(token: str):
-            
-            #Gets the robot status and plugin_id from MongoDB
-            status = self.dm.retrieve_status(token)
-            plugin_id = self.dm.retrieve_id(token)
 
-            #For the first command there will be an empty list
-            #Sets the confirmation to true in this case
-            if status == {}:
-                status["confirmation"] = True
+                command = self.dm.retrieve_command(token)
 
-            #Checks for confirmed command and authentic token
-            if status["confirmation"]:
-                if self.tm.check_token_authenticity(token):
-                    #Grab ID from MongoDB
-                    plugin_id = self.dm.retrieve_id(token)
-                    #Grab plugin instance
-                    instance = self.rlm.retrieve_plugin(plugin_id) 
-                    
-                    #Run the plugin and return the output -> command object
-                    #Pass robot status as argument
-                    command = instance.run(status)
-
-                    #Save the robot command
-                    db_file = dict(command)
-                    db_file["token"] = token
-                    db_file["confirmation"] = False
-                    self.dm.save_data("robot_status", db_file)
-
-                    #Handling log-out
-                    if command["command"] == "EXIT":
-                        self.logout(token= token, plugin_id= plugin_id)
-
-
-                    print("Command sent.")
-                    return jsonify(command), 200
-            else:
-                return 500
+                print("Command sent.")
+                return jsonify(command), 200
 
 
         #REST-API: POST /newcommand/<token> 200 {}
-        #Response to command confirmation: no return object, server can generate the next command
+        #Response to command confirmation: no return object
+        #Generates a command and stores it in MongoDB
         @self.app.route("/newcommand/<token>", methods=["POST"])
         def command_confirmation(token: str):
-            #Changes confirmation on the recent command to True
-            #Otherwise no new command will be generated in the next run
-            self.dm.confirm_robot_command(token)
 
-            print("Command confirmed.")
+            #Check token authenticity
+            if self.tm.check_token_authenticity(token):
+
+                #Gets the app state, plugin_name and last command from MongoDB
+                #State is a dict
+                state = self.dm.retrieve_state(token)
+                plugin_name = self.dm.retrieve_plugin(token)
+                last_cmd = self.dm.retrieve_command(token)
+
+                #Checks wether this was an EXIT command
+                if last_cmd["command"] == "EXIT":
+                    #If it is an EXIT command, the logout sequence is activated
+                    #No new command is generated
+                    self.logout(token, plugin_name)
+                    print("EXIT command confirmed. Client logged out.")
+
+                #Otherwiese a new command is generated by the system
+                else:
+                    #Grab ID from MongoDB
+                    plugin_name = self.dm.retrieve_plugin(token)
+                    #Grab plugin instance
+                    instance = self.rlm.create_instance(plugin_name) 
+                        
+                    #Run the plugin and return the output -> command object, state dict
+                    #Pass application state as argument
+                    command, app_state = instance.run(state)
+
+                    #Save the app state and command
+                    #Should be function in DM
+                    self.dm.save_state(token, app_state)
+                    self.dm.save_command(token, command)
+
+                    print("Command confirmed. Next command generated.")
+
             return jsonify({}), 200
 
         #REST-API: POST /safeinfo/<token> 200 {"msg" : String}
@@ -143,12 +151,12 @@ class Server:
 
                 print("Log file saved.")
                 return jsonify({}), 200
-    
-    #Methods for server handling and GUI integration
+        
+    #Methods for server handling
 
     #Starts the server
     def start_server(self):
-        self.app.run()
+        self.app.run(port=5000)
 
     #Shutting down server
     #To be implemented
@@ -164,24 +172,23 @@ class Server:
         exit(0)
 
     #Handling client logout
-    def logout(self, token: str, plugin_id: str):
+    def logout(self, token: str, plugin_name: str):
 
         #Reduce client count
         self.client_count -= 1
 
-        #Removing token and ID from TokenManager
+        #Removing token from TokenManager
         self.tm.delete_token(token)
-        self.tm.delete_id(plugin_id)
 
         #Removing plugin instance and name from RobotLogicManager
-        self.rlm.remove_plugin(plugin_id= plugin_id)
+        self.rlm.remove_plugin(plugin_name= plugin_name)
 
         #Removing relevant data from MongoDB: no errors if identical token is regenerated
         self.dm.delete_data(token)
 
     #Allows plugin choice in the terminal
-    #Should be kept in every case as legacy code
-    def classic_plugin_selection(self, plugin_selection: dict):
+    #Should be kept in case of GUI integration as legacy code
+    def select_plugin(self, plugin_selection: dict):
         print("New client attempts to login!")
         print("Available plugins for robot logic:")
         
@@ -199,6 +206,7 @@ class Server:
                 user_input = input("Plugin not found. Please try again: ")
             else:
                 allowed_input = True
+                print("Plugin selection succesful.")
         
         return path
     

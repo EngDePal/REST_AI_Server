@@ -1,0 +1,1726 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder/"
+     xml:base="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:stickman_builder="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder">
+        <rdfs:comment>This is a second part for the blueprint ontology plug-in. It models the drawing of a stickman.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasAction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasAction">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasCorrespondingInstruction"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasCorrespondingInstruction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasCorrespondingInstruction">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasCorrespondingPart -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasCorrespondingPart">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasInstruction"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasCorrespondingProduct -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasCorrespondingProduct">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasPart"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Product"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasEnabledAction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasEnabledAction">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasNecessaryAction"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasEnabledPart -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasEnabledPart">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasNecessaryPart"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasInstruction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasInstruction">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasNecessaryAction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasNecessaryAction">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasNecessaryPart -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasNecessaryPart">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasPart -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasPart">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Product"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasProductConstraint -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasProductConstraint">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Product"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasActionName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasActionName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasAuxiliaryFrame -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasAuxiliaryFrame">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#TwoPointMovement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasCommand -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasCommand">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasDestination -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasDestination">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#TwoPointMovement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasFrame -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasFrame">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasInstructionDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasInstructionDescription">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasInstructionName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasInstructionName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasPartName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasPartName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasProductDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasProductDescription">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasProductName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasProductName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#isRobotManipulatable -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#isRobotManipulatable">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#utilizesTool -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#utilizesTool">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#ActionWithPrecondition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#ActionWithPrecondition">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasNecessaryAction"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#ActionWithoutPrecondition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#ActionWithoutPrecondition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#ActionWithoutPrecondition">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasNecessaryAction"/>
+                                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Communication -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Communication">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+        <rdfs:comment>Modes of communication including INFO, LOG and EXIT</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+        <rdfs:comment>Movements defined by one point/frame including LIN and PTP</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#PartWithPrecondition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#PartWithPrecondition">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasNecessaryPart"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#PartWithoutPrecondition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#PartWithoutPrecondition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#PartWithoutPrecondition">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasNecessaryPart"/>
+                                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Product -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Product"/>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#TwoPointMovement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#TwoPointMovement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+        <rdfs:comment>Movement defined by two points/frames -&gt; CIRC</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftArm -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftArm">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftArmDrawing"/>
+        <stickman_builder:hasActionName>Drawing left arm</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftEye -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftEye">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftEyeDrawing"/>
+        <stickman_builder:hasActionName>Drawing left eye</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftFoot -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftFoot">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftFootDrawing"/>
+        <stickman_builder:hasActionName>Drawing left foot</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftHeadHalf -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftHeadHalf">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#TwoPointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startDrawingHead"/>
+        <stickman_builder:hasActionName>Drawing the left half of the head</stickman_builder:hasActionName>
+        <stickman_builder:hasAuxiliaryFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 2,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasAuxiliaryFrame>
+        <stickman_builder:hasCommand>CIRC</stickman_builder:hasCommand>
+        <stickman_builder:hasDestination>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasDestination>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftLeg -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftLeg">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftLegDrawing"/>
+        <stickman_builder:hasActionName>Drawing left leg</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawNeck -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawNeck">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startNeckDrawing"/>
+        <stickman_builder:hasActionName>Drawing neck</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightArm -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightArm">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightArmDrawing"/>
+        <stickman_builder:hasActionName>Drawing right arm</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightEye -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightEye">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightEyeDrawing"/>
+        <stickman_builder:hasActionName>Drawing right eye</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightFoot -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightFoot">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightFootDrawing"/>
+        <stickman_builder:hasActionName>Drawing right foot</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightHeadHalf -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightHeadHalf">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#TwoPointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftHeadHalf"/>
+        <stickman_builder:hasActionName>Drawing the right half of the head</stickman_builder:hasActionName>
+        <stickman_builder:hasAuxiliaryFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasAuxiliaryFrame>
+        <stickman_builder:hasCommand>CIRC</stickman_builder:hasCommand>
+        <stickman_builder:hasDestination>{
+                             &quot;a&quot; : 1,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasDestination>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightLeg -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightLeg">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightLegDrawing"/>
+        <stickman_builder:hasActionName>Drawing right leg</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawSmile -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawSmile">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#TwoPointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startSmileDrawing"/>
+        <stickman_builder:hasActionName>Drawing smile</stickman_builder:hasActionName>
+        <stickman_builder:hasAuxiliaryFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasAuxiliaryFrame>
+        <stickman_builder:hasCommand>CIRC</stickman_builder:hasCommand>
+        <stickman_builder:hasDestination>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 2,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasDestination>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawTorso -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawTorso">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startTorsoDrawing"/>
+        <stickman_builder:hasActionName>Drawing Torso</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishHeadDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishHeadDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightHeadHalf"/>
+        <stickman_builder:hasActionName>Finishing drawing of head</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftArmDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftArmDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftArm"/>
+        <stickman_builder:hasActionName>Finishing drawing of left arm</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftEyeDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftEyeDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftEye"/>
+        <stickman_builder:hasActionName>Finishing left eye drawing</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftFootDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftFootDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftFoot"/>
+        <stickman_builder:hasActionName>Finishing drawing of left foot</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftLegDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftLegDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftLeg"/>
+        <stickman_builder:hasActionName>Finishing drawing of left leg</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishNeckDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishNeckDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawNeck"/>
+        <stickman_builder:hasActionName>Finishing neck drawing</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightArmDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightArmDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightArm"/>
+        <stickman_builder:hasActionName>Finishing drawing of right arm</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightEyeDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightEyeDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightEye"/>
+        <stickman_builder:hasActionName>Finishing drawing of right eye</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightFootDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightFootDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightFoot"/>
+        <stickman_builder:hasActionName>Finishing drawing of right foot</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightLegDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightLegDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightLeg"/>
+        <stickman_builder:hasActionName>Finishing drawing of right leg</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishSmileDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishSmileDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawSmile"/>
+        <stickman_builder:hasActionName>Finishing drawing of smile</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishTorsoDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishTorsoDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawTorso"/>
+        <stickman_builder:hasActionName>Finish Torso Drawing</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#head -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#head">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#headInstruction"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#neck"/>
+        <stickman_builder:hasPartName>Head</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#headInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#headInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftHeadHalf"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightHeadHalf"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishHeadDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareHeadDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startDrawingHead"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Instructions for drawing the head (two arcs)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Head instructions</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftArm -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftArm">
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftArmInstruction"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#torso"/>
+        <stickman_builder:hasPartName>Left arm</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftArmInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftArmInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftArm"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftArmDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftArmDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftArmDrawing"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Descriptions for drawing the left arm (one diagonal line)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Left Arm Instruction</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftEye -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftEye">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftEyeInstruction"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#head"/>
+        <stickman_builder:hasPartName>Left eye</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftEyeInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftEyeInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftEye"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftEyeDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftEyeDrawing"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Instructions for drawing the left eye (one point)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Left eye instruction</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftFoot -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftFoot">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftFootInstruction"/>
+        <stickman_builder:hasPartName>Left Foot</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftFootInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftFootInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftFoot"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftFootDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftFootDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftFootDrawing"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Instructions for drawing the left foot (one horizontal line)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Left foot instructions</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftLeg -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftLeg">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftLegInstruction"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftFoot"/>
+        <stickman_builder:hasPartName>Left Leg</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftLegInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftLegInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftLeg"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishLeftLegDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftLegDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftLegDrawing"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Instructions for drawing the left leg (one diagonal line)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Left Leg Instructions</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#neck -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#neck">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#neckInstruction"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#torso"/>
+        <stickman_builder:hasPartName>Neck</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#neckInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#neckInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawNeck"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishNeckDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareNeckDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startNeckDrawing"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Instructions for drawing the neck (one vertical line)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Neck Instructions</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareHeadDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareHeadDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Preparing drawing of head</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftArmDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftArmDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Preparing drawing of left arm</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftEyeDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftEyeDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Preparing drawing of left eye</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftFootDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftFootDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Preparing drawing of left foot</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftLegDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftLegDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Preparing drawing of left leg</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareNeckDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareNeckDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Preparing drawing of neck</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightArmDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightArmDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Preparing drawing of right arm</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightEyeDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightEyeDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Preparing drawing of right eye</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightFootDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightFootDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Preparing drawing of right foot</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightLegDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightLegDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Preparing drawing of right leg</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareSmileDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareSmileDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Preparing drawing of smile</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareTorsoDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareTorsoDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasActionName>Prepare torso drawing</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightArm -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightArm">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightArmInstruction"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#torso"/>
+        <stickman_builder:hasPartName>Right arm</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightArmInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightArmInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightArm"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightArmDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightArmDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightArmDrawing"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Instructions for drawing the right arm (one diagonal line)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Right Arm Instructions</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightEye -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightEye">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightEyeInstruction"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#head"/>
+        <stickman_builder:hasPartName>Right eye</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightEyeInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightEyeInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightEye"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightEyeDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightEyeDrawing"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Instructions for the right eye (one point)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Right Eye Instructions</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightFoot -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightFoot">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightFootInstruction"/>
+        <stickman_builder:hasPartName>Right Foot</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightFootInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightFootInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightFoot"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightFootDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightFootDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightFootDrawing"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Instructions for drawing of the right foot (one horizontal line)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Right foot instructions</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightLeg -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightLeg">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightLegInstruction"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightFoot"/>
+        <stickman_builder:hasPartName>Right leg</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightLegInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightLegInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawRightLeg"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishRightLegDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightLegDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightLegDrawing"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Instructions for drawing the right leg (one diagonal line)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Right Leg instructions</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#smile -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#smile">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#smileInstruction"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#head"/>
+        <stickman_builder:hasPartName>Smile</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#smileInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#smileInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawSmile"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishSmileDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareSmileDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startSmileDrawing"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Instructions for drawing the smile (one arc)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Smile Instructions</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startDrawingHead -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startDrawingHead">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareHeadDrawing"/>
+        <stickman_builder:hasActionName>Starting drawing of head</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftArmDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftArmDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftArmDrawing"/>
+        <stickman_builder:hasActionName>Start drawing of left arm</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftFootDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftFootDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftFootDrawing"/>
+        <stickman_builder:hasActionName>Starting drawing of left foot</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftLegDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startLeftLegDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareLeftLegDrawing"/>
+        <stickman_builder:hasActionName>Starting drawing of left leg</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startNeckDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startNeckDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareNeckDrawing"/>
+        <stickman_builder:hasActionName>Starting neck drawing</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightArmDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightArmDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightArmDrawing"/>
+        <stickman_builder:hasActionName>Starting drawing of right arm</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightFootDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightFootDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightFootDrawing"/>
+        <stickman_builder:hasActionName>Starting drawing of right foot</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightLegDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startRightLegDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareRightLegDrawing"/>
+        <stickman_builder:hasActionName>Starting drawing of right leg</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startSmileDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startSmileDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareSmileDrawing"/>
+        <stickman_builder:hasActionName>Starting drawing of smile</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startTorsoDrawing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startTorsoDrawing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+        <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareTorsoDrawing"/>
+        <stickman_builder:hasActionName>Start  of torso drawing</stickman_builder:hasActionName>
+        <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
+        <stickman_builder:hasFrame>{
+                             &quot;a&quot; : 0,
+                             &quot;b&quot; : 0,
+                             &quot;c&quot; : 0,
+                             &quot;x&quot; : 0,
+                             &quot;z&quot; : 0,
+                             &quot;y&quot; : 0
+                             }</stickman_builder:hasFrame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Product"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#head"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftArm"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftEye"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftFoot"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftLeg"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#neck"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightArm"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightEye"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightFoot"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightLeg"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#smile"/>
+        <stickman_builder:hasPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#torso"/>
+        <stickman_builder:hasProductDescription>A stickman figurine consisting out of a head, a face with a smile and two eyes, a neck, torso, two arms, two legs and two feet.</stickman_builder:hasProductDescription>
+        <stickman_builder:hasProductName>Stickman</stickman_builder:hasProductName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#torso -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#torso">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+        <stickman_builder:hasInstruction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#torsoInstruction"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftFoot"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#leftLeg"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightFoot"/>
+        <stickman_builder:hasNecessaryPart rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#rightLeg"/>
+        <stickman_builder:hasPartName>Torso</stickman_builder:hasPartName>
+        <stickman_builder:isRobotManipulatable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</stickman_builder:isRobotManipulatable>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#torsoInstruction -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#torsoInstruction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawTorso"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#finishTorsoDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#prepareTorsoDrawing"/>
+        <stickman_builder:hasAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startTorsoDrawing"/>
+        <stickman_builder:hasProductConstraint rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#stickman"/>
+        <stickman_builder:hasInstructionDescription>Drawing the torso (one vertical line)</stickman_builder:hasInstructionDescription>
+        <stickman_builder:hasInstructionName>Torso Instructions</stickman_builder:hasInstructionName>
+        <stickman_builder:utilizesTool>sharpie</stickman_builder:utilizesTool>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Instruction"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Part"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Product"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Communication"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#OnePointMovement"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#TwoPointMovement"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointProperties"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasAuxiliaryFrame"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasDestination"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#hasFrame"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+

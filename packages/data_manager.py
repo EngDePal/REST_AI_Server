@@ -20,16 +20,19 @@ class DataManager:
         #Change this to 'REST_AI_Server' during deployment
         self.db = self.client["test"]
 
-        self.collections_list = ["robot_status", "logs", "infos", "plugins"]
+        self.collections_list = ["app_state", "logs", "infos", "plugins", "commands"]
 
         #Inserts collections with base entry if necessary
-        #View these as definitions, if not specified otherwise in the API -> robot_status
+        #View these as examples or formats 
+        #Except for app state, which depends on the plugin
         for collection in self.collections_list:
             if collection not in self.db.list_collection_names():
                 new_col = self.db[collection]
-                if collection == "robot_status":
+                #State restores app state of plugins ->RESTful
+                if collection == "app_state":
+                    #This is only an example of the robot coordinates as the state
+                    #Properties of the state file are determined by the plugin
                     db_file = {"token" : "",
-                            "confirmation" : False,
                             "command" : "", 
                             "parameters": {
                                 "type": "",
@@ -42,17 +45,32 @@ class DataManager:
                                     "Z": 0}
                             }
                     }
-                    base_entry = new_col.insert_one(db_file)
+                #Log files of client
                 elif collection == "logs":
                     db_file = {"token" : "", "filename": "", "data": ""}
-                    base_entry = new_col.insert_one(db_file)
+                #Info files of client
                 elif collection == "infos":
                     db_file = {"token" : "", "msg": ""}
-                    base_entry = new_col.insert_one(db_file)
+                #Plugin selection of clients
                 elif collection == "plugins":
-                    db_file = {"token": "", "plugin_id": ""}
-                    base_entry = new_col.insert_one(db_file)
-
+                    db_file = {"token": "", "plugin_name": ""}
+                #Saving generated command
+                elif collection == "commands":
+                     db_file = {"token" : "",
+                            "command" : "", 
+                            "parameters": {
+                                "type": "",
+                                "frame": {
+                                    "X": 0, 
+                                    "Y": 0, 
+                                    "Z": 0, 
+                                    "A": 0, 
+                                    "B": 0, 
+                                    "Z": 0}
+                            }
+                    }
+                base_entry = new_col.insert_one(db_file)
+                
         print("Database is set-up!")
     
     #Starts the mongod process
@@ -105,16 +123,41 @@ class DataManager:
         if collection in self.collections_list:
             chosen_collection = self.db[collection]
 
-            #Regarding robot_status: In order to avoid complex queries and 
-            #ensure the return of only the latest position, prior entries will be deleted
-            #Currently not checking correct formats -> separate method
-            if collection == "robot_status":
+            #Regarding app_state: In order to avoid complex queries and 
+            #Ensure the return of only the latest state, prior entries will be deleted
+            if collection == "app_state":
                 token = db_file["token"]
-                doc = self.query_data("robot_status", {"token": token})
+                doc = self.query_data("app_state", {"token": token})
                 #Checks for previous entries, deletes them
                 if len(doc) != 0:
                     chosen_collection.delete_many({"token": token})
+
+            #Regarding commands: In order to avoid complex queries and 
+            #Ensure the return of only the latest state, prior entries will be deleted
+            if collection == "commands":
+                token = db_file["token"]
+                doc = self.query_data("commands", {"token": token})
+                #Checks for previous entries, deletes them
+                if len(doc) != 0:
+                    chosen_collection.delete_many({"token": token})
+
             chosen_collection.insert_one(db_file)
+    
+    #Save functions to shorten server code
+
+    def save_plugin(self, token: str, plugin_name:str):
+        db_file = {"token" : token, "plugin_name": plugin_name}
+        self.save_data("plugins", db_file)
+
+    def save_state(self, token: str, state: dict):
+        db_file = state
+        db_file["token"] = token
+        self.save_data("app_state", db_file)
+
+    def save_command(self, token: str, command:dict):
+        db_file = command
+        db_file["token"] = token
+        self.save_data("commands", db_file)
     
     #Returns a list of the requested documents after taking in a query dictionary
     #So far only used for database testing
@@ -126,51 +169,57 @@ class DataManager:
             document = list(chosen_collection.find(query_dict))
             return document
     
-    #Get plugin ID from server
+    #Get plugin name from server
     #Does not need a query dict as an argument
     #Shortens server code
-    def retrieve_id(self, token: str):
+    def retrieve_plugin(self, token: str):
         #Get the fitting document from MongoDB
         try:
             query = {"token" : token}
             result = self.query_data("plugins", query)
             doc = result[0]
-            #Only returns the plugin ID
-            id = doc["plugin_id"]
+            #Only returns the plugin name
+            id = doc["plugin_name"]
             return id
         except IndexError:
             return 0
     
-    #Retrieves the robot_status
-    def retrieve_status(self, token: str):
+    #Retrieves the app_state
+    def retrieve_state(self, token: str):
         #Get the fitting document from MongoDB
         try:
             query = {"token" : token}
-            result = self.query_data("robot_status", query)
+            result = self.query_data("app_state", query)
             doc = result[0]
+            doc.pop("_id")
+            doc.pop("token")
+            return doc
+        except IndexError:
+            return {}
+        
+    #Retrieves recent command
+    def retrieve_command(self, token: str):
+        #Get the fitting document from MongoDB
+        try:
+            query = {"token" : token}
+            result = self.query_data("commands", query)
+            doc = result[0]
+            doc.pop("_id")
+            doc.pop("token")
             return doc
         except IndexError:
             return {}
 
-    
-    #Sets the confirmation status to true
-    #After receiving a post /newcommand request
-    def confirm_robot_command(self, token: str):
-        collection = self.db["robot_status"]
-        query =  {"token" : token}
-        #Setting new values
-        new_values = {"$set" : {"confirmation" : True}}
-        #Updating database
-        collection.update_one(query, new_values)
-
-    #Deletes robot status and plugins, if a client logs out
+    #Deletes app state and plugins, if a client logs out
     def delete_data(self, token: str):
 
         parameters = {"token" : token}
         
-        for collection in ["robot_status", "plugins"]:
+        for collection in ["app_state", "plugins", "commands"]:
             target_collection = self.db[collection]
-            target_collection.delete_one(parameters)
+            target_collection.delete_many(parameters)
 
-
-    
+    #Drops the database
+    #Allows for clean-up
+    def delete_db(self, db_name: str):
+        self.client.drop_database(db_name)
