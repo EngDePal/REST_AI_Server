@@ -18,8 +18,13 @@ class TestPlugin(PluginInterface):
     #Returns default state
     #Used during plug-in loading
     def setup(self):
+
+        print("Setting up the Telepath Commands plug-in...")
+
         state = dict()
         state["counter"] = 1
+
+        print("Telepath Commands active.")
         return state
     
     #Checks every command possible in a total of 6 steps

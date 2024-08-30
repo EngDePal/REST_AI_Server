@@ -23,9 +23,15 @@ class Skilltree(PluginInterface):
 
     #The skilltree will start at level one
     def setup(self):
+        
+        print("Setting up Telepath Skilltree plug-in...")
+
         initial_level = 1
         setup_file = dict()
         setup_file["level"] = initial_level
+
+        print("Telepath Skilltree active.")
+
         return setup_file
     
     def run(self, state: dict):

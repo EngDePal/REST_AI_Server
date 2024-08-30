@@ -35,6 +35,8 @@ class Blueprint(PluginInterface):
     #In this example it will be the foundation of the house
     def setup(self):
 
+        print("Setting up Telepath Blueprints plug-in...")
+
         #Allowing the user to decide, which product to built
         product, path = self.product_selection()
 
@@ -59,6 +61,8 @@ class Blueprint(PluginInterface):
         state["Finished actions"] = list() #Only instructions of the current part
         state["Finished parts"] = list() #Finished part to avoid repeating steps
         state["Ontology path"] = path
+
+        print("Telepath Blueprints active.")
 
         return state
 
@@ -413,17 +417,4 @@ class Blueprint(PluginInterface):
         random_element = self.random_state.choice(part_list)
 
         return random_element
-        
-    
-#Testing
-reasoner = Blueprint()
-init = reasoner.setup()
-state = init
-print("Inital state:")
-print(state)
-for i in range(1, 49):
-    command, state = reasoner.run(state)
-    print("Results run "+str(i) + ":")
-    print(command)
-    print(state)
 

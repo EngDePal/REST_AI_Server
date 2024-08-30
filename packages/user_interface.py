@@ -5,6 +5,10 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QTextEdi
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QTimer
 import sys
+#Running server backend
+from packages.server import Server
+import threading
+
 
 class UserInterface(QWidget):
 
@@ -15,7 +19,6 @@ class UserInterface(QWidget):
         super().__init__()
         self.design_interface()
 
-
     #Methods handling logic and user inputs
 
     #Sets an update timer for all relevant UI elements
@@ -24,17 +27,24 @@ class UserInterface(QWidget):
 
     #Starting the server with the green start button
     def click_on_start(self):
-        pass
+
+        server = Server()
+
+        # Run the Flask server in a separate thread
+        server_thread = threading.Thread(target=server.start_server())
+        server_thread.setDaemon(True)  # Daemonize the thread to close it with the main program
+        server_thread.start()
     
     #Not working ATM
     #Shutdown the server with the red shutdown button
     def click_on_shutdown(self):
         pass
-
+    
+    #Linking this to the terminal
     def update_login_control(self):
         pass
     
-    def click_on_load(self):
+    def handling_cmd(self):
         pass
     
     #Updates the amount of active clients
@@ -155,46 +165,33 @@ class UserInterface(QWidget):
                 }
             """)
 
-            #Login control box
-            self.login_box = QTextEdit("Awaiting new client login...", self)
-            self.login_box.setReadOnly(True)
-            self.login_box.setGeometry(100, 160, 350, 200)
-            self.login_box.setStyleSheet(generic_textbox_style)
-            self.login_box.setReadOnly(True)
+            #Terminal box
+            self.terminal_box = QTextEdit("Awaiting new client login...", self)
+            self.terminal_box.setReadOnly(True)
+            self.terminal_box.setGeometry(100, 160, 350, 250)
+            self.terminal_box.setStyleSheet(generic_textbox_style)
+            self.terminal_box.setReadOnly(True)
 
-            #Plugin DropDown list, label and button
-            self.plugin_font = QFont()
-            self.plugin_font.setPointSize(14)
-            self.plugin_font.setFamily("Arial")
+            #Command line label and box
+            self.cmd_font = QFont()
+            self.cmd_font.setPointSize(18)
+            self.cmd_font.setFamily("Arial")
+            self.cmd_font.setBold(True)
 
-            self.plugin_label = QLabel("Available Plug-Ins", self)
-            self.plugin_label.setGeometry(100, 370, 150, 50)
-            self.plugin_label.setFont(self.plugin_font)
+            self.cmd_label = QLabel("CMD", self)
+            self.cmd_label.setGeometry(100, 430, 50, 50)
+            self.cmd_label.setFont(self.cmd_font)
 
-            self.plugin_list = QComboBox(self)
-            self.plugin_list.setGeometry(250, 370, 200, 50)
-            self.plugin_list.addItems(["select"])
-            self.plugin_list.setCurrentIndex(0)
-            self.plugin_list.setStyleSheet("""
-                QComboBox {
-                    border: 3px solid black;  
-                    border-radius: 7px;          
-                    font-family: Arial;      
-                    font-size: 14px;
-                    background-color: lightblue    
-                }
-                QComboBox::drop-down {
-                    width: 20px;
-                    height: 20px;
-                    subcontrol-position: center right;                                                
+            self.cmd_line = QTextEdit("Enter...", self)
+            self.cmd_line.setGeometry(150, 430, 300, 50)
+            self.cmd_line.setStyleSheet("""
+                QTextEdit {
+                    border: 3px solid black;
+                    border-radius: 7px;         
+                    font-family: Courier New;          
+                    font-size: 14px;   
                 }
             """)
-
-            self.load_button = QPushButton("Load", self)
-            self.load_button.clicked.connect(self.click_on_load)
-            self.load_button.setGeometry(250, 430, 200, 50)
-            self.load_button.setFont(self.button_font)
-            self.load_button.setStyleSheet(generic_button_style)
 
             #Cockpit section: Check clients
             self.cockpit_label = QLabel("Cockpit", self)

@@ -1,20 +1,14 @@
 """Main script to execute the application"""
 #Importing modules
-from packages.server import Server
 from packages.user_interface import UserInterface
 from PyQt5.QtWidgets import QApplication
+#Fixing imports
 import sys
-#Importing threading
-#GUI and Server need to be run in separate threads
-#To achieve acceptable performance
-import threading
+import os
+
 
 #Main function
 def main():
-    #Creating and running thread for server
-    server_thread  = threading.Thread(target=run_server)
-    server_thread.start()
-
     #Running GUI in main thread
     run_gui()
 
@@ -27,9 +21,6 @@ def run_gui():
     gui.show()
     sys.exit(gui_app.exec_())
 
-def run_server():
-    server = Server()
-    server.start_server()
-
-#Script
-main()
+#Run app
+if __name__ == "__main__":
+    main()
