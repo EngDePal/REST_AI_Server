@@ -2,19 +2,31 @@
 #Importing necessary modules and classes from the Flask web framework
 from flask import Flask, jsonify, request
 #Importing the various managers
-from token_manager import TokenManager
-from data_manager import DataManager
-from robot_logic_manager import RobotLogicManager
+from packages.token_manager import TokenManager
+from packages.data_manager import DataManager
+from packages.robot_logic_manager import RobotLogicManager
 #Importing signal to handle events
 import signal
 #Importing command classes
-from plugins.utils.commands import *
+from packages.plugins.utils.commands import *
+#For Widget functionality
+from PyQt5.QtCore import QThread, pyqtSignal
 
 
 # Server class
-class Server:
+class Server(QThread):
+
+    #Creating signals for the widget
+    counter_signal = pyqtSignal(int)
 
     def __init__(self):
+
+        #For threading
+        super().__init__()
+        #Updating widget count
+        self.client_count = 0
+        self.counter_signal.emit(self.client_count)
+
         #Create a Flask app
         self.app = Flask(__name__)
 
@@ -22,10 +34,6 @@ class Server:
         self.tm = TokenManager()
         self.dm = DataManager()
         self.rlm = RobotLogicManager()
-
-        #Variables for data transmission to frontend
-        #Frontend not yet implemented
-        self.client_count = 0
 
         #Register the shutdown function for SIGINT (Ctrl + C)
         #Allows manual shutdown in the terminal
@@ -59,6 +67,7 @@ class Server:
 
             #Update client count
             self.client_count += 1
+            self.counter_signal.emit(self.client_count)
 
             #Getting starting state of the application
             instance = self.rlm.create_instance(plugin_name)
@@ -155,7 +164,7 @@ class Server:
     #Methods for server handling
 
     #Starts the server
-    def start_server(self):
+    def run(self):
         self.app.run(port=5000)
 
     #Shutting down server
@@ -176,6 +185,8 @@ class Server:
 
         #Reduce client count
         self.client_count -= 1
+        #Update widget
+        self.counter_signal.emit(self.client_count)
 
         #Removing token from TokenManager
         self.tm.delete_token(token)
@@ -209,6 +220,3 @@ class Server:
                 print("Plugin selection succesful.")
         
         return path
-    
-server = Server()
-server.start_server()

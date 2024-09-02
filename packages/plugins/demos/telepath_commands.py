@@ -4,9 +4,9 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 #Importing the interface
-from plugins.utils.plugin_interface import PluginInterface
+from packages.plugins.utils.plugin_interface import PluginInterface
 #Importing command objects
-from plugins.utils.commands import *
+from packages.plugins.utils.commands import *
 
 #This is a test plug-in
 class TestPlugin(PluginInterface):

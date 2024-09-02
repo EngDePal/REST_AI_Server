@@ -4,7 +4,7 @@ import importlib
 import importlib.util
 import os
 import sys
-from plugins.utils.plugin_interface import PluginInterface
+from packages.plugins.utils.plugin_interface import PluginInterface
 import inspect
 import pkgutil
 
