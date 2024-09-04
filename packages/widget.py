@@ -1,8 +1,9 @@
 """GUI for the REST AI Server"""
 #NOT FUNCTIONAL
 #Importing the PyQt5 GUI framework and other modules
-from PyQt5.QtWidgets import QWidget, QLabel, QTableWidget
+from PyQt5.QtWidgets import QWidget, QLabel, QTableWidget, QTableWidgetItem, QPushButton, QTextEdit
 from PyQt5.QtGui import QFont
+from PyQt5.QtCore import Qt
 #Running server backend
 from packages.server import Server
 
@@ -18,15 +19,15 @@ class CockpitWidget(QWidget):
 
         #Setting up server
         self.server = Server()
-        #Running server in secondary thread
         self.server.start()
 
         #Connect server signals
         self.server.counter_signal.connect(self.update_counter)
-
-        #Status variable
-        #Status 1 is online, 0 offline
-        self.server_status = 1
+        self.server.table_signal.connect(self.update_table)
+        self.server.user_info_signal.connect(self.update_status)
+        self.server.login_signal.connect(self.notify_login)
+        self.server.start_signal.connect(self.notify_start)
+        self.server.shutdown_signal.connect(self.notify_shutdown)
 
     #Methods handling logic and user inputs
 
@@ -34,18 +35,189 @@ class CockpitWidget(QWidget):
     def update_counter(self, count: int):
         self.client_counter.setText(f"{count}")
 
-    def update_table(self):
-        pass
+    #Updates the table with client infos
+    def update_table(self, data: dict, remove: bool, update: bool):
 
-    def close_app(self):
+        #False -> Add data
+        if remove == False:
+
+            #Check whether new data is added or just updated
+
+            #False -> Create a new line
+            if update == False:
+            
+                self.add_table_data(data)
+
+            #True -> Update a line
+            if update == True:
+                 
+                 self.update_table_data(data)
+
+        #True -> Remove data
+        if remove == True:
+            
+            #Search for the token in the table
+            if "token" in data.keys():
+                target_row = self.search_client(data["token"])
+            else:
+                raise Exception("Error in data transmission to widget: No token included.")
+            
+            if target_row is not None:
+                 self.client_table.removeRow(target_row)
+
+    #Updates the status line
+    def update_status(self, token: str, mode: str):
+         
+        text = ""
+         
+        if mode == "LOGIN":
+              text = f"New Client succesfully logged in.\nGenerated ID: {token}."
+
+        elif mode == "LOGOUT":
+              text = f"A client has logged out.\nClient ID: {token}"
+        
+        self.status_line.setText(text)
+
+    #Instructs the user to check the terminal
+    def notify_login(self):
+         
+        text = "A new client attemps a login.\nPlease check the terminal for further instructions."
+        self.status_line.setText(text)
+
+    #Info about server start
+    def notify_start(self):
+        text = "The server has been succesfully started."
+        self.status_line.setText(text)
+         
+    #Info about server shutdown
+    def notify_shutdown(self):
+        text = "The server has been stopped."
+        self.status_line.setText(text)
+         
+    #Starts the server
+    def click_on_start(self):
         pass
+    
+    #Stops the server
+    def click_on_shutdown(self):
+        pass
+    
+    #Adds the input data to the client table
+    def add_table_data(self, data: dict):
+
+        #Dict of column index to data
+            row_data = dict()
+            target_row = None
+
+            #Preparing data
+            #Token and plugin name are added during log-in
+            if "token" in data.keys():
+                    value = data["token"]
+                    target_row = self.determine_row(value)
+                    row_data[0] = str(value)
+            if "plugin_name" in data.keys():
+                    value = data["plugin_name"]
+                    row_data[1] = str(value)
+                
+            #Filling up with empty strings to avoid Key Errors
+            row_data[2] = ""
+            row_data[3] = ""
+
+            #Adding data
+            for column in range(self.table_column_count):
+                item = QTableWidgetItem(row_data[column])
+                #Make data read only
+                item.setFlags(item.flags() & ~Qt.ItemIsEditable)
+                self.client_table.setItem(target_row, column, item)
+
+    #Updates the command and parameters columns of a row
+    def update_table_data(self, data: dict):
+         
+        #Get the row of the existing token
+        if "token" in data.keys():
+            target_row = self.search_client(data["token"])
+        else:
+             raise Exception("Error in data transmission to widget: No token included.")
+        
+        token = data["token"]
+        print(f"Token: {token}")
+             
+        if "command" in data.keys():
+                value = str(data["command"])
+                item = QTableWidgetItem(value)
+                self.client_table.setItem(target_row, 2, item)
+                #Resize column depending on content
+                if value in ["LIN", "PTP", "INFO", "LOG", "EXIT"]:
+                    self.client_table.setRowHeight(target_row, 50)
+                elif value == "CIRC":
+                    self.client_table.setRowHeight(target_row, 100)
+        if "parameters" in data.keys():
+                parameters = data["parameters"]
+                parameters.pop("type")
+                item = QTableWidgetItem(str(parameters))
+                self.client_table.setItem(target_row, 3, item)
+
+
+    #Removes table rows
+    def remove_table_data(self, data: dict):
+         
+         #Search for the token in the table
+        if "token" in data.keys():
+            target_row = self.search_client(data["token"])
+        else:
+            raise Exception("Error in data transmission to widget: No token included.")
+            
+        if target_row is not None:
+                 self.client_table.removeRow(target_row)
+
+
+    #Searches for a client in the table by token
+    #Returns the corresponding row
+    def determine_row(self, token: str):
+
+        target_row = self.search_client(token)
+
+        #If there are no rows yet, one will be created
+        if target_row == None:
+            #If there are no rows yet, one will be created
+            if self.table_row_count == 0:
+                target_row = 0
+                self.table_row_count = 1
+                self.client_table.setRowCount(self.table_row_count)
+            #Else a new row is added for the new data
+            else:
+                target_row = self.table_row_count
+                self.table_row_count += 1
+                self.client_table.setRowCount(self.table_row_count)
+
+        #Check in case of errors
+        if target_row is None:
+            raise Exception("An issues with table data assignment has occurred.")
+           
+        return target_row
+    
+    #Searches for an existing client in the table
+    #Retruns none if there is no match
+    def search_client(self, token: str):
+         
+        target_row = None
+
+        #Checking all rows
+        for row in range(self.table_row_count):
+            #Token is always in the first column
+            item = self.client_table.item(row, 0)
+            if item.text() == token:
+                target_row = row
+
+        return target_row
+         
 
     #Defines all interface elements
     def design_interface(self):
         #Application window setup
             self.setWindowTitle("RemoteMind Telepath Cockpit")
             self.setStyleSheet("background-color: white")
-            self.setGeometry(100, 100, 800, 650)
+            self.setGeometry(100, 100, 800, 700)
 
             #Stylish App Name
             prefix_font = QFont()
@@ -103,8 +275,74 @@ class CockpitWidget(QWidget):
 
             #Cockpit section: Check clients
             self.cockpit_label = QLabel("Cockpit", self)
-            self.cockpit_label.setGeometry(50, 50, 150, 50)
+            self.cockpit_label.setGeometry(50, 50, 100, 50)
             self.cockpit_label.setFont(self.section_font)
+
+            #Server control
+
+            #Start server button
+            self.start_button = QPushButton("Start Server", self)
+            self.start_button.clicked.connect(self.click_on_start)
+            self.start_button.setFixedSize(200,50)
+            self.start_button.move(50, 150)
+            self.start_button.setFont(self.button_font)
+            self.start_button.setStyleSheet("""
+                QPushButton {
+                    border: 3px solid green;
+                    color: black;
+                    background-color: white;
+                    border-radius : 7px;
+                }
+                QPushButton:hover {
+                    border: 3px solid green;
+                    color: green;
+                }
+            """)
+
+            #Stop server button
+            self.shutdown_button = QPushButton("Shutdown Server", self)
+            self.shutdown_button.clicked.connect(self.click_on_shutdown)
+            self.shutdown_button.setFixedSize(200,50)
+            self.shutdown_button.move(50, 215)
+            self.shutdown_button.setFont(self.button_font)
+            self.shutdown_button.setStyleSheet("""
+                QPushButton {
+                    border: 3px solid darkred;
+                    color: black;
+                    background-color: white;
+                    border-radius : 7px;
+                }
+                QPushButton:hover {
+                    border: 3px solid darkred;
+                    color: darkred;
+                }
+            """)
+
+            #Status line
+
+            self.status_font = QFont()
+            self.status_font.setPointSize(16)
+            self.status_font.setFamily("Arial")
+
+            self.status_label = QLabel("Status", self)
+            self.status_label.setGeometry(300, 100, 50, 50)
+            self.status_label.setFont(self.status_font)
+
+            self.status_line = QTextEdit(self)
+            self.status_line.setGeometry(300, 150, 450, 115)
+            self.status_line.setStyleSheet("""
+                        QTextEdit {
+                            background-color: white;
+                            border: 3px solid black;
+                            border-radius: 7px;
+                            font-family: 'Courier New';
+                            font-size: 14px;
+                            color: black;
+                        }
+                    """
+                    )
+            self.status_line.setReadOnly(True)
+            
 
             #Number of active clients
             self.counter_font = QFont()
@@ -112,29 +350,38 @@ class CockpitWidget(QWidget):
             self.counter_font.setFamily("Arial")
 
             self.counter_label = QLabel("Active Clients: ", self)
-            self.counter_label.setGeometry(50, 100, 300, 50)
+            self.counter_label.setGeometry(50, 100, 100, 50)
             self.counter_label.setFont(self.counter_font)
 
             self.counter_value = 0
             self.client_counter = QLabel(f"{self.counter_value}", self)
-            self.client_counter.setGeometry(175, 100, 300, 50)
+            self.client_counter.setGeometry(175, 100, 50, 50)
             self.client_counter.setFont(self.counter_font)
 
             #Table of registered clients
             #Client is represented by the token
             #Additionaly shows the plugin and the last command type plus its confirmations status
             self.client_table = QTableWidget(self)
-            self.column_headers = ["Token", "Plugin", "Last Command", "Target Coordinates"]
+            self.column_headers = ["Token", "Plugin", "Recent Command", "Recent Parameters"]
             self.client_table.setColumnCount(len(self.column_headers))
+            self.client_table.setRowCount(0)
             self.client_table.setHorizontalHeaderLabels(self.column_headers)
-            self.client_table.setGeometry(50, 200, 700, 400)
+            self.client_table.setGeometry(50, 280, 700, 400)
+
+            self.table_row_count = 0
+            self.table_column_count = len(self.column_headers)
+
+            #Setting coluumn width
+            row_widths = [100, 100, 125, 375]
+            for i in range(self.table_column_count):
+                self.client_table.setColumnWidth(i, row_widths[i])
 
             self.client_table.setStyleSheet("""
                             QTableWidget {
                                 border: 3px solid grey;
                                 border-radius: 7px;
                                 font-family: "Courier New";
-                                font-size: 12px;
+                                font-size: 14px;
                             }
                             QTableWidget::item {
                                 border-bottom: 1px solid black;
@@ -143,25 +390,12 @@ class CockpitWidget(QWidget):
                                 background-color: lightblue;
                             }
                             QHeaderView::section {
-                                background-color: grey;
+                                background-color: white;
                                 color: black;
-                                font-weight: bold;
                                 font-family: "Arial";
                                 font-size: 14px
                             }
                         """)
-            
-            #Instructions
-            self.instructions_font = QFont()
-            self.instructions_font.setPointSize(16)
-            self.instructions_font.setFamily("Arial")
-            self.instructions_font.setBold(True)
-
-            instructions = "Controll the app using the terminal - Observe your robots through the widget"
-            self.instructions_label = QLabel(instructions, self)
-            self.instructions_label.move(50,150)
-            self.instructions_label.setStyleSheet("color : black")
-            self.instructions_label.setFont(self.instructions_font)
 
             #Version and License
             self.info_font = QFont()

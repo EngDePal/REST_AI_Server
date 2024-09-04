@@ -17,12 +17,33 @@ from PyQt5.QtCore import QThread, pyqtSignal
 class Server(QThread):
 
     #Creating signals for the widget
+
+    #For updating the client counter with the current count
     counter_signal = pyqtSignal(int)
+
+    #For manipulating the client table
+    #Dict: Data like token, plugin, command and parameters
+    #Bool1: Adding(0) or removing data (1)
+    #Bool2: Creating a new line (0) or updating a row (1)
+    table_signal = pyqtSignal(dict, bool, bool)
+
+    #For creating messages about clients
+    #Str1: Token
+    #Str2: Mode (LOGIN, LOGOUT)
+    user_info_signal =pyqtSignal(str, str)
+
+    #For creating a login notification
+    login_signal = pyqtSignal()
+
+    #For server control
+    start_signal = pyqtSignal()
+    shutdown_signal = pyqtSignal()
 
     def __init__(self):
 
         #For threading
         super().__init__()
+
         #Updating widget count
         self.client_count = 0
         self.counter_signal.emit(self.client_count)
@@ -48,6 +69,9 @@ class Server(QThread):
         @self.app.route("/login", methods=["POST"])
         def login_response():
 
+            #Login notification in GUI
+            self.login_signal.emit()
+
             #Start of refined plugin loading proces
             self.available_plugins = dict(self.rlm.get_discovery())
             #Selecting plugin through user input in the terminal
@@ -65,10 +89,6 @@ class Server(QThread):
             #Saving the combination of token and plugin name -> REST statelessness
             self.dm.save_plugin(generated_token, plugin_name)
 
-            #Update client count
-            self.client_count += 1
-            self.counter_signal.emit(self.client_count)
-
             #Getting starting state of the application
             instance = self.rlm.create_instance(plugin_name)
             app_state = instance.setup()
@@ -78,6 +98,22 @@ class Server(QThread):
             #Saving an INFO command as the starting command of the client
             base_command = CommandINFO()
             self.dm.save_command(generated_token, base_command)
+
+            #UI updates
+
+            #Update client count
+            self.client_count += 1
+            self.counter_signal.emit(self.client_count)
+
+            #Updating client table
+            table_info = dict(data)
+            #Plugin name without telepath_ prefix and .py suffix
+            plugin_without_prefix = plugin_name[9:-3]
+            table_info["plugin_name"] = plugin_without_prefix
+            self.table_signal.emit(table_info, False, False)
+
+            #Sending status update to GUI
+            self.user_info_signal.emit(generated_token, "LOGIN")
 
             #Sending the token to the server
             print("Login successful.")
@@ -90,6 +126,11 @@ class Server(QThread):
         def command_response(token: str):
 
                 command = self.dm.retrieve_command(token)
+
+                #Update widget
+                table_info = dict(command)
+                table_info["token"] = token
+                self.table_signal.emit(table_info, False, True)
 
                 print("Command sent.")
                 return jsonify(command), 200
@@ -196,6 +237,11 @@ class Server(QThread):
 
         #Removing relevant data from MongoDB: no errors if identical token is regenerated
         self.dm.delete_data(token)
+
+        #Update widget
+        table_info = {"token": token}
+        self.table_signal.emit(table_info, True, False)
+        self.user_info_signal.emit(token, "LOGOUT")
 
     #Allows plugin choice in the terminal
     #Should be kept in case of GUI integration as legacy code
