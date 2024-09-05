@@ -167,9 +167,6 @@ class CockpitWidget(QWidget):
             target_row = self.search_client(data["token"])
         else:
              raise Exception("Error in data transmission to widget: No token included.")
-        
-        token = data["token"]
-        print(f"Token: {token}")
              
         if "command" in data.keys():
                 value = str(data["command"])
