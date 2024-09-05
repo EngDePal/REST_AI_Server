@@ -17,8 +17,8 @@ class CockpitWidget(QWidget):
         #Setting up GUI
         super().__init__()
         self.design_interface()
-
-        #Server state
+        
+        #Server state: On -> True or Off -> False
         self.server_state = False
 
     #Methods handling logic and user inputs
@@ -85,17 +85,18 @@ class CockpitWidget(QWidget):
     def click_on_start(self):
 
         if self.server_state == False:
+
             #Setting up server
             self.server = Server()
 
             #Conenct signals
             self.connect_signals()
 
-            #Change state
-            self.server_state = True
-
             #Start server in separate thread
             self.server.start()
+
+            #Change state to on
+            self.server_state = True
     
     #Stops the server
     def click_on_shutdown(self):
@@ -112,8 +113,8 @@ class CockpitWidget(QWidget):
 
         reply = QMessageBox.question(self, 'Server shutdown', 
                                      'Do your really wanto to shutdown the server? This will close the complete application.', 
-                                     QMessageBox.Yes | QMessageBox.No, 
-                                     QMessageBox.No)
+                                     QMessageBox.Yes | QMessageBox.Cancel, 
+                                     QMessageBox.Cancel)
 
         decision = False
         if reply == QMessageBox.Yes:
@@ -400,7 +401,7 @@ class CockpitWidget(QWidget):
             self.table_column_count = len(self.column_headers)
 
             #Setting coluumn width
-            row_widths = [100, 100, 125, 375]
+            row_widths = [80, 100, 125, 375]
             for i in range(self.table_column_count):
                 self.client_table.setColumnWidth(i, row_widths[i])
 
@@ -412,16 +413,29 @@ class CockpitWidget(QWidget):
                                 font-size: 14px;
                             }
                             QTableWidget::item {
-                                border-bottom: 1px solid black;
+                                border-bottom: 1px solid grey
                             }
                             QTableWidget::item:selected {
-                                background-color: lightblue;
+                                background-color: grey;
                             }
                             QHeaderView::section {
                                 background-color: white;
                                 color: black;
                                 font-family: "Arial";
                                 font-size: 14px
+                                border-bottom: 1px solid grey
+                            }
+                            QTableWidget::horizontalHeader {
+                                border-bottom: 1px solid grey
+                                color: black
+                                font-family: "Arial";
+                                font-size: 14px;      
+                            }
+                            QTableWidget::verticalHeader {
+                                border-bottom: 1px solid grey
+                                color: black
+                                font-family: "Arial";
+                                font-size: 14px;      
                             }
                         """)
 
