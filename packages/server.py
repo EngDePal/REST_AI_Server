@@ -11,6 +11,8 @@ import signal
 from packages.plugins.utils.commands import *
 #For Widget functionality
 from PyQt5.QtCore import QThread, pyqtSignal
+#Shutdown
+import os
 
 
 # Server class
@@ -37,7 +39,6 @@ class Server(QThread):
 
     #For server control
     start_signal = pyqtSignal()
-    shutdown_signal = pyqtSignal()
 
     def __init__(self):
 
@@ -201,17 +202,36 @@ class Server(QThread):
 
                 print("Log file saved.")
                 return jsonify({}), 200
+            
+        #Not defined in the REST-API
+        #For server shutdown through GUI
+        @self.app.route("/shutdown", methods = ["POST"])
+        def shutdown():
+            
+            self.shutdown_server()
+
+            return jsonify(True)
         
     #Methods for server handling
 
     #Starts the server
     def run(self):
+
+        #GUI signal to notify user about start
+        self.start_signal.emit()
+
+        #Start the Flask server
         self.app.run(port=5000)
 
     #Shutting down server
-    #To be implemented
     def shutdown_server(self):
-        pass
+
+        #Stopping MongoDB
+        self.dm.stop_mongodb()
+
+        #Kill python process
+        #This will end all threads
+        os.kill(os.getpid(), signal.SIGINT)
 
     #Defines the behaviour during server shutdown in the terminal
     def manual_shutdown(self, sig, frame):

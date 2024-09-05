@@ -1,12 +1,13 @@
 """GUI for the REST AI Server"""
 #NOT FUNCTIONAL
 #Importing the PyQt5 GUI framework and other modules
-from PyQt5.QtWidgets import QWidget, QLabel, QTableWidget, QTableWidgetItem, QPushButton, QTextEdit
+from PyQt5.QtWidgets import QWidget, QLabel, QTableWidget, QTableWidgetItem, QPushButton, QTextEdit, QMessageBox
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
 #Running server backend
 from packages.server import Server
-
+#For server shutdown
+import requests
 
 class CockpitWidget(QWidget):
 
@@ -17,17 +18,8 @@ class CockpitWidget(QWidget):
         super().__init__()
         self.design_interface()
 
-        #Setting up server
-        self.server = Server()
-        self.server.start()
-
-        #Connect server signals
-        self.server.counter_signal.connect(self.update_counter)
-        self.server.table_signal.connect(self.update_table)
-        self.server.user_info_signal.connect(self.update_status)
-        self.server.login_signal.connect(self.notify_login)
-        self.server.start_signal.connect(self.notify_start)
-        self.server.shutdown_signal.connect(self.notify_shutdown)
+        #Server state
+        self.server_state = False
 
     #Methods handling logic and user inputs
 
@@ -86,21 +78,57 @@ class CockpitWidget(QWidget):
 
     #Info about server start
     def notify_start(self):
-        text = "The server has been succesfully started."
-        self.status_line.setText(text)
-         
-    #Info about server shutdown
-    def notify_shutdown(self):
-        text = "The server has been stopped."
+        text = "The server has been started."
         self.status_line.setText(text)
          
     #Starts the server
     def click_on_start(self):
-        pass
+
+        if self.server_state == False:
+            #Setting up server
+            self.server = Server()
+
+            #Conenct signals
+            self.connect_signals()
+
+            #Change state
+            self.server_state = True
+
+            #Start server in separate thread
+            self.server.start()
     
     #Stops the server
     def click_on_shutdown(self):
-        pass
+
+        #Notifying user
+        decision = self.show_confirmation_dialog()
+
+        if decision == True:
+            #Calling shutdown method
+            response = requests.post("http://127.0.0.1:5000/shutdown")
+
+    #Confirmation dialog for server shutdown
+    def show_confirmation_dialog(self):
+
+        reply = QMessageBox.question(self, 'Server shutdown', 
+                                     'Do your really wanto to shutdown the server? This will close the complete application.', 
+                                     QMessageBox.Yes | QMessageBox.No, 
+                                     QMessageBox.No)
+
+        decision = False
+        if reply == QMessageBox.Yes:
+             decision =True
+        
+        return decision
+
+    def connect_signals(self):
+         
+        #Connect server signals
+        self.server.counter_signal.connect(self.update_counter)
+        self.server.table_signal.connect(self.update_table)
+        self.server.user_info_signal.connect(self.update_status)
+        self.server.login_signal.connect(self.notify_login)
+        self.server.start_signal.connect(self.notify_start)
     
     #Adds the input data to the client table
     def add_table_data(self, data: dict):
