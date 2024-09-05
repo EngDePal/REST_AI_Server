@@ -221,7 +221,7 @@ class Server(QThread):
         self.start_signal.emit()
 
         #Start the Flask server
-        self.app.run(port=5000)
+        self.app.run(host= "0.0.0.0", port= 8080)
 
     #Shutting down server
     def shutdown_server(self):
