@@ -101,12 +101,18 @@ class CockpitWidget(QWidget):
     #Stops the server
     def click_on_shutdown(self):
 
-        #Notifying user
-        decision = self.show_confirmation_dialog()
+        if self.server_state == True:
 
-        if decision == True:
-            #Calling shutdown method
-            response = requests.post("http://127.0.0.1:5000/shutdown")
+            #Notifying user
+            decision = self.show_confirmation_dialog()
+
+            self.server_state == False
+
+            print(decision)
+
+            if decision == True:
+                #Calling shutdown method
+                response = requests.post("http://127.0.0.1:8080/shutdown")
 
     #Confirmation dialog for server shutdown
     def show_confirmation_dialog(self):
