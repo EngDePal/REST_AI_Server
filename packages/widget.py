@@ -117,16 +117,11 @@ class CockpitWidget(QWidget):
     #Confirmation dialog for server shutdown
     def show_confirmation_dialog(self):
 
-        reply = QMessageBox.question(self, 'Server shutdown', 
-                                     'Do your really wanto to shutdown the server? This will close the complete application.', 
-                                     QMessageBox.Yes | QMessageBox.Cancel, 
-                                     QMessageBox.Cancel)
+        #Show the message box and capture the user response
+        reply = self.msg_box.exec_()
 
-        decision = False
-        if reply == QMessageBox.Yes:
-             decision =True
-        
-        return decision
+        #Return True if 'Yes' is clicked, otherwise False
+        return reply == QMessageBox.Yes
 
     def connect_signals(self):
          
@@ -442,6 +437,42 @@ class CockpitWidget(QWidget):
                                 font-size: 14px;      
                             }
                         """)
+            
+            #Confirmation dialog
+
+            self.msg_box = QMessageBox()
+
+            #Dialog text
+            self.msg_box.setWindowTitle('Server Shutdown')
+            self.msg_box.setText('Do you really want to shut down the server? This will close the entire application.')
+
+            #Dialog Functionality
+            self.msg_box.setStandardButtons(QMessageBox.Yes | QMessageBox.Cancel)
+            self.msg_box.setDefaultButton(QMessageBox.Cancel)
+
+            #Dialog Styling
+            self.msg_box.setIcon(QMessageBox.Warning)
+
+            self.msg_box.setStyleSheet("""
+                QMessageBox {
+                    background-color: white;
+                    color: black;
+                    font-size: 14px;
+                    font-family: "Arial"
+                }
+                QPushButton {
+                    background-color: white;
+                    color: black;
+                    font-family: "Arial"
+                    border-radius: 7px;
+                    font-size: 14px;
+                    border: 3px solid black
+                                       
+                }
+                QPushButton:hover {
+                    font-weight: bold
+                }
+            """)
 
             #Version and License
             self.info_font = QFont()

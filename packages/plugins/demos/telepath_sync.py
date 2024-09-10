@@ -23,7 +23,7 @@ class SynchronizedControl(PluginInterface):
         #Creating the initial state
         state = dict()
 
-        #Saving the token of the second robot
+        #Here we will save a list of the synchronized robots
         state["Synced robot"] = list()
 
         exit_condition = self.check_exit_condition()
