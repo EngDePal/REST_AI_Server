@@ -192,7 +192,6 @@ class DataManager:
             result = self.query_data("app_state", query)
             doc = result[0]
             doc.pop("_id")
-            doc.pop("token")
             return doc
         except IndexError:
             return {}

@@ -238,8 +238,9 @@ class CockpitWidget(QWidget):
         for row in range(self.table_row_count):
             #Token is always in the first column
             item = self.client_table.item(row, 0)
-            if item.text() == token:
-                target_row = row
+            if item is not None:
+                if item.text() == token:
+                    target_row = row
 
         return target_row
          
