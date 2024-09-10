@@ -417,4 +417,3 @@ class Blueprint(PluginInterface):
         random_element = self.random_state.choice(part_list)
 
         return random_element
-

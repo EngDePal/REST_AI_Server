@@ -37,41 +37,41 @@ class TestPlugin(PluginInterface):
         #Command generation
         if self.counter == 1:
             frame = {
-                    "a" : 0,
+                    "a" : -100,
                     "b" : 0,
-                    "c" : 0,
-                    "x" : 300,
-                    "z" : 200,
-                    "y" : 123
+                    "c" : 180,
+                    "x" : 200,
+                    "y" : 355,
+                    "z" : 350
                              }
             command = CommandLIN(frame=frame)
         elif self.counter == 2:
             frame = {
-                    "a" : 50,
-                    "b" : 60,
-                    "c" : 15,
+                    "a" : -100,
+                    "b" : 0,
+                    "c" : 180,
                     "x" : 200,
-                    "z" : 200,
-                    "y" : 123
+                    "y" : 495,
+                    "z" : 350
                             }
             command = CommandPTP(frame)
 
         elif self.counter == 3:
             auxiliaryFrame = {
-                             "a" : 22,
-                             "b" : 60,
-                             "c" : 15,
-                             "x" : 150,
-                             "z" : 100,
-                             "y" : 123
+                             "a" : -100,
+                             "b" : 0,
+                             "c" : 180,
+                             "x" : 130,
+                             "y" : 425,
+                             "z" : 350
                              }
             destination =   {
-                             "a" : 0,
+                             "a" : -100,
                              "b" : 0,
-                             "c" : 0,
-                             "x" : 0,
-                             "z" : 0,
-                             "y" : 0
+                             "c" : 180,
+                             "x" : 200,
+                             "y" : 355,
+                             "z" : 350
                              }
             command = CommandCIRC(auxiliaryFrame = auxiliaryFrame, destination=destination)
                        
