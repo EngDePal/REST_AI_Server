@@ -141,6 +141,14 @@ class DataManager:
                 if len(doc) != 0:
                     chosen_collection.delete_many({"token": token})
 
+            #Regarding infos: In order to keep the PUT methode idempotent, prior entries will be deleted
+            if collection == "infos":
+                token = db_file["token"]
+                doc = self.query_data("infos", {"token": token})
+                #Checks for previous entries, deletes them
+                if len(doc) != 0:
+                    chosen_collection.delete_many({"token": token})
+
             chosen_collection.insert_one(db_file)
     
     #Save functions to shorten server code

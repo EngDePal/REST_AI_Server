@@ -110,7 +110,7 @@ class CommandLIN(Command):
 
     #Frame with 6 parameters
     def set_specifics(self, frame: dict, auxiliaryFrame: dict, destination: dict):
-        self["parameters"]["frame"] = frame
+        self["parameters"]["Frame"] = frame
 
 #Class for PTP commands
 class CommandPTP(Command):
@@ -120,7 +120,7 @@ class CommandPTP(Command):
 
     #Frame with 6 parameters
     def set_specifics(self, frame: dict, auxiliaryFrame: dict, destination: dict):
-        self["parameters"]["frame"] = frame
+        self["parameters"]["Frame"] = frame
 
 #Class for CIRC commands
 class CommandCIRC(Command):

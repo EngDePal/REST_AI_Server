@@ -1,6 +1,6 @@
 """Handles the logic of the core application, especially HTTP requests and access to different manager classes."""
 #Importing necessary modules and classes from the Flask web framework
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 #Importing the various managers
 from packages.token_manager import TokenManager
 from packages.data_manager import DataManager
@@ -99,8 +99,6 @@ class Server(QThread):
 
             #Saving an SEND command as the starting command of the client
             base_command = CommandSEND()
-            print("Base Command:")
-            print(base_command)
             self.dm.save_command(generated_token, base_command)
 
             #UI updates
@@ -120,8 +118,11 @@ class Server(QThread):
             self.user_info_signal.emit(generated_token, "LOGIN")
 
             #Sending the token to the server
+            response = make_response(jsonify(data))
+            response.headers['Cache-Control'] = 'no-cache'
+
             print("Login successful.")
-            return jsonify(data), 200
+            return response, 200
     
             
         #REST-API: GET /newcommand/<token> 200 {}
@@ -140,11 +141,12 @@ class Server(QThread):
                 table_info["token"] = token
                 self.table_signal.emit(table_info, False, True)
 
-                print("Debug:")
-                print(command)
+                #Response construction
+                response = make_response(jsonify(command))
+                response.headers['Cache-Control'] = 'no-cache'
 
                 print("Command sent.")
-                return jsonify(command), 200
+                return response, 200
 
 
         #REST-API: POST /newcommand/<token> 200 {}
@@ -194,7 +196,7 @@ class Server(QThread):
 
         #REST-API: POST /safeinfo/<token> 200 {"msg" : String}
         #Response to info file from client: file is saved in database
-        @self.app.route("/safeinfo/<token_json>", methods=["POST"])
+        @self.app.route("/safeinfo/<token_json>", methods=["PUT"])
         def safeinfo_response(token_json: str):
 
             #Extract token from JSON
