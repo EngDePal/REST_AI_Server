@@ -196,7 +196,7 @@ class Server(QThread):
 
         #REST-API: POST /safeinfo/<token> 200 {"msg" : String}
         #Response to info file from client: file is saved in database
-        @self.app.route("/safeinfo/<token_json>", methods=["PUT"])
+        @self.app.route("/saveinfo/<token_json>", methods=["PUT"])
         def safeinfo_response(token_json: str):
 
             #Extract token from JSON
@@ -212,7 +212,7 @@ class Server(QThread):
 
         #REST-API: POST /safelog/<token> 200 {"filename" : String, "data" : String}
         #Response to log file from client: file is saved in database
-        @self.app.route("/safelog/<token_json>", methods=["POST"])
+        @self.app.route("/savelog/<token_json>", methods=["POST"])
         def safelog_response(token_json: str):
 
             #Extract token from JSON
