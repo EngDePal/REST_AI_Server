@@ -14,7 +14,6 @@ from PyQt5.QtCore import QThread, pyqtSignal
 #Shutdown
 import os
 
-
 # Server class
 class Server(QThread):
 
@@ -96,8 +95,8 @@ class Server(QThread):
             #Saving starting state of the application
             self.dm.save_state(generated_token, app_state)
 
-            #Saving an INFO command as the starting command of the client
-            base_command = CommandINFO()
+            #Saving an SEND command as the starting command of the client
+            base_command = CommandSEND()
             self.dm.save_command(generated_token, base_command)
 
             #UI updates
@@ -126,6 +125,7 @@ class Server(QThread):
         @self.app.route("/newcommand/<token>", methods=["GET"])
         def command_response(token: str):
 
+                #Get generated co9mmand from MongoDB
                 command = self.dm.retrieve_command(token)
 
                 #Update widget
@@ -177,7 +177,7 @@ class Server(QThread):
 
                     print("Command confirmed. Next command generated.")
 
-            return jsonify({}), 200
+            return "", 200
 
         #REST-API: POST /safeinfo/<token> 200 {"msg" : String}
         #Response to info file from client: file is saved in database
@@ -189,7 +189,7 @@ class Server(QThread):
                 self.dm.save_data("infos", data)
 
                 print("Info saved.")
-                return jsonify({}), 200
+                return "", 200
 
         #REST-API: POST /safelog/<token> 200 {"filename" : String, "data" : String}
         #Response to log file from client: file is saved in database
@@ -201,7 +201,7 @@ class Server(QThread):
                 self.dm.save_data("logs", data)
 
                 print("Log file saved.")
-                return jsonify({}), 200
+                return "", 200
             
         #Not defined in the REST-API
         #For server shutdown through GUI

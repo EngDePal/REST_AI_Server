@@ -76,8 +76,8 @@ class Skilltree(PluginInterface):
         elif name == "EXIT":
             command = CommandEXIT()
             return command
-        elif name == "INFO":
-            command = CommandINFO()
+        elif name == "SEND":
+            command = CommandSEND()
             return command
         elif name == "PTP":
             json_string = skill.hasFrame

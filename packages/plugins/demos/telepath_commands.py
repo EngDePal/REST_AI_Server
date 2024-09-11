@@ -78,7 +78,7 @@ class TestPlugin(PluginInterface):
         elif self.counter == 4:
             command = CommandLOG()
         elif self.counter == 5:
-            command = CommandINFO()
+            command = CommandSEND()
         elif self.counter == 6:
             command = CommandEXIT()
 

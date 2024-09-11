@@ -328,7 +328,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Communication">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#Action"/>
-        <rdfs:comment>Modes of communication including INFO, LOG and EXIT</rdfs:comment>
+        <rdfs:comment>Modes of communication including SEND, LOG and EXIT</rdfs:comment>
     </owl:Class>
     
 

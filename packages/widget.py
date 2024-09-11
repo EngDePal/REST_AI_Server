@@ -168,21 +168,23 @@ class CockpitWidget(QWidget):
             target_row = self.search_client(data["token"])
         else:
              raise Exception("Error in data transmission to widget: No token included.")
-             
-        if "command" in data.keys():
-                value = str(data["command"])
-                item = QTableWidgetItem(value)
-                self.client_table.setItem(target_row, 2, item)
-                #Resize column depending on content
-                if value in ["LIN", "PTP", "INFO", "LOG", "EXIT"]:
-                    self.client_table.setRowHeight(target_row, 50)
-                elif value == "CIRC":
-                    self.client_table.setRowHeight(target_row, 100)
-        if "parameters" in data.keys():
-                parameters = data["parameters"]
-                parameters.pop("type")
-                item = QTableWidgetItem(str(parameters))
-                self.client_table.setItem(target_row, 3, item)
+
+        #Update the fields if the row exists
+        if target_row is not None:   
+            if "command" in data.keys():
+                    value = str(data["command"])
+                    item = QTableWidgetItem(value)
+                    self.client_table.setItem(target_row, 2, item)
+                    #Resize column depending on content
+                    if value in ["LIN", "PTP", "INFO", "LOG", "EXIT"]:
+                        self.client_table.setRowHeight(target_row, 50)
+                    elif value == "CIRC":
+                        self.client_table.setRowHeight(target_row, 100)
+            if "parameters" in data.keys():
+                    parameters = data["parameters"]
+                    parameters.pop("type")
+                    item = QTableWidgetItem(str(parameters))
+                    self.client_table.setItem(target_row, 3, item)
 
 
     #Removes table rows

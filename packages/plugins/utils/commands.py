@@ -1,5 +1,6 @@
 """Implements command classes as output of every robot plugin as specified in the API"""
 from abc import ABC, abstractmethod
+import json
 
 class Command(dict, ABC):
 
@@ -22,7 +23,7 @@ class Command(dict, ABC):
 
 
         super().__init__()
-        self.allowed_commands = ["EXIT", "LOG", "INFO", "PTP", "CIRC", "LIN"]
+        self.allowed_commands = ["EXIT", "LOG", "SEND", "PTP", "CIRC", "LIN"]
 
         if command not in self.allowed_commands:
             raise InvalidCommandError(command)
@@ -48,20 +49,28 @@ class Command(dict, ABC):
         for element in frame_elements:
             try:
                 #Must be int or float
-                if not isinstance(frame[element], int):
-                    if not isinstance(frame[element], float):
-                        raise TypeError
+                if type(frame[element]) not in [int, float]:
+                    raise TypeError
             except KeyError as e:
                 print(e)
                 break
+    
+    #Returns the command istelf
+    def return_dict(self):
+        # Convert instance to dictionary
+        return dict(self)
 
-"Throws an error if a command is not EXIT, LOG, INFO, PTP, CIRC or LIN"
+    #Returns itself as a json object
+    def return_json(self):
+        return json.dumps(self.return_dict())
+
+"Throws an error if a command is not EXIT, LOG, SEND, PTP, CIRC or LIN"
 class InvalidCommandError(Exception):
 
     def __init__(self, command):
-        self.allowed_commands = ["EXIT", "LOG", "INFO", "PTP", "CIRC", "LIN"]
+        self.allowed_commands = ["EXIT", "LOG", "SEND", "PTP", "CIRC", "LIN"]
         if command not in self.allowed_commands:
-            super().__init__(f"Invalid command: {command}. Expected one of: ['EXIT', 'LOG', 'INFO', 'PTP', 'CIRC', 'LIN']")
+            super().__init__(f"Invalid command: {command}. Expected one of: ['EXIT', 'LOG', 'SEND', 'PTP', 'CIRC', 'LIN']")
 
 #Class for EXIT commands
 class CommandEXIT(Command):
@@ -83,11 +92,11 @@ class CommandLOG(Command):
     def set_specifics(self, frame: dict, auxiliaryFrame: dict, destination: dict):
         pass
 
-#Class for INFO commands
-class CommandINFO(Command):
+#Class for SEND commands
+class CommandSEND(Command):
 
     def __init__(self):
-        super().__init__(command = "INFO", frame = {}, auxiliaryFrame = {}, destination = {})
+        super().__init__(command = "SEND", frame = {}, auxiliaryFrame = {}, destination = {})
 
     #No specifics for EXIT
     def set_specifics(self, frame: dict, auxiliaryFrame: dict, destination: dict):

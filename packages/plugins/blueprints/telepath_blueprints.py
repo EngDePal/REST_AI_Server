@@ -208,8 +208,8 @@ class Blueprint(PluginInterface):
         elif type == "EXIT":
             command = CommandEXIT()
 
-        elif type == "INFO":
-            command = CommandINFO()
+        elif type == "SEND":
+            command = CommandSEND()
 
         elif type == "PTP":
             json_string = action.hasFrame

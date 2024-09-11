@@ -170,14 +170,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#INFO -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#INFO">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#Skill"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#LIN -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#LIN">
@@ -208,6 +200,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#SEND -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#SEND">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#Skill"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#Skill -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#Skill"/>
@@ -229,7 +229,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#Level1">
         <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#Level"/>
-        <skilltree:unlocks rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#SkillINFO"/>
+        <skilltree:unlocks rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#SkillSEND"/>
         <skilltree:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1</skilltree:hasValue>
     </owl:NamedIndividual>
     
@@ -326,16 +326,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#SkillINFO -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#SkillINFO">
-        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#INFO"/>
-        <skilltree:requires rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#Level1"/>
-        <skilltree:hasName>INFO</skilltree:hasName>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#SkillLIN -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#SkillLIN">
@@ -378,6 +368,16 @@
                     &quot;z&quot; : 350
                             }</skilltree:hasFrame>
         <skilltree:hasName>PTP</skilltree:hasName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#SkillSEND -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#SkillSEND">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#SEND"/>
+        <skilltree:requires rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#Level1"/>
+        <skilltree:hasName>SEND</skilltree:hasName>
     </owl:NamedIndividual>
 </rdf:RDF>
 
