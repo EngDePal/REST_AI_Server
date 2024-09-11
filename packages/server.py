@@ -221,7 +221,9 @@ class Server(QThread):
         self.start_signal.emit()
 
         #Start the Flask server
-        self.app.run(host= "0.0.0.0", port= 8080)
+        #According to the client side API implementation
+        #The robot will attempt a connection to serverurl = "http://172.31.1.100:3000/"
+        self.app.run(host="172.31.1.100", port=3000)
 
     #Shutting down server
     def shutdown_server(self):
