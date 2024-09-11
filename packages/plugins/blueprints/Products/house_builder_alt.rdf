@@ -9,8 +9,7 @@
      xmlns:house_builder="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#"
      xmlns:house_builder_alt="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder_alt#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder_alt">
-        <rdfs:comment>ALTERNATIVE BUILD: Part conditions have been changed for demonstration purposes.
-This is the ontology used in the telepath_reasoning plug-in. It is based on the prodcut model ontology and adds individuals, which model a (drawing of a) house as the product.</rdfs:comment>
+        <rdfs:comment>ALTERNATIVE BUILD: Part conditions have been changed for demonstration purposes - the roof is now a condition for the door and window. This is the ontology used in the telepath_reasoning plug-in. It is based on the product model ontology and adds individuals, which model a (drawing of a) house as the product.</rdfs:comment>
     </owl:Ontology>
     
 
@@ -466,13 +465,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Drawing left side of door</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 240,
+	&quot;y&quot; : 370,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -485,13 +484,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Drawing right side of door</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 410,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -504,13 +503,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Drawing top of door</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 240,
+	&quot;y&quot; : 410,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -523,13 +522,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Drawing foundation</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -542,13 +541,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Drawing left wall</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -561,13 +560,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Drawing right wall</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -579,22 +578,22 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder_alt#drawingRoofBeam"/>
         <house_builder_alt:hasActionName>Drawing roof arc</house_builder_alt:hasActionName>
         <house_builder_alt:hasAuxiliaryFrame>{
-                             &quot;a&quot; : 32,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasAuxiliaryFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 130,
+	&quot;y&quot; : 425,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasAuxiliaryFrame>
         <house_builder_alt:hasCommand>CIRC</house_builder_alt:hasCommand>
         <house_builder_alt:hasDestination>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasDestination>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasDestination>
     </owl:NamedIndividual>
     
 
@@ -607,13 +606,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Draw roof beam</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -626,13 +625,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Drawing bottom of window</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 280,
+	&quot;y&quot; : 430,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -645,13 +644,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Drawing left side of window</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 240,
+	&quot;y&quot; : 430,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -664,13 +663,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Drawing right side of window</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 280,
+	&quot;y&quot; : 470,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -683,13 +682,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Drawing top of window</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 240,
+	&quot;y&quot; : 470,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -702,13 +701,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Finishing door assembly</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 410,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -721,13 +720,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Finishing construction of foundation</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -740,13 +739,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Finishing left wall construction</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -759,13 +758,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Finishing right wall construction</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -778,13 +777,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Finishing roof</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -797,13 +796,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Finishing window assembly</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 280,
+	&quot;y&quot; : 430,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -870,13 +869,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Preparation of door assembly</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>PTP</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 370,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -888,13 +887,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Preparing foundation construction</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>PTP</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -906,13 +905,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Preparing left wall construction</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>PTP</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -924,13 +923,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Preparing right wall construction</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>PTP</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -942,13 +941,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Preparing roof construction</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>PTP</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -960,13 +959,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Preparation of window assembly</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>PTP</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 280,
+	&quot;y&quot; : 430,
+	&quot;z&quot; : 320
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1055,13 +1054,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Starting door assembly</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 370,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1074,13 +1073,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Starting construction of foundation</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1093,13 +1092,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Starting left wall construction</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1112,13 +1111,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Start construction of right wall</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1131,13 +1130,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Start roof construction</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1150,13 +1149,13 @@ This is the ontology used in the telepath_reasoning plug-in. It is based on the 
         <house_builder_alt:hasActionName>Start of window assembly</house_builder_alt:hasActionName>
         <house_builder_alt:hasCommand>LIN</house_builder_alt:hasCommand>
         <house_builder_alt:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder_alt:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 280,
+	&quot;y&quot; : 430,
+	&quot;z&quot; : 284.8
+}</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
     
 

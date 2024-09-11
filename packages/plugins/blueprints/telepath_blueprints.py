@@ -7,9 +7,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 #Importing owlready2
 from owlready2 import get_ontology, sync_reasoner
 #importing the commands
-from plugins.utils.commands import *
+from packages.plugins.utils.commands import *
 #Importing interface
-from plugins.utils.plugin_interface import PluginInterface
+from packages.plugins.utils.plugin_interface import PluginInterface
 #Parsing string and converting to json
 import json
 #Random part selection
@@ -417,4 +417,3 @@ class Blueprint(PluginInterface):
         random_element = self.random_state.choice(part_list)
 
         return random_element
-

@@ -2,19 +2,53 @@
 #Importing necessary modules and classes from the Flask web framework
 from flask import Flask, jsonify, request
 #Importing the various managers
-from token_manager import TokenManager
-from data_manager import DataManager
-from robot_logic_manager import RobotLogicManager
+from packages.token_manager import TokenManager
+from packages.data_manager import DataManager
+from packages.robot_logic_manager import RobotLogicManager
 #Importing signal to handle events
 import signal
 #Importing command classes
-from plugins.utils.commands import *
+from packages.plugins.utils.commands import *
+#For Widget functionality
+from PyQt5.QtCore import QThread, pyqtSignal
+#Shutdown
+import os
 
 
 # Server class
-class Server:
+class Server(QThread):
+
+    #Creating signals for the widget
+
+    #For updating the client counter with the current count
+    counter_signal = pyqtSignal(int)
+
+    #For manipulating the client table
+    #Dict: Data like token, plugin, command and parameters
+    #Bool1: Adding(0) or removing data (1)
+    #Bool2: Creating a new line (0) or updating a row (1)
+    table_signal = pyqtSignal(dict, bool, bool)
+
+    #For creating messages about clients
+    #Str1: Token
+    #Str2: Mode (LOGIN, LOGOUT)
+    user_info_signal =pyqtSignal(str, str)
+
+    #For creating a login notification
+    login_signal = pyqtSignal()
+
+    #For server control
+    start_signal = pyqtSignal()
 
     def __init__(self):
+
+        #For threading
+        super().__init__()
+
+        #Updating widget count
+        self.client_count = 0
+        self.counter_signal.emit(self.client_count)
+
         #Create a Flask app
         self.app = Flask(__name__)
 
@@ -22,10 +56,6 @@ class Server:
         self.tm = TokenManager()
         self.dm = DataManager()
         self.rlm = RobotLogicManager()
-
-        #Variables for data transmission to frontend
-        #Frontend not yet implemented
-        self.client_count = 0
 
         #Register the shutdown function for SIGINT (Ctrl + C)
         #Allows manual shutdown in the terminal
@@ -39,6 +69,9 @@ class Server:
         #Login response: Generated token is sent to client
         @self.app.route("/login", methods=["POST"])
         def login_response():
+
+            #Login notification in GUI
+            self.login_signal.emit()
 
             #Start of refined plugin loading proces
             self.available_plugins = dict(self.rlm.get_discovery())
@@ -57,9 +90,6 @@ class Server:
             #Saving the combination of token and plugin name -> REST statelessness
             self.dm.save_plugin(generated_token, plugin_name)
 
-            #Update client count
-            self.client_count += 1
-
             #Getting starting state of the application
             instance = self.rlm.create_instance(plugin_name)
             app_state = instance.setup()
@@ -69,6 +99,22 @@ class Server:
             #Saving an INFO command as the starting command of the client
             base_command = CommandINFO()
             self.dm.save_command(generated_token, base_command)
+
+            #UI updates
+
+            #Update client count
+            self.client_count += 1
+            self.counter_signal.emit(self.client_count)
+
+            #Updating client table
+            table_info = dict(data)
+            #Plugin name without telepath_ prefix and .py suffix
+            plugin_without_prefix = plugin_name[9:-3]
+            table_info["plugin_name"] = plugin_without_prefix
+            self.table_signal.emit(table_info, False, False)
+
+            #Sending status update to GUI
+            self.user_info_signal.emit(generated_token, "LOGIN")
 
             #Sending the token to the server
             print("Login successful.")
@@ -81,6 +127,11 @@ class Server:
         def command_response(token: str):
 
                 command = self.dm.retrieve_command(token)
+
+                #Update widget
+                table_info = dict(command)
+                table_info["token"] = token
+                self.table_signal.emit(table_info, False, True)
 
                 print("Command sent.")
                 return jsonify(command), 200
@@ -151,17 +202,38 @@ class Server:
 
                 print("Log file saved.")
                 return jsonify({}), 200
+            
+        #Not defined in the REST-API
+        #For server shutdown through GUI
+        @self.app.route("/shutdown", methods = ["POST"])
+        def shutdown():
+            
+            self.shutdown_server()
+
+            return jsonify(True)
         
     #Methods for server handling
 
     #Starts the server
-    def start_server(self):
-        self.app.run(port=5000)
+    def run(self):
+
+        #GUI signal to notify user about start
+        self.start_signal.emit()
+
+        #Start the Flask server
+        #According to the client side API implementation
+        #The robot will attempt a connection to serverurl = "http://172.31.1.100:3000/"
+        self.app.run(host="172.31.1.100", port=3000)
 
     #Shutting down server
-    #To be implemented
     def shutdown_server(self):
-        pass
+
+        #Stopping MongoDB
+        self.dm.stop_mongodb()
+
+        #Kill python process
+        #This will end all threads
+        os.kill(os.getpid(), signal.SIGINT)
 
     #Defines the behaviour during server shutdown in the terminal
     def manual_shutdown(self, sig, frame):
@@ -176,6 +248,8 @@ class Server:
 
         #Reduce client count
         self.client_count -= 1
+        #Update widget
+        self.counter_signal.emit(self.client_count)
 
         #Removing token from TokenManager
         self.tm.delete_token(token)
@@ -185,6 +259,11 @@ class Server:
 
         #Removing relevant data from MongoDB: no errors if identical token is regenerated
         self.dm.delete_data(token)
+
+        #Update widget
+        table_info = {"token": token}
+        self.table_signal.emit(table_info, True, False)
+        self.user_info_signal.emit(token, "LOGOUT")
 
     #Allows plugin choice in the terminal
     #Should be kept in case of GUI integration as legacy code
@@ -209,6 +288,3 @@ class Server:
                 print("Plugin selection succesful.")
         
         return path
-    
-server = Server()
-server.start_server()

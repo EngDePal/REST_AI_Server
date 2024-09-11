@@ -46,9 +46,11 @@ class Command(dict, ABC):
             raise TypeError(f"Expected frame to be a dict, but got {type(frame)}.")
         
         for element in frame_elements:
-            try: 
+            try:
+                #Must be int or float
                 if not isinstance(frame[element], int):
-                    raise TypeError
+                    if not isinstance(frame[element], float):
+                        raise TypeError
             except KeyError as e:
                 print(e)
                 break

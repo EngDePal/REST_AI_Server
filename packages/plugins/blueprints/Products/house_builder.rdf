@@ -463,13 +463,13 @@
         <house_builder:hasActionName>Drawing left side of door</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 240,
+	&quot;y&quot; : 370,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -482,13 +482,13 @@
         <house_builder:hasActionName>Drawing right side of door</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 410,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -501,13 +501,13 @@
         <house_builder:hasActionName>Drawing top of door</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 240,
+	&quot;y&quot; : 410,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -520,13 +520,13 @@
         <house_builder:hasActionName>Drawing foundation</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -539,13 +539,13 @@
         <house_builder:hasActionName>Drawing left wall</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -558,13 +558,13 @@
         <house_builder:hasActionName>Drawing right wall</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -576,22 +576,22 @@
         <house_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#drawingRoofBeam"/>
         <house_builder:hasActionName>Drawing roof arc</house_builder:hasActionName>
         <house_builder:hasAuxiliaryFrame>{
-                             &quot;a&quot; : 32,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasAuxiliaryFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 130,
+	&quot;y&quot; : 425,
+	&quot;z&quot; : 284.8
+}</house_builder:hasAuxiliaryFrame>
         <house_builder:hasCommand>CIRC</house_builder:hasCommand>
         <house_builder:hasDestination>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasDestination>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 284.8
+}</house_builder:hasDestination>
     </owl:NamedIndividual>
     
 
@@ -604,13 +604,13 @@
         <house_builder:hasActionName>Draw roof beam</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -623,13 +623,13 @@
         <house_builder:hasActionName>Drawing bottom of window</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 280,
+	&quot;y&quot; : 430,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -642,13 +642,13 @@
         <house_builder:hasActionName>Drawing left side of window</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 240,
+	&quot;y&quot; : 430,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -661,13 +661,13 @@
         <house_builder:hasActionName>Drawing right side of window</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 280,
+	&quot;y&quot; : 470,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -680,13 +680,13 @@
         <house_builder:hasActionName>Drawing top of window</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 240,
+	&quot;y&quot; : 470,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -699,13 +699,13 @@
         <house_builder:hasActionName>Finishing door assembly</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 410,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -718,13 +718,13 @@
         <house_builder:hasActionName>Finishing construction of foundation</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -737,13 +737,13 @@
         <house_builder:hasActionName>Finishing left wall construction</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -756,13 +756,13 @@
         <house_builder:hasActionName>Finishing right wall construction</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -775,13 +775,13 @@
         <house_builder:hasActionName>Finishing roof</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -794,13 +794,13 @@
         <house_builder:hasActionName>Finishing window assembly</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 280,
+	&quot;y&quot; : 430,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -867,13 +867,13 @@
         <house_builder:hasActionName>Preparation of door assembly</house_builder:hasActionName>
         <house_builder:hasCommand>PTP</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 370,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -885,13 +885,13 @@
         <house_builder:hasActionName>Preparing foundation construction</house_builder:hasActionName>
         <house_builder:hasCommand>PTP</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -903,13 +903,13 @@
         <house_builder:hasActionName>Preparing left wall construction</house_builder:hasActionName>
         <house_builder:hasCommand>PTP</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -921,13 +921,13 @@
         <house_builder:hasActionName>Preparing right wall construction</house_builder:hasActionName>
         <house_builder:hasCommand>PTP</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -939,13 +939,13 @@
         <house_builder:hasActionName>Preparing roof construction</house_builder:hasActionName>
         <house_builder:hasCommand>PTP</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -957,13 +957,13 @@
         <house_builder:hasActionName>Preparation of window assembly</house_builder:hasActionName>
         <house_builder:hasCommand>PTP</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 280,
+	&quot;y&quot; : 430,
+	&quot;z&quot; : 320
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1052,13 +1052,13 @@
         <house_builder:hasActionName>Starting door assembly</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 370,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1071,13 +1071,13 @@
         <house_builder:hasActionName>Starting construction of foundation</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1090,13 +1090,13 @@
         <house_builder:hasActionName>Starting left wall construction</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1109,13 +1109,13 @@
         <house_builder:hasActionName>Start construction of right wall</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 340,
+	&quot;y&quot; : 495,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1128,13 +1128,13 @@
         <house_builder:hasActionName>Start roof construction</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 200,
+	&quot;y&quot; : 355,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
@@ -1147,13 +1147,13 @@
         <house_builder:hasActionName>Start of window assembly</house_builder:hasActionName>
         <house_builder:hasCommand>LIN</house_builder:hasCommand>
         <house_builder:hasFrame>{
-                             &quot;a&quot; : 22,
-                             &quot;b&quot; : 60,
-                             &quot;c&quot; : 15,
-                             &quot;x&quot; : 150,
-                             &quot;z&quot; : 100,
-                             &quot;y&quot; : 123
-                             }</house_builder:hasFrame>
+	&quot;a&quot; : -100,
+	&quot;b&quot; : 0,
+	&quot;c&quot; : 180,
+	&quot;x&quot; : 280,
+	&quot;y&quot; : 430,
+	&quot;z&quot; : 284.8
+}</house_builder:hasFrame>
     </owl:NamedIndividual>
     
 
