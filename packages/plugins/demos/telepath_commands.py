@@ -42,7 +42,7 @@ class TestPlugin(PluginInterface):
                     "z" : 478,
                     "a" : -1.6,
                     "b" : 0.03,
-                    "c" : 3.0,
+                    "c" : 3.0
                              }
             command = CommandLIN(frame=frame)
         elif self.counter == 2:
@@ -52,7 +52,7 @@ class TestPlugin(PluginInterface):
                     "z" : 400.0,
                     "a" : -1.6,
                     "b" : 0.03,
-                    "c" : 3.0,
+                    "c" : 3.0
                             }
             command = CommandPTP(frame)
 
@@ -63,7 +63,7 @@ class TestPlugin(PluginInterface):
                             "z" : 400.0,
                             "a" : -1.6,
                             "b" : 0.03,
-                            "c" : 3.0,
+                            "c" : 3.0
                              }
             destination =   {
                             "x" : 498.7,
@@ -71,7 +71,7 @@ class TestPlugin(PluginInterface):
                             "z" : 478,
                             "a" : -1.6,
                             "b" : 0.03,
-                            "c" : 3.0,
+                            "c" : 3.0
                              }
             command = CommandCIRC(auxiliaryFrame = auxiliaryFrame, destination=destination)
                        

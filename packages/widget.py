@@ -73,7 +73,7 @@ class CockpitWidget(QWidget):
     #Instructs the user to check the terminal
     def notify_login(self):
          
-        text = "A new client attemps a login.\nPlease check the terminal for further instructions."
+        text = "A new client attemps to login.\nPlease check the terminal for further instructions."
         self.status_line.setText(text)
 
     #Info about server start

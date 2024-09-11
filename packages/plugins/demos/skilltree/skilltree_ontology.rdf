@@ -296,20 +296,20 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#CIRC"/>
         <skilltree:requires rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#Level3"/>
         <skilltree:hasAuxiliaryFrame>{
-                             &quot;a&quot; : -100,
-                             &quot;b&quot; : 0,
-                             &quot;c&quot; : 180,
-                             &quot;x&quot; : 130,
-                             &quot;y&quot; : 425,
-                             &quot;z&quot; : 350
+                            &quot;x&quot; : 510,
+                            &quot;y&quot; : 370.5,
+                            &quot;z&quot; : 400.0,
+                            &quot;a&quot; : -1.6,
+                            &quot;b&quot; : 0.03,
+                            &quot;c&quot; : 3.0
                              }</skilltree:hasAuxiliaryFrame>
         <skilltree:hasDestination>{
-                             &quot;a&quot; : -100,
-                             &quot;b&quot; : 0,
-                             &quot;c&quot; : 180,
-                             &quot;x&quot; : 200,
-                             &quot;y&quot; : 355,
-                             &quot;z&quot; : 350
+                            &quot;x&quot; : 498.7,
+                            &quot;y&quot; : 436.5,
+                            &quot;z&quot; : 478,
+                            &quot;a&quot; : -1.6,
+                            &quot;b&quot; : 0.03,
+                            &quot;c&quot; : 3.0
                              }</skilltree:hasDestination>
         <skilltree:hasName>CIRC</skilltree:hasName>
     </owl:NamedIndividual>
@@ -332,12 +332,12 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#LIN"/>
         <skilltree:requires rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#Level5"/>
         <skilltree:hasFrame>{
-                    &quot;a&quot; : -100,
-                    &quot;b&quot; : 0,
-                    &quot;c&quot; : 180,
-                    &quot;x&quot; : 200,
-                    &quot;y&quot; : 355,
-                    &quot;z&quot; : 350
+                    &quot;x&quot; : 498.7,
+                    &quot;y&quot; : 436.5,
+                    &quot;z&quot; : 478,
+                    &quot;a&quot; : -1.6,
+                    &quot;b&quot; : 0.03,
+                    &quot;c&quot; : 3.0
                              }</skilltree:hasFrame>
         <skilltree:hasName>LIN</skilltree:hasName>
     </owl:NamedIndividual>
@@ -360,12 +360,12 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#PTP"/>
         <skilltree:requires rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/skilltree#Level4"/>
         <skilltree:hasFrame>{
-                    &quot;a&quot; : -100,
-                    &quot;b&quot; : 0,
-                    &quot;c&quot; : 180,
-                    &quot;x&quot; : 200,
-                    &quot;y&quot; : 495,
-                    &quot;z&quot; : 350
+                    &quot;x&quot; : 520.7,
+                    &quot;y&quot; : 325.5,
+                    &quot;z&quot; : 400.0,
+                    &quot;a&quot; : -1.6,
+                    &quot;b&quot; : 0.03,
+                    &quot;c&quot; : 3.0
                             }</skilltree:hasFrame>
         <skilltree:hasName>PTP</skilltree:hasName>
     </owl:NamedIndividual>

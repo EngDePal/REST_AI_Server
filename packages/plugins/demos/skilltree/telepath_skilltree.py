@@ -92,6 +92,7 @@ class Skilltree(PluginInterface):
         elif name == "CIRC":
             aux_string = skill.hasAuxiliaryFrame
             dest_string = skill.hasDestination
+            print(f"Debug: {aux_string}")
             auxiliaryFrame = json.loads(aux_string)
             destination = json.loads(dest_string)
             command = CommandCIRC(auxiliaryFrame, destination)
