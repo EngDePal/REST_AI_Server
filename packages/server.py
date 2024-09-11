@@ -13,6 +13,8 @@ from packages.plugins.utils.commands import *
 from PyQt5.QtCore import QThread, pyqtSignal
 #Shutdown
 import os
+#Token extraction from client input
+import json
 
 # Server class
 class Server(QThread):
@@ -61,7 +63,7 @@ class Server(QThread):
         signal.signal(signal.SIGINT, self.manual_shutdown)
 
         #The following sections defines the handling of incoming http requests
-        #Token variable in most URI serves the identficiation of different clients
+        #Token_json is a json formatted string including the token serving as an identifier
         #For more details on the individual commands please check GitHub or the accompanying thesis
 
         #REST-API: POST /login 200 {}
@@ -97,6 +99,8 @@ class Server(QThread):
 
             #Saving an SEND command as the starting command of the client
             base_command = CommandSEND()
+            print("Base Command:")
+            print(base_command)
             self.dm.save_command(generated_token, base_command)
 
             #UI updates
@@ -122,16 +126,22 @@ class Server(QThread):
             
         #REST-API: GET /newcommand/<token> 200 {}
         #Response to command request: parameters object must be sent back
-        @self.app.route("/newcommand/<token>", methods=["GET"])
-        def command_response(token: str):
+        @self.app.route("/newcommand/<token_json>", methods=["GET"])
+        def command_response(token_json: str):
 
-                #Get generated co9mmand from MongoDB
+                #Extract token from JSON
+                token = self.extract_token(token_json)
+
+                #Get generated commmand from MongoDB
                 command = self.dm.retrieve_command(token)
 
                 #Update widget
                 table_info = dict(command)
                 table_info["token"] = token
                 self.table_signal.emit(table_info, False, True)
+
+                print("Debug:")
+                print(command)
 
                 print("Command sent.")
                 return jsonify(command), 200
@@ -140,8 +150,11 @@ class Server(QThread):
         #REST-API: POST /newcommand/<token> 200 {}
         #Response to command confirmation: no return object
         #Generates a command and stores it in MongoDB
-        @self.app.route("/newcommand/<token>", methods=["POST"])
-        def command_confirmation(token: str):
+        @self.app.route("/newcommand/<token_json>", methods=["POST"])
+        def command_confirmation(token_json: str):
+            
+            #Extract token from JSON
+            token = self.extract_token(token_json)
 
             #Check token authenticity
             if self.tm.check_token_authenticity(token):
@@ -181,8 +194,12 @@ class Server(QThread):
 
         #REST-API: POST /safeinfo/<token> 200 {"msg" : String}
         #Response to info file from client: file is saved in database
-        @self.app.route("/safeinfo/<token>", methods=["POST"])
-        def safeinfo_response(token: str):
+        @self.app.route("/safeinfo/<token_json>", methods=["POST"])
+        def safeinfo_response(token_json: str):
+
+            #Extract token from JSON
+            token = self.extract_token(token_json)
+
             if self.tm.check_token_authenticity(token):
                 data = request.get_json()
                 data["token"] = token
@@ -193,8 +210,12 @@ class Server(QThread):
 
         #REST-API: POST /safelog/<token> 200 {"filename" : String, "data" : String}
         #Response to log file from client: file is saved in database
-        @self.app.route("/safelog/<token>", methods=["POST"])
-        def safelog_response(token: str):
+        @self.app.route("/safelog/<token_json>", methods=["POST"])
+        def safelog_response(token_json: str):
+
+            #Extract token from JSON
+            token = self.extract_token(token_json)
+
             if self.tm.check_token_authenticity(token):
                 data = request.get_json()
                 data["token"] = token
@@ -264,6 +285,16 @@ class Server(QThread):
         table_info = {"token": token}
         self.table_signal.emit(table_info, True, False)
         self.user_info_signal.emit(token, "LOGOUT")
+
+    #The token is send by the client in JSON format:
+    #e.g. {"token": "ABCD1234}
+    #This method helps to extract the token
+    def extract_token(self, json_input: dict):
+        
+        data = json.loads(json_input)
+        token = data["token"]
+
+        return token
 
     #Allows plugin choice in the terminal
     #Should be kept in case of GUI integration as legacy code

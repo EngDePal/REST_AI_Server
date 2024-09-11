@@ -30,7 +30,7 @@ class Command(dict, ABC):
         else:
             self["command"] = command
             self["parameters"] = dict()
-            self["parameters"]["type"] = "param" + str(command)
+            self["parameters"]["type"] = "Param" + str(command)
 
         self.set_specifics(frame, auxiliaryFrame, destination)
 
