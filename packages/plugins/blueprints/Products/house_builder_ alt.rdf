@@ -9,7 +9,7 @@
      xmlns:house_builder="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder#"
      xmlns:house_builder_alt="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder_alt#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/house_builder_alt">
-        <rdfs:comment>ALTERNATIVE BUILD: Part conditions have been changed for demonstration purposes - the roof is now a condition for the door and window. This is the ontology used in the telepath_reasoning plug-in. It is based on the product model ontology and adds individuals, which model a (drawing of a) house as the product.</rdfs:comment>
+        <rdfs:comment>ALTERNATIVE BUILD: Part conditions have been changed for demonstration purposes. The roof  now serves as a necessary condition for the window and door. This is the ontology used in the telepath_reasoning plug-in. It is based on the product model ontology and adds individuals, which model a (drawing of a) house as the product.</rdfs:comment>
     </owl:Ontology>
     
 
@@ -468,8 +468,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 240,
-	&quot;y&quot; : 370,
+	&quot;x&quot; : 540,
+	&quot;y&quot; : 175,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -487,8 +487,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 410,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 215,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -506,8 +506,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 240,
-	&quot;y&quot; : 410,
+	&quot;x&quot; : 540,
+	&quot;y&quot; : 215,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -525,8 +525,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 495,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 300,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -544,8 +544,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 200,
-	&quot;y&quot; : 355,
+	&quot;x&quot; : 500,
+	&quot;y&quot; : 160,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -563,8 +563,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 200,
-	&quot;y&quot; : 495,
+	&quot;x&quot; : 500,
+	&quot;y&quot; : 300,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -581,8 +581,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 130,
-	&quot;y&quot; : 425,
+	&quot;x&quot; : 430,
+	&quot;y&quot; : 230,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasAuxiliaryFrame>
         <house_builder_alt:hasCommand>CIRC</house_builder_alt:hasCommand>
@@ -590,8 +590,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 200,
-	&quot;y&quot; : 355,
+	&quot;x&quot; : 500,
+	&quot;y&quot; : 160,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasDestination>
     </owl:NamedIndividual>
@@ -609,8 +609,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 200,
-	&quot;y&quot; : 495,
+	&quot;x&quot; : 500,
+	&quot;y&quot; : 300,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -628,8 +628,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 280,
-	&quot;y&quot; : 430,
+	&quot;x&quot; : 580,
+	&quot;y&quot; : 235,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -647,8 +647,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 240,
-	&quot;y&quot; : 430,
+	&quot;x&quot; : 540,
+	&quot;y&quot; : 235,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -666,8 +666,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 280,
-	&quot;y&quot; : 470,
+	&quot;x&quot; : 580,
+	&quot;y&quot; : 275,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -685,8 +685,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 240,
-	&quot;y&quot; : 470,
+	&quot;x&quot; : 540,
+	&quot;y&quot; : 275,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -704,8 +704,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 410,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 215,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -723,8 +723,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 495,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 300,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -742,8 +742,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 200,
-	&quot;y&quot; : 355,
+	&quot;x&quot; : 500,
+	&quot;y&quot; : 160,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -761,8 +761,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 200,
-	&quot;y&quot; : 495,
+	&quot;x&quot; : 500,
+	&quot;y&quot; : 300,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -780,8 +780,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 200,
-	&quot;y&quot; : 355,
+	&quot;x&quot; : 500,
+	&quot;y&quot; : 160,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -799,8 +799,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 280,
-	&quot;y&quot; : 430,
+	&quot;x&quot; : 580,
+	&quot;y&quot; : 235,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -872,8 +872,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 370,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 175,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -890,8 +890,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 355,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 160,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -908,8 +908,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 355,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 160,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -926,8 +926,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 495,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 300,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -944,8 +944,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 200,
-	&quot;y&quot; : 355,
+	&quot;x&quot; : 500,
+	&quot;y&quot; : 160,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -962,8 +962,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 280,
-	&quot;y&quot; : 430,
+	&quot;x&quot; : 580,
+	&quot;y&quot; : 235,
 	&quot;z&quot; : 320
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -1057,8 +1057,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 370,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 175,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -1076,8 +1076,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 355,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 160,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -1095,8 +1095,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 355,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 160,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -1114,8 +1114,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 340,
-	&quot;y&quot; : 495,
+	&quot;x&quot; : 640,
+	&quot;y&quot; : 300,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -1133,8 +1133,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 200,
-	&quot;y&quot; : 355,
+	&quot;x&quot; : 500,
+	&quot;y&quot; : 160,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
@@ -1152,8 +1152,8 @@
 	&quot;a&quot; : -100,
 	&quot;b&quot; : 0,
 	&quot;c&quot; : 180,
-	&quot;x&quot; : 280,
-	&quot;y&quot; : 430,
+	&quot;x&quot; : 580,
+	&quot;y&quot; : 235,
 	&quot;z&quot; : 284.8
 }</house_builder_alt:hasFrame>
     </owl:NamedIndividual>
