@@ -142,6 +142,9 @@ class Server(QThread):
                 self.table_signal.emit(table_info, False, True)
 
                 #Response construction
+
+                #For larger data packages make_response is recommended
+                #Since just returning jsonify(data package) might lead to data loss during transmission
                 response = make_response(jsonify(command))
                 response.headers['Cache-Control'] = 'no-cache'
 
