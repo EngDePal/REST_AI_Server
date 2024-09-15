@@ -24,7 +24,8 @@ class Blueprint(PluginInterface):
     #Init loads the ontology
     def __init__(self):
         #This ontology is based on the product model ontology and describes a house
-        self.directory_path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/blueprints/products"
+        current_dir_path = os.path.dirname(os.path.realpath(__file__))
+        self.directory_path = os.path.join(current_dir_path, "products")
 
         #Create a random state with a specific seed
         #For reproducing results enter a seed

@@ -94,7 +94,3 @@ class RobotLogicManager:
     def get_plugin(self, plugin_name: str):
         module = self.plugin_mapping[plugin_name]
         return module
-    
-    #Remove plugin instances during log out
-    def remove_plugin(self, plugin_name: str):
-        self.plugin_mapping.pop(plugin_name)

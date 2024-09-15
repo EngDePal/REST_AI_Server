@@ -4,6 +4,10 @@ import pymongo
 #Additional imports allow to start mongodb 
 import subprocess
 import os
+#For OS check
+import platform
+#Cross platform comptibility
+import psutil
 
 class DataManager:
 
@@ -14,13 +18,19 @@ class DataManager:
 
     #Initializes the database and collections with basic dictionaries
     def setup(self):
+
         self.client = pymongo.MongoClient("mongodb://localhost:27017")
         
         #Loads or creates database if necessary
         #Change this to 'REST_AI_Server' during deployment
-        self.db = self.client["test"]
+        self.db = self.client["REST_AI_Server"]
 
         self.collections_list = ["app_state", "logs", "infos", "plugins", "commands"]
+
+        #Remove temporary data first, in case there was no proper shutdown
+        for collection in ["app_state", "plugins", "commands"]:
+            target_collection = self.db[collection]
+            target_collection.delete_many({})
 
         #Inserts collections with base entry if necessary
         #View these as examples or formats 
@@ -75,9 +85,16 @@ class DataManager:
     
     #Starts the mongod process
     def start_mongodb(self):
+        
         # Define paths
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        mongodb_bin_path = os.path.join(dir_path, "../mongodb/macos/bin/mongod")
+
+        if platform.system() == "Darwin" or platform.system() == "Linux":
+            mongodb_bin_path = os.path.join(dir_path, "../mongodb/bin/macos/mongod")
+        elif platform.system() == "Windows":
+            mongodb_bin_path = os.path.join(dir_path, "../mongodb/bin/windows/mongod.exe")
+        else:
+            raise Exception("Unknown operating system. No MongoDB binaries available.")
         db_path = os.path.join(dir_path, "../mongodb/data")
         log_path = os.path.join(dir_path, "../mongodb/logs/mongodb.log")
 
@@ -86,11 +103,20 @@ class DataManager:
         os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
         # Start MongoDB process
-        process = subprocess.Popen(
-            [mongodb_bin_path, "--dbpath", db_path, "--logpath", log_path, "--fork"],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
-        )
+        if platform.system() == "Darwin" or platform.system() == "Linux":
+            process = subprocess.Popen(
+                [mongodb_bin_path, "--dbpath", db_path, "--logpath", log_path, "--fork"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+        elif platform.system() == "Windows":
+            process = subprocess.Popen(
+                [mongodb_bin_path, "--dbpath", db_path, "--logpath", log_path],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+        else:
+            raise Exception("Unknown operating system. No MongoDB binaries available.")
 
         stdout, stderr = process.communicate()
 
@@ -101,20 +127,40 @@ class DataManager:
 
     #Stops mongod
     def stop_mongodb(self):
+
         # Define paths
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        mongodb_bin_path = os.path.join(dir_path, "../mongodb/macos/bin/mongod")
+        if platform.system() == "Darwin" or platform.system() == "Linux":
+            mongodb_bin_path = os.path.join(dir_path, "../mongodb/bin/macos/mongod")
+        elif platform.system() == "Windows":
+            mongodb_bin_path = os.path.join(dir_path, "../mongodb/bin/windows/mongod.exe")
+        else:
+            raise Exception("Unknown operating system. No MongoDB binaries available.")
 
         # Find MongoDB process ID and stop it
         try:
-            result = subprocess.run(["pgrep", "-f", mongodb_bin_path], stdout=subprocess.PIPE)
-            pid = int(result.stdout.strip())
 
-            if pid:
-                subprocess.run(['kill', str(pid)])
-                print(f"MongoDB process {pid} stopped successfully.")
-            else:
-                print("MongoDB process not found.")
+            if platform.system() == "Darwin" or platform.system() == "Linux":
+                result = subprocess.run(["pgrep", "-f", mongodb_bin_path], stdout=subprocess.PIPE)
+                pid = int(result.stdout.strip())
+
+                if pid:
+                    subprocess.run(['kill', str(pid)])
+                    print(f"MongoDB process {pid} stopped successfully.")
+                else:
+                    print("MongoDB process not found.")
+            
+            elif platform.system() == "Windows":
+                # Using psutil on Windows to find and terminate the process
+                for proc in psutil.process_iter(['pid', 'name']):
+                    if "mongod.exe" in proc.info['name']:
+                        proc.terminate()  # Send termination signal
+                        proc.wait()  # Wait until the process is terminated
+                        print(f"MongoDB process {proc.info['pid']} stopped successfully.")
+                        break
+                else:
+                    print("MongoDB process not found.")
+
         except Exception as e:
             print(f"Error stopping MongoDB: {str(e)}")
 

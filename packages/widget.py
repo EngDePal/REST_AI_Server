@@ -11,7 +11,7 @@ import requests
 
 class CockpitWidget(QWidget):
 
-    #Starting 
+    #Constructor:
     def __init__(self):
 
         #Setting up GUI
@@ -48,14 +48,7 @@ class CockpitWidget(QWidget):
         #True -> Remove data
         if remove == True:
             
-            #Search for the token in the table
-            if "token" in data.keys():
-                target_row = self.search_client(data["token"])
-            else:
-                raise Exception("Error in data transmission to widget: No token included.")
-            
-            if target_row is not None:
-                 self.client_table.removeRow(target_row)
+            self.remove_table_data(data)
 
     #Updates the status line
     def update_status(self, token: str, mode: str):
@@ -92,7 +85,7 @@ class CockpitWidget(QWidget):
             #Conenct signals
             self.connect_signals()
 
-            #Start server in separate thread
+            #Start server in separate thread and get the url
             self.server.start()
 
             #Change state to on
@@ -112,7 +105,13 @@ class CockpitWidget(QWidget):
 
             if decision == True:
                 #Calling shutdown method
-                response = requests.post("http://127.0.0.1:8080/shutdown")
+                shutdown_url = self.base_url + "shutdown"
+                response = requests.post(shutdown_url)
+
+    #Updating the URL with info from the server
+    def set_url(self, url: str):
+         
+         self.base_url = url
 
     #Confirmation dialog for server shutdown
     def show_confirmation_dialog(self):
@@ -131,6 +130,7 @@ class CockpitWidget(QWidget):
         self.server.user_info_signal.connect(self.update_status)
         self.server.login_signal.connect(self.notify_login)
         self.server.start_signal.connect(self.notify_start)
+        self.server.url_signal.connect(self.set_url)
     
     #Adds the input data to the client table
     def add_table_data(self, data: dict):
@@ -190,7 +190,7 @@ class CockpitWidget(QWidget):
     #Removes table rows
     def remove_table_data(self, data: dict):
          
-         #Search for the token in the table
+        #Search for the token in the table
         if "token" in data.keys():
             target_row = self.search_client(data["token"])
         else:
@@ -198,6 +198,9 @@ class CockpitWidget(QWidget):
             
         if target_row is not None:
                  self.client_table.removeRow(target_row)
+
+        #Update row count to avoid empty rows
+        self.table_row_count -= 1
 
 
     #Searches for a client in the table by token
@@ -226,7 +229,7 @@ class CockpitWidget(QWidget):
         return target_row
     
     #Searches for an existing client in the table
-    #Retruns none if there is no match
+    #Returns none if there is no match
     def search_client(self, token: str):
          
         target_row = None
@@ -481,7 +484,7 @@ class CockpitWidget(QWidget):
             self.info_font.setPointSize(8)
             self.info_font.setFamily("Arial")
 
-            info = "@2024. Pre-release version"
+            info = "@2024. Version 1.0: Initial release."
             self.info_label = QLabel(info, self)
             self.info_label.move(0,0)
             self.info_label.setStyleSheet("color : grey")

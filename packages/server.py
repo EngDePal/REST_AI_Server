@@ -41,6 +41,9 @@ class Server(QThread):
     #For server control
     start_signal = pyqtSignal()
 
+    #Sending the URL to the widget
+    url_signal = pyqtSignal(str)
+
     def __init__(self):
 
         #For threading
@@ -117,7 +120,7 @@ class Server(QThread):
             #Sending status update to GUI
             self.user_info_signal.emit(generated_token, "LOGIN")
 
-            #Sending the token to the server
+            #Sending the token to the client
             response = make_response(jsonify(data))
             response.headers['Cache-Control'] = 'no-cache'
 
@@ -240,7 +243,7 @@ class Server(QThread):
         
     #Methods for server handling
 
-    #Starts the server
+    #Starts the server and returns the base url
     def run(self):
 
         #GUI signal to notify user about start
@@ -248,9 +251,22 @@ class Server(QThread):
 
         #Start the Flask server
         #According to the client side API implementation
-        #The robot will attempt a connection to serverurl = "http://172.31.1.100:3000/"
-        self.app.run(host="172.31.1.100", port=3000)
 
+        #The robot will attempt a connection to serverurl = "http://172.31.1.100:3000/"
+        #my_host = "172.31.1.100"
+        #my_port = 3000
+
+        #For development outside of the lab run:
+        my_host = "127.0.0.1"
+        my_port = 5000
+
+        #Return the base url to automatically setup the widget
+        base_url = "http://" + my_host + ":" + str(my_port) + "/"
+        self.url_signal.emit(base_url)
+
+        #Start the server
+        self.app.run(host= my_host, port= my_port)
+                            
     #Shutting down server
     def shutdown_server(self):
 
@@ -279,9 +295,6 @@ class Server(QThread):
 
         #Removing token from TokenManager
         self.tm.delete_token(token)
-
-        #Removing plugin instance and name from RobotLogicManager
-        self.rlm.remove_plugin(plugin_name= plugin_name)
 
         #Removing relevant data from MongoDB: no errors if identical token is regenerated
         self.dm.delete_data(token)
