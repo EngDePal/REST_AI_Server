@@ -468,7 +468,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 540,
 	&quot;y&quot; : 175,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -487,7 +487,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 640,
 	&quot;y&quot; : 215,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -506,7 +506,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 540,
 	&quot;y&quot; : 215,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -525,7 +525,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 640,
 	&quot;y&quot; : 300,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -544,7 +544,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 500,
 	&quot;y&quot; : 160,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -563,7 +563,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 500,
 	&quot;y&quot; : 300,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -581,7 +581,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 430,
 	&quot;y&quot; : 230,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasAuxiliaryFrame>
         <house_builder:hasCommand>CIRC</house_builder:hasCommand>
         <house_builder:hasDestination>{
@@ -590,7 +590,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 500,
 	&quot;y&quot; : 160,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasDestination>
     </owl:NamedIndividual>
     
@@ -609,7 +609,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 500,
 	&quot;y&quot; : 300,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -628,7 +628,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 580,
 	&quot;y&quot; : 235,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -647,7 +647,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 540,
 	&quot;y&quot; : 235,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -666,7 +666,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 580,
 	&quot;y&quot; : 275,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -685,7 +685,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 540,
 	&quot;y&quot; : 275,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1057,7 +1057,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 640,
 	&quot;y&quot; : 175,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1076,7 +1076,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 640,
 	&quot;y&quot; : 160,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1095,7 +1095,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 640,
 	&quot;y&quot; : 160,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1114,7 +1114,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 640,
 	&quot;y&quot; : 300,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1133,7 +1133,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 500,
 	&quot;y&quot; : 160,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1152,7 +1152,7 @@
 	&quot;c&quot; : 180,
 	&quot;x&quot; : 580,
 	&quot;y&quot; : 235,
-	&quot;z&quot; : 284.8
+	&quot;z&quot; : 168.4
 }</house_builder:hasFrame>
     </owl:NamedIndividual>
     

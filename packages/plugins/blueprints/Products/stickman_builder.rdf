@@ -436,7 +436,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 520,
                              &quot;y&quot; : 170,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -455,7 +455,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 460,
                              &quot;y&quot; : 225,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -474,7 +474,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 640,
                              &quot;y&quot; : 190,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -492,7 +492,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 465,
                              &quot;y&quot; : 215,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasAuxiliaryFrame>
         <stickman_builder:hasCommand>CIRC</stickman_builder:hasCommand>
         <stickman_builder:hasDestination>{
@@ -501,7 +501,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 450,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasDestination>
     </owl:NamedIndividual>
     
@@ -520,7 +520,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 570,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -539,7 +539,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 480,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -558,7 +558,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 520,
                              &quot;y&quot; : 290,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -577,7 +577,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 460,
                              &quot;y&quot; : 235,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -596,7 +596,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 640,
                              &quot;y&quot; : 270,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -614,7 +614,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 465,
                              &quot;y&quot; : 245,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasAuxiliaryFrame>
         <stickman_builder:hasCommand>CIRC</stickman_builder:hasCommand>
         <stickman_builder:hasDestination>{
@@ -623,7 +623,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 480,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasDestination>
     </owl:NamedIndividual>
     
@@ -642,7 +642,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 570,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -660,7 +660,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 475,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasAuxiliaryFrame>
         <stickman_builder:hasCommand>CIRC</stickman_builder:hasCommand>
         <stickman_builder:hasDestination>{
@@ -669,7 +669,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 470,
                              &quot;y&quot; : 240,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasDestination>
     </owl:NamedIndividual>
     
@@ -688,7 +688,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 500,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1455,7 +1455,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 480,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1474,7 +1474,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 500,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1493,7 +1493,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 640,
                              &quot;y&quot; : 160,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1512,7 +1512,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 640,
                              &quot;y&quot; : 190,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1531,7 +1531,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 500,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1550,7 +1550,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 500,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1569,7 +1569,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 640,
                              &quot;y&quot; : 300,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1588,7 +1588,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 640,
                              &quot;y&quot; : 270,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1607,7 +1607,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 470,
                              &quot;y&quot; : 220,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1626,7 +1626,7 @@
                              &quot;c&quot; : 180,
                              &quot;x&quot; : 570,
                              &quot;y&quot; : 230,
-                             &quot;z&quot; : 284.8
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
