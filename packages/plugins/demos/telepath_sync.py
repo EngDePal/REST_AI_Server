@@ -1,4 +1,4 @@
-"""This demo demonstrates a way to control two robots at once"""
+"""This demo demonstrates a way to control two robots at once, which alternate in their requests"""
 #Fixing imports
 import sys
 import os
@@ -116,7 +116,15 @@ class SynchronizedControl(PluginInterface):
             
             #Otherwise Log-Out
             else:
-                command = CommandEXIT()
+                if "Wait" not in updated_state.keys():
+                    updated_state["Wait"] = True
+
+                #Wait before logging out, to allow the companion to catch this client's final tasks
+                if updated_state["Wait"] == True:
+                    command = CommandSEND()
+                    updated_state["Wait"] = False
+                elif state["Wait"] == False:
+                    command = CommandEXIT()
 
         print("Results")
         print(command)

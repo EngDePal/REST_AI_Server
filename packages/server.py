@@ -258,7 +258,7 @@ class Server(QThread):
 
         #For development outside of the lab run:
         my_host = "127.0.0.1"
-        my_port = 5000
+        my_port = 3000
 
         #Return the base url to automatically setup the widget
         base_url = "http://" + my_host + ":" + str(my_port) + "/"
