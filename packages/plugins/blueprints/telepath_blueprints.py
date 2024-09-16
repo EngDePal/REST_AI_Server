@@ -24,7 +24,8 @@ class Blueprint(PluginInterface):
     #Init loads the ontology
     def __init__(self):
         #This ontology is based on the product model ontology and describes a house
-        self.directory_path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/blueprints/products"
+        current_dir_path = os.path.dirname(os.path.realpath(__file__))
+        self.directory_path = os.path.join(current_dir_path, "products")
 
         #Create a random state with a specific seed
         #For reproducing results enter a seed
@@ -128,9 +129,9 @@ class Blueprint(PluginInterface):
         command = self.generate_command(current_action)
 
         #Creating a new state variable
-        state = self.generate_state(state, current_product, current_action, current_part)
-        
-        return command, state
+        new_state = self.generate_state(state, current_product, current_action, current_part)
+
+        return command, new_state
 
     #Returns the instance of the product to built after user selection
     def product_selection(self):
@@ -208,8 +209,8 @@ class Blueprint(PluginInterface):
         elif type == "EXIT":
             command = CommandEXIT()
 
-        elif type == "INFO":
-            command = CommandINFO()
+        elif type == "SEND":
+            command = CommandSEND()
 
         elif type == "PTP":
             json_string = action.hasFrame
@@ -234,10 +235,10 @@ class Blueprint(PluginInterface):
     def generate_state(self, old_state: dict, current_product: object, current_action: object, current_part: object):
 
         #Assigning new state variable
-        new_state = old_state
+        new_state = dict(old_state)
 
         #First step: Overwrite the current part and delete the action list (for readability)
-        if current_part.name is not new_state["Current part"]:
+        if current_part.name != new_state["Current part"]:
             new_state["Current part"] = current_part.name
             new_state["Finished actions"] = list()
         
@@ -417,3 +418,4 @@ class Blueprint(PluginInterface):
         random_element = self.random_state.choice(part_list)
 
         return random_element
+    

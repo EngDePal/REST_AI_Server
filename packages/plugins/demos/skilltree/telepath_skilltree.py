@@ -17,7 +17,8 @@ class Skilltree(PluginInterface):
 
     #Init loads the ontology
     def __init__(self):
-        path = "/Users/dennispal00/Documents/Masterarbeit_THI/REST_AI_Server/packages/plugins/demos/skilltree/skilltree_ontology.rdf"
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        path = os.path.join(dir_path, "skilltree_ontology.rdf")
         self.ontology = get_ontology(path).load()
         print("Ontology can be accessed.")
 
@@ -76,8 +77,8 @@ class Skilltree(PluginInterface):
         elif name == "EXIT":
             command = CommandEXIT()
             return command
-        elif name == "INFO":
-            command = CommandINFO()
+        elif name == "SEND":
+            command = CommandSEND()
             return command
         elif name == "PTP":
             json_string = skill.hasFrame

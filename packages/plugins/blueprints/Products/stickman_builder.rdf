@@ -8,7 +8,7 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:stickman_builder="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder">
-        <rdfs:comment>This is a second part for the blueprint ontology plug-in. It models the drawing of a stickman.</rdfs:comment>
+        <rdfs:comment>This is a second product for the blueprint ontology plug-in. It models the drawing of a stickman. It features more parts and a longer conditional chain to test the search algorithm.</rdfs:comment>
     </owl:Ontology>
     
 
@@ -328,7 +328,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Communication">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#Action"/>
-        <rdfs:comment>Modes of communication including INFO, LOG and EXIT</rdfs:comment>
+        <rdfs:comment>Modes of communication including SEND, LOG and EXIT</rdfs:comment>
     </owl:Class>
     
 
@@ -431,12 +431,12 @@
         <stickman_builder:hasActionName>Drawing left arm</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 520,
+                             &quot;y&quot; : 170,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -450,12 +450,12 @@
         <stickman_builder:hasActionName>Drawing left eye</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 460,
+                             &quot;y&quot; : 225,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -469,12 +469,12 @@
         <stickman_builder:hasActionName>Drawing left foot</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 190,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -487,21 +487,21 @@
         <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startDrawingHead"/>
         <stickman_builder:hasActionName>Drawing the left half of the head</stickman_builder:hasActionName>
         <stickman_builder:hasAuxiliaryFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 2,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 465,
+                             &quot;y&quot; : 215,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasAuxiliaryFrame>
         <stickman_builder:hasCommand>CIRC</stickman_builder:hasCommand>
         <stickman_builder:hasDestination>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 450,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasDestination>
     </owl:NamedIndividual>
     
@@ -515,12 +515,12 @@
         <stickman_builder:hasActionName>Drawing left leg</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 570,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -534,12 +534,12 @@
         <stickman_builder:hasActionName>Drawing neck</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 480,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -553,12 +553,12 @@
         <stickman_builder:hasActionName>Drawing right arm</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 520,
+                             &quot;y&quot; : 290,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -572,12 +572,12 @@
         <stickman_builder:hasActionName>Drawing right eye</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 460,
+                             &quot;y&quot; : 235,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -591,12 +591,12 @@
         <stickman_builder:hasActionName>Drawing right foot</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 270,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -609,21 +609,21 @@
         <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#drawLeftHeadHalf"/>
         <stickman_builder:hasActionName>Drawing the right half of the head</stickman_builder:hasActionName>
         <stickman_builder:hasAuxiliaryFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 465,
+                             &quot;y&quot; : 245,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasAuxiliaryFrame>
         <stickman_builder:hasCommand>CIRC</stickman_builder:hasCommand>
         <stickman_builder:hasDestination>{
-                             &quot;a&quot; : 1,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 480,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasDestination>
     </owl:NamedIndividual>
     
@@ -637,12 +637,12 @@
         <stickman_builder:hasActionName>Drawing right leg</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 570,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -655,21 +655,21 @@
         <stickman_builder:hasNecessaryAction rdf:resource="http://www.semanticweb.org/dennispal00/ontologies/2024/7/stickman_builder#startSmileDrawing"/>
         <stickman_builder:hasActionName>Drawing smile</stickman_builder:hasActionName>
         <stickman_builder:hasAuxiliaryFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 475,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasAuxiliaryFrame>
         <stickman_builder:hasCommand>CIRC</stickman_builder:hasCommand>
         <stickman_builder:hasDestination>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 2,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 470,
+                             &quot;y&quot; : 240,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasDestination>
     </owl:NamedIndividual>
     
@@ -683,12 +683,12 @@
         <stickman_builder:hasActionName>Drawing Torso</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 500,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -702,12 +702,12 @@
         <stickman_builder:hasActionName>Finishing drawing of head</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 480,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -721,12 +721,12 @@
         <stickman_builder:hasActionName>Finishing drawing of left arm</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 520,
+                             &quot;y&quot; : 170,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -740,12 +740,12 @@
         <stickman_builder:hasActionName>Finishing left eye drawing</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 460,
+                             &quot;y&quot; : 225,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -759,12 +759,12 @@
         <stickman_builder:hasActionName>Finishing drawing of left foot</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 190,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -778,12 +778,12 @@
         <stickman_builder:hasActionName>Finishing drawing of left leg</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 570,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -797,12 +797,12 @@
         <stickman_builder:hasActionName>Finishing neck drawing</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 480,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -816,12 +816,12 @@
         <stickman_builder:hasActionName>Finishing drawing of right arm</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 520,
+                             &quot;y&quot; : 290,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -835,12 +835,12 @@
         <stickman_builder:hasActionName>Finishing drawing of right eye</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 460,
+                             &quot;y&quot; : 235,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -854,12 +854,12 @@
         <stickman_builder:hasActionName>Finishing drawing of right foot</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 270,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -873,12 +873,12 @@
         <stickman_builder:hasActionName>Finishing drawing of right leg</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 570,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -892,12 +892,12 @@
         <stickman_builder:hasActionName>Finishing drawing of smile</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 470,
+                             &quot;y&quot; : 240,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -911,12 +911,12 @@
         <stickman_builder:hasActionName>Finish Torso Drawing</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 500,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1095,12 +1095,12 @@
         <stickman_builder:hasActionName>Preparing drawing of head</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 480,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1113,12 +1113,12 @@
         <stickman_builder:hasActionName>Preparing drawing of left arm</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 500,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1131,12 +1131,12 @@
         <stickman_builder:hasActionName>Preparing drawing of left eye</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 460,
+                             &quot;y&quot; : 225,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1149,12 +1149,12 @@
         <stickman_builder:hasActionName>Preparing drawing of left foot</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 160,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1167,12 +1167,12 @@
         <stickman_builder:hasActionName>Preparing drawing of left leg</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 190,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1185,12 +1185,12 @@
         <stickman_builder:hasActionName>Preparing drawing of neck</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 500,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1203,12 +1203,12 @@
         <stickman_builder:hasActionName>Preparing drawing of right arm</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 500,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1221,12 +1221,12 @@
         <stickman_builder:hasActionName>Preparing drawing of right eye</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 460,
+                             &quot;y&quot; : 235,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1239,12 +1239,12 @@
         <stickman_builder:hasActionName>Preparing drawing of right foot</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 300,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1257,12 +1257,12 @@
         <stickman_builder:hasActionName>Preparing drawing of right leg</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 270,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1275,12 +1275,12 @@
         <stickman_builder:hasActionName>Preparing drawing of smile</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 470,
+                             &quot;y&quot; : 220,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1293,12 +1293,12 @@
         <stickman_builder:hasActionName>Prepare torso drawing</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>PTP</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 570,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 320
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1450,12 +1450,12 @@
         <stickman_builder:hasActionName>Starting drawing of head</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 480,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1469,12 +1469,12 @@
         <stickman_builder:hasActionName>Start drawing of left arm</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 500,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1488,12 +1488,12 @@
         <stickman_builder:hasActionName>Starting drawing of left foot</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 160,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1507,12 +1507,12 @@
         <stickman_builder:hasActionName>Starting drawing of left leg</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 190,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1526,12 +1526,12 @@
         <stickman_builder:hasActionName>Starting neck drawing</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 500,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1545,12 +1545,12 @@
         <stickman_builder:hasActionName>Starting drawing of right arm</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 500,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1564,12 +1564,12 @@
         <stickman_builder:hasActionName>Starting drawing of right foot</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 300,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1583,12 +1583,12 @@
         <stickman_builder:hasActionName>Starting drawing of right leg</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 640,
+                             &quot;y&quot; : 270,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1602,12 +1602,12 @@
         <stickman_builder:hasActionName>Starting drawing of smile</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 470,
+                             &quot;y&quot; : 220,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     
@@ -1621,12 +1621,12 @@
         <stickman_builder:hasActionName>Start  of torso drawing</stickman_builder:hasActionName>
         <stickman_builder:hasCommand>LIN</stickman_builder:hasCommand>
         <stickman_builder:hasFrame>{
-                             &quot;a&quot; : 0,
+                             &quot;a&quot; : -100,
                              &quot;b&quot; : 0,
-                             &quot;c&quot; : 0,
-                             &quot;x&quot; : 0,
-                             &quot;z&quot; : 0,
-                             &quot;y&quot; : 0
+                             &quot;c&quot; : 180,
+                             &quot;x&quot; : 570,
+                             &quot;y&quot; : 230,
+                             &quot;z&quot; : 168.4
                              }</stickman_builder:hasFrame>
     </owl:NamedIndividual>
     

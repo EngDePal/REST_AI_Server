@@ -1,6 +1,6 @@
 """Handles the logic of the core application, especially HTTP requests and access to different manager classes."""
 #Importing necessary modules and classes from the Flask web framework
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 #Importing the various managers
 from packages.token_manager import TokenManager
 from packages.data_manager import DataManager
@@ -13,7 +13,8 @@ from packages.plugins.utils.commands import *
 from PyQt5.QtCore import QThread, pyqtSignal
 #Shutdown
 import os
-
+#Token extraction from client input
+import json
 
 # Server class
 class Server(QThread):
@@ -40,6 +41,9 @@ class Server(QThread):
     #For server control
     start_signal = pyqtSignal()
 
+    #Sending the URL to the widget
+    url_signal = pyqtSignal(str)
+
     def __init__(self):
 
         #For threading
@@ -62,7 +66,7 @@ class Server(QThread):
         signal.signal(signal.SIGINT, self.manual_shutdown)
 
         #The following sections defines the handling of incoming http requests
-        #Token variable in most URI serves the identficiation of different clients
+        #Token_json is a json formatted string including the token serving as an identifier
         #For more details on the individual commands please check GitHub or the accompanying thesis
 
         #REST-API: POST /login 200 {}
@@ -96,8 +100,8 @@ class Server(QThread):
             #Saving starting state of the application
             self.dm.save_state(generated_token, app_state)
 
-            #Saving an INFO command as the starting command of the client
-            base_command = CommandINFO()
+            #Saving an SEND command as the starting command of the client
+            base_command = CommandSEND()
             self.dm.save_command(generated_token, base_command)
 
             #UI updates
@@ -116,16 +120,23 @@ class Server(QThread):
             #Sending status update to GUI
             self.user_info_signal.emit(generated_token, "LOGIN")
 
-            #Sending the token to the server
+            #Sending the token to the client
+            response = make_response(jsonify(data))
+            response.headers['Cache-Control'] = 'no-cache'
+
             print("Login successful.")
-            return jsonify(data), 200
+            return response, 200
     
             
         #REST-API: GET /newcommand/<token> 200 {}
         #Response to command request: parameters object must be sent back
-        @self.app.route("/newcommand/<token>", methods=["GET"])
-        def command_response(token: str):
+        @self.app.route("/newcommand/<token_json>", methods=["GET"])
+        def command_response(token_json: str):
 
+                #Extract token from JSON
+                token = self.extract_token(token_json)
+
+                #Get generated commmand from MongoDB
                 command = self.dm.retrieve_command(token)
 
                 #Update widget
@@ -133,15 +144,25 @@ class Server(QThread):
                 table_info["token"] = token
                 self.table_signal.emit(table_info, False, True)
 
+                #Response construction
+
+                #For larger data packages make_response is recommended
+                #Since just returning jsonify(data package) might lead to data loss during transmission
+                response = make_response(jsonify(command))
+                response.headers['Cache-Control'] = 'no-cache'
+
                 print("Command sent.")
-                return jsonify(command), 200
+                return response, 200
 
 
         #REST-API: POST /newcommand/<token> 200 {}
         #Response to command confirmation: no return object
         #Generates a command and stores it in MongoDB
-        @self.app.route("/newcommand/<token>", methods=["POST"])
-        def command_confirmation(token: str):
+        @self.app.route("/newcommand/<token_json>", methods=["POST"])
+        def command_confirmation(token_json: str):
+            
+            #Extract token from JSON
+            token = self.extract_token(token_json)
 
             #Check token authenticity
             if self.tm.check_token_authenticity(token):
@@ -177,31 +198,39 @@ class Server(QThread):
 
                     print("Command confirmed. Next command generated.")
 
-            return jsonify({}), 200
+            return "", 200
 
         #REST-API: POST /safeinfo/<token> 200 {"msg" : String}
         #Response to info file from client: file is saved in database
-        @self.app.route("/safeinfo/<token>", methods=["POST"])
-        def safeinfo_response(token: str):
+        @self.app.route("/saveinfo/<token_json>", methods=["PUT"])
+        def safeinfo_response(token_json: str):
+
+            #Extract token from JSON
+            token = self.extract_token(token_json)
+
             if self.tm.check_token_authenticity(token):
                 data = request.get_json()
                 data["token"] = token
                 self.dm.save_data("infos", data)
 
                 print("Info saved.")
-                return jsonify({}), 200
+                return "", 200
 
         #REST-API: POST /safelog/<token> 200 {"filename" : String, "data" : String}
         #Response to log file from client: file is saved in database
-        @self.app.route("/safelog/<token>", methods=["POST"])
-        def safelog_response(token: str):
+        @self.app.route("/savelog/<token_json>", methods=["POST"])
+        def safelog_response(token_json: str):
+
+            #Extract token from JSON
+            token = self.extract_token(token_json)
+
             if self.tm.check_token_authenticity(token):
                 data = request.get_json()
                 data["token"] = token
                 self.dm.save_data("logs", data)
 
                 print("Log file saved.")
-                return jsonify({}), 200
+                return "", 200
             
         #Not defined in the REST-API
         #For server shutdown through GUI
@@ -214,7 +243,7 @@ class Server(QThread):
         
     #Methods for server handling
 
-    #Starts the server
+    #Starts the server and returns the base url
     def run(self):
 
         #GUI signal to notify user about start
@@ -222,9 +251,22 @@ class Server(QThread):
 
         #Start the Flask server
         #According to the client side API implementation
-        #The robot will attempt a connection to serverurl = "http://172.31.1.100:3000/"
-        self.app.run(host="172.31.1.100", port=3000)
 
+        #The robot will attempt a connection to serverurl = "http://172.31.1.100:3000/"
+        my_host = "172.31.1.100"
+        my_port = 3000
+
+        #For development outside of the lab run:
+        # my_host = "127.0.0.1"
+        # my_port = 3000
+
+        #Return the base url to automatically setup the widget
+        base_url = "http://" + my_host + ":" + str(my_port) + "/"
+        self.url_signal.emit(base_url)
+
+        #Start the server
+        self.app.run(host= my_host, port= my_port)
+                            
     #Shutting down server
     def shutdown_server(self):
 
@@ -254,9 +296,6 @@ class Server(QThread):
         #Removing token from TokenManager
         self.tm.delete_token(token)
 
-        #Removing plugin instance and name from RobotLogicManager
-        self.rlm.remove_plugin(plugin_name= plugin_name)
-
         #Removing relevant data from MongoDB: no errors if identical token is regenerated
         self.dm.delete_data(token)
 
@@ -264,6 +303,16 @@ class Server(QThread):
         table_info = {"token": token}
         self.table_signal.emit(table_info, True, False)
         self.user_info_signal.emit(token, "LOGOUT")
+
+    #The token is send by the client in JSON format:
+    #e.g. {"token": "ABCD1234}
+    #This method helps to extract the token
+    def extract_token(self, json_input: dict):
+        
+        data = json.loads(json_input)
+        token = data["token"]
+
+        return token
 
     #Allows plugin choice in the terminal
     #Should be kept in case of GUI integration as legacy code

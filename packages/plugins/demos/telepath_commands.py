@@ -37,48 +37,48 @@ class TestPlugin(PluginInterface):
         #Command generation
         if self.counter == 1:
             frame = {
-                    "a" : -100,
-                    "b" : 0,
-                    "c" : 180,
-                    "x" : 200,
-                    "y" : 355,
-                    "z" : 350
+                    "x" : 498.7,
+                    "y" : 436.5,
+                    "z" : 478,
+                    "a" : -1.6,
+                    "b" : 0.03,
+                    "c" : 3.0
                              }
             command = CommandLIN(frame=frame)
         elif self.counter == 2:
             frame = {
-                    "a" : -100,
-                    "b" : 0,
-                    "c" : 180,
-                    "x" : 200,
-                    "y" : 495,
-                    "z" : 350
+                    "x" : 520.7,
+                    "y" : 325.5,
+                    "z" : 400.0,
+                    "a" : -1.6,
+                    "b" : 0.03,
+                    "c" : 3.0
                             }
             command = CommandPTP(frame)
 
         elif self.counter == 3:
             auxiliaryFrame = {
-                             "a" : -100,
-                             "b" : 0,
-                             "c" : 180,
-                             "x" : 130,
-                             "y" : 425,
-                             "z" : 350
+                            "x" : 510,
+                            "y" : 370.5,
+                            "z" : 400.0,
+                            "a" : -1.6,
+                            "b" : 0.03,
+                            "c" : 3.0
                              }
             destination =   {
-                             "a" : -100,
-                             "b" : 0,
-                             "c" : 180,
-                             "x" : 200,
-                             "y" : 355,
-                             "z" : 350
+                            "x" : 498.7,
+                            "y" : 436.5,
+                            "z" : 478,
+                            "a" : -1.6,
+                            "b" : 0.03,
+                            "c" : 3.0
                              }
             command = CommandCIRC(auxiliaryFrame = auxiliaryFrame, destination=destination)
                        
         elif self.counter == 4:
             command = CommandLOG()
         elif self.counter == 5:
-            command = CommandINFO()
+            command = CommandSEND()
         elif self.counter == 6:
             command = CommandEXIT()
 
