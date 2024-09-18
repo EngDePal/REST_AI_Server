@@ -133,8 +133,11 @@ class Server(QThread):
         @self.app.route("/newcommand/<token_json>", methods=["GET"])
         def command_response(token_json: str):
 
-                #Extract token from JSON
-                token = self.extract_token(token_json)
+            #Extract token from JSON
+            token = self.extract_token(token_json)
+
+            #Check token authenticity
+            if self.tm.check_token_authenticity(token):
 
                 #Get generated commmand from MongoDB
                 command = self.dm.retrieve_command(token)
@@ -153,6 +156,13 @@ class Server(QThread):
 
                 print("Command sent.")
                 return response, 200
+            
+            else:
+                print("Error: No valid token provided for command reception.")
+                #Response creation
+                response = make_response("")
+                    
+                return response, 401 #Unauthiorized
 
 
         #REST-API: POST /newcommand/<token> 200 {}
@@ -198,39 +208,74 @@ class Server(QThread):
 
                     print("Command confirmed. Next command generated.")
 
-            return "", 200
+                #Response creation
+                response = make_response("")
+
+                return response, 200
+            
+            else:
+                print("Error: No valid token provided for command confirmation.")
+                #Response creation
+                response = make_response("")
+                    
+                return response, 401 #Unauthiorized
+
 
         #REST-API: POST /safeinfo/<token> 200 {"msg" : String}
         #Response to info file from client: file is saved in database
         @self.app.route("/saveinfo/<token_json>", methods=["PUT"])
-        def safeinfo_response(token_json: str):
+        def saveinfo_response(token_json: str):
 
             #Extract token from JSON
             token = self.extract_token(token_json)
 
-            if self.tm.check_token_authenticity(token):
+            #Check token authenticity and media type
+            if self.tm.check_token_authenticity(token) and request.content_type == "application/json":
                 data = request.get_json()
                 data["token"] = token
                 self.dm.save_data("infos", data)
 
                 print("Info saved.")
-                return "", 200
+
+                #Response creation
+                response = make_response("")
+
+                return response, 200
+            
+            else:
+                print("Error: Check token validity and ensure content type JSON.")
+                #Response creation
+                response = make_response("")
+                    
+                return response, 401 #Unauthorized
 
         #REST-API: POST /safelog/<token> 200 {"filename" : String, "data" : String}
         #Response to log file from client: file is saved in database
         @self.app.route("/savelog/<token_json>", methods=["POST"])
-        def safelog_response(token_json: str):
+        def savelog_response(token_json: str):
 
             #Extract token from JSON
             token = self.extract_token(token_json)
 
-            if self.tm.check_token_authenticity(token):
+            #Check token authenticity and media type
+            if self.tm.check_token_authenticity(token) and request.content_type == "application/json":
                 data = request.get_json()
                 data["token"] = token
                 self.dm.save_data("logs", data)
 
                 print("Log file saved.")
-                return "", 200
+
+                #Response creation
+                response = make_response("")
+
+                return response, 200
+            
+            else:
+                print("Error: Check token validity and ensure content type JSON.")
+                #Response creation
+                response = make_response("")
+                    
+                return response, 401 #Unauthorized
             
         #Not defined in the REST-API
         #For server shutdown through GUI
@@ -239,7 +284,9 @@ class Server(QThread):
             
             self.shutdown_server()
 
-            return jsonify(True)
+            response = make_response(jsonify({"succes": True}))
+
+            return response, 200
         
     #Methods for server handling
 

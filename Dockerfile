@@ -7,6 +7,12 @@ WORKDIR /app
 #Copy contents of the current directory to the container's app directory
 COPY . /app
 
+#Upgrade pip
+RUN pip install --no-cache-dir --upgrade pip
+
+#Install sip first
+RUN pip install --no-cache-dir sip
+
 #Installing dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 

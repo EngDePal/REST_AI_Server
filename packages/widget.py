@@ -101,8 +101,6 @@ class CockpitWidget(QWidget):
 
             self.server_state == False
 
-            print(decision)
-
             if decision == True:
                 #Calling shutdown method
                 shutdown_url = self.base_url + "shutdown"
