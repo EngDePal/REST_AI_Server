@@ -15,7 +15,8 @@ _________________________________________
 
 1. Introduction
 
-    Industrial robots have become an increasingly important part of production systems across industries over past decades. Robot programming is typically done offline using a proprietary programming languague or online directly in the robot cell over a programming device. In both cases programs are saved on the robot controller and accessed during operations.
+    Industrial robots have become an increasingly important part of production systems across industries over past decades.
+   Robot programming is typically done offline using a proprietary programming languague or online directly in the robot cell over a programming device. In both cases programs are saved on the robot controller and accessed during operations.
 
     Decoupling the robot hardware from proprietary software systems can open up a new dimension of possibilities. This is especially a topic of interest considering the rise of artificial intelligence applications. These might be limited by the restrictions of propriety hardware like computing power.
 
