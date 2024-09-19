@@ -19,30 +19,30 @@ _________________________________________
    Robot programming is typically done offline using a proprietary programming languague or online directly in the robot cell over a programming device.
    In both cases programs are saved on the robot controller and accessed during operations.
 
-    Decoupling the robot hardware from proprietary software systems can open up a new dimension of possibilities. This is especially a topic of interest considering the rise of artificial intelligence applications. These might be limited by the restrictions of propriety hardware like computing power.
+    Decoupling the robot hardware from proprietary software systems can open up a new dimension of possibilities. This is especially a topic of interest considering the rise of artificial intelligence applications. These might be limited by the restrictions concerning the controller like computing power.
 
-    Therefore, a previous thesis aimed at the development of a REST-API running in Java on the Kuka LBR iiwa cobot at the laboratory of production technology at Technische Hochschule Ingolstadt. This alllows the robot controller to take on the role of a client connecting to a server, which can in turn feed it with a set of commands determined by arbitrary control or planning systems. My thesis is focusing on the development of such a AI server. While the architecture and design of the application are discussed in-depth in the thesis, this repository represents the practical implementation of these considerations.
+    Therefore, a previous thesis resulted in the development of a REST-API running in Java on the Kuka LBR iiwa cobot in the laboratory of production technology at Technische Hochschule Ingolstadt. This alllows the robot controller to take on the role of a client connecting to a server, which can in turn feed it with a set of commands determined by arbitrary control or planning systems. My thesis is focusing on the development of such a AI server. While the architecture and design of the application are discussed in-depth in the thesis, this repository represents the practical implementation of these considerations.
 
-    A client implementation is not included in this project.
+    NOTE: A client implementation is not included in this project and is significantly influenced by the supplier's hardware and software design.
 
 _________________________________________
 
 2. Overview
 
     The application is built around a core system handling client-server-communication. This core integrates into a plug-in architecture, which allows for the dynamic loading of logic modules during runtime.
-    These modules generate commands for the robot and must adhere to a plug-in interface in order to function properly, which is demonstrated by some examples provided in the repository. Python has been chosen as the programming languague for implementation and will hopefully serve well in the development of further plugins as the leading language in this space.
+    These modules generate commands for the robot and must adhere to a plug-in interface in order to function properly, which is demonstrated by some examples provided in the repository. Python has been chosen as the programming languague for implementation and will hopefully serve well in the development of further plugins as the leading language the machine learning space.
 
-    The core application is found under packages and includes the following components:
+    The core application is found under "packages" and includes the following components:
 
-        - Server: A Flask server calling on other modules to facilitate client-server communication in accordance with the REST-API specification and principals
+        - Server: A Flask server calling on other modules to facilitate client-server communication in accordance with the REST-API specification and design principals
         - TokenManager: Generates and stores tokens used for client verification
         - DataManager: Allows for access to a MongoDB database to store information
         - RobotLogicManager: The plug-in manager discovers and loads plug-ins during runtime
         - Widget: A compact Qt5 UI displaying info about current clients and offering some basic server control
 
-    The plug-in architecture needs additional components found under packages/plugins/utils:
+    The plug-in architecture requires additional components found under "packages/plugins/utils":
 
-        - PluginInterface: the interface all plug-ins must adhere to
+        - PluginInterface: The interface all plug-ins must adhere to
         - Commands: Actually a collection of classes, which help to create properly formatted robot commands
         - MongoInterface: Allows to connect plug-ins to the running MongoDB instance if necessary
 
@@ -50,11 +50,11 @@ _________________________________________
 
         Demos:
             - Telepath Commands: Runs all six robot commands once by utilizing a counter. Effectively demonstrates the ability to program the robot in Python
-            - Telepath Skilltree: Utilizing an ontology this plug-in simulates unlocking new robot abilities by using a level counter
+            - Telepath Skilltree: Utilizing an ontology, this plug-in simulates unlocking new robot abilities by using a level counter
             - Telepath Sync: Demonstrates a way to control two robots with the same base code
 
         Telepath Blueprints - a ontology based approach to dynamic robot control:
-            This plugin relies on a ontology modeling products, their parts, assembly instructions for each and the necessary assembly actions. By querying the relations between these elements it is able to determine a correct course of action. This might be especially interesting for large and complex processes, since the initial time investment is offset by having a system dynamically adapting to changes in assembly conditions, which is not seen in linear and static robot programs. The plug-in offers two example products, a drawing of a house and a stickman.
+            This plugin relies on a ontology modeling products, their individual parts, assembly instructions for each part and the necessary assembly actions. By querying the relations between these elements it is able to determine a correct course of action. This might be especially interesting for large and complex processes, since the initial time investment is offset by having a system dynamically adapting to changes in assembly conditions, which is not seen in linear and static robot programs. The plug-in offers two example products, a drawing of a house and a stickman.
 
 _________________________________________
 
@@ -71,7 +71,7 @@ _________________________________________
         1. Create a project folder
         2. Create a virtual environment to isolate dependencies in this folder: python3 -m venv venv (MAC) or python -m venv venv (WIN)
         3. Activate the virtual environment: source venv/bin/activate (MAC) or venv\Scripts\activate (WIN)
-        4. Clone the repository: Recommend to use VS Code's command palette at the top by entering  ">git: clone" and adding the repository url found on GitHub under the green "Code" button
+        4. Clone the repository: Recommended to use VS Code's command palette at the top by entering  ">git: clone" and adding the repository url found on GitHub under the green "Code" button
         5. Install the requirements: pip install -r requirements.txt (WIN/MAC) (If PyQt5 is causing troubles, try installing it separately: pip install PyQt5)
         6. Create the following folder structure in the same directory as main.py:  mongodb/
                                                                                         │
@@ -94,7 +94,7 @@ _________________________________________
 
 4. User Guide
 
-    Currently a hybrid approach to control combining the terminal and a GUI is utilized
+    Currently a hybrid approach to user control is utilized, combining the terminal and a GUI
 
     The application is started by executing main.py, which will in turn display the GUI widget.
     The widget offers basic controls and displays information:
@@ -111,7 +111,7 @@ _________________________________________
 
 5. Plug-In Development
 
-    This is a short overview of key mechanisms for Plug-In development. For detailled information please refer to the master's thesis
+    This is a short overview of key mechanisms for plug-in development. For detailled information please refer to the master's thesis
 
     A client should communicate in the following fashion:
         1. Login
@@ -135,20 +135,20 @@ _________________________________________
             Returns a command and a state
 
     What is a command?
-        Commands include all information necessary for the robot the execute a certain behaviour
+        Commands include all information necessary for the robot to execute certain pre-defined behaviour
         This includes
             - LIN: linear movement, shortest path
             - PTP: fastest movement, not linear
             - CIRC: circular movement
             - SEND: get some robot info
             - LOG: get robot log files
-            - EXIT: end the program execution
+            - EXIT: exit the request loop and end program execution
         
-        Movement require frames, point or coordinate systems in the workspace defined by their position (X, Y, Z) and rotation (A, B, C) relative to the robot's world coordinate system
-        Please always use the included command class to generate these commands
+        Movement require frames: point or coordinate systems in the workspace defined by their position (X, Y, Z) and rotation (A, B, C) relative to the robot's world coordinate system
+        Please always use the included command classes to generate these commands
 
     What is a state?
-        A state describes all variables of an application that allow it to resume seemless execution after instantiation.
+        A state describes all variables of an application that allow it to resume seemless execution despite repeated instantiation.
         It takes the form of a Python dictionary.
 
         This variable is a result of the REST principle of statelessness: The server cannot save a state or client information in-between requests
@@ -161,9 +161,9 @@ _________________________________________
             Instead the setup() function creates a initial state = {"counter": 1} and passes it back to the Server into MongoDB.
             During a new command generation the state is passed into the run() function, which uses it to select the next command
             At the end the counter is updated to state = {"counter": 2} and once again returned to the Server.
-            This process repeats itself until the plug-in sends an EXIT command at counter = 6, prompting client to log out.
+            This process repeats itself until the plug-in sends an EXIT command at counter = 6, prompting the client to log out.
 
-    Outside of these constraints the possibilities of plug-in development are limitless. 
+    Outside of these constraints the possibilities of plug-in development are virtually limitless. 
     Even the design of the state variable is completely up to the developer, as long as compatibility with MongoDBs document based approach to storage is ensured.
 
 _________________________________________
@@ -175,8 +175,8 @@ _________________________________________
 
     The GUI might appear distorted on some machines.
 
-    On Windows the GUI will become unresponsive after pressing start initially. Terminating execution and retrying will allow the app to work properly. This is probably due to MongoDB, which differs in start-up behaviour between Windows and Mac. Such an issues does not occur on Mac and makes it the recommended platform at the moment.
+    On Windows the GUI will become unresponsive after pressing start initially. Terminating execution and retrying will allow the app to work properly, since MongoDB should now already run in the background. This is probably due to difference in MongoDB's start-up behaviour between Windows and Mac. Such an issue does not occur on Mac and makes it the recommended platform at the moment.
 
-    PyQt5 causes issues during the creation of a Docker container. Since the server will be mainly be used for the development of plug-ins and experimentation, running the code natively is recommended.
+    PyQt5 causes issues during the creation of a Docker container. Since the server will be mainly used for the development of plug-ins and experimentation in the lab, running the code natively is recommended.
     Otherwise removing the widget and making changes to the server and main.py will mirror earlier development stages and is the recommended approach for containerization.
             
