@@ -4,5 +4,8 @@ __pycache__/
 *.pyo
 *.pyd
 .DS_Store
-mongodb/
+mongodb/bin/windows/*
+mongodb/bin/macos/*
+mongodb/logs/*
+mongodb/data/*
 counter_storage.txt
