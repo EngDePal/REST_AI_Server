@@ -1,14 +1,180 @@
-Implements and documents an AI server for the KUKA LBR iiwa robot using REST
 
-This README will grow as the project continues...
+Telepath RemoteMind - A framework for the server-based control of industrial robots utilizing a REST-API
 
-In the production technology lab at THI researchers and students take a look at innovative technologies for production and logistics. Part of the lab equipment are several robots like the Kuka LBR iiwa cobot. For this particular model a REST API has been implemented in JAVA on the robot control itself. This allows the robot to receive instruction, which adhere to the predefined REST API.
+_________________________________________
 
-The goal of this project is to define the architecture and implement an AI server, which can provide the desired computational power lacking in the robot control. The serverside applications will provide valuable information to the robot via the REST API.
+Contents:
+1. Introduction
+2. Overview
+3. Installation Guide
+4. User Guide
+5. Plug-In Development
+6. Known Issues
 
-This repository will contain the following:
-- my master's thesis for context (German or English)
-- REST API implementation on the server side
-- Knowledge Graph (Ontology)
-- AI Application
-- Docs
+_________________________________________
+
+1. Introduction
+
+    Industrial robots have become an increasingly important part of production systems across industries over past decades. Robot programming is typically done offline using a proprietary programming languague or online directly in the robot cell over a programming device. In both cases programs are saved on the robot controller and accessed during operations.
+
+    Decoupling the robot hardware from proprietary software systems can open up a new dimension of possibilities. This is especially a topic of interest considering the rise of artificial intelligence applications. These might be limited by the restrictions of propriety hardware like computing power.
+
+    Therefore, a previous thesis aimed at the development of a REST-API running in Java on the Kuka LBR iiwa cobot at the laboratory of production technology at Technische Hochschule Ingolstadt. This alllows the robot controller to take on the role of a client connecting to a server, which can in turn feed it with a set of commands determined by arbitrary control or planning systems. My thesis is focusing on the development of such a AI server. While the architecture and design of the application are discussed in-depth in the thesis, this repository represents the practical implementation of these considerations.
+
+    A client implementation is not included in this project.
+
+_________________________________________
+
+2. Overview
+
+    The application is built around a core system handling client-server-communication. This core integrates into a plug-in architecture, which allows for the dynamic loading of logic modules during runtime.
+    These modules generate commands for the robot and must adhere to a plug-in interface in order to function properly, which is demonstrated by some examples provided in the repository. Python has been chosen as the programming languague for implementation and will hopefully serve well in the development of further plugins as the leading language in this space.
+
+    The core application is found under packages and includes the following components:
+
+        - Server: A Flask server calling on other modules to facilitate client-server communication in accordance with the REST-API specification and principals
+        - TokenManager: Generates and stores tokens used for client verification
+        - DataManager: Allows for access to a MongoDB database to store information
+        - RobotLogicManager: The plug-in manager discovers and loads plug-ins during runtime
+        - Widget: A compact Qt5 UI displaying info about current clients and offering some basic server control
+
+    The plug-in architecture needs additional components found under packages/plugins/utils:
+
+        - PluginInterface: the interface all plug-ins must adhere to
+        - Commands: Actually a collection of classes, which help to create properly formatted robot commands
+        - MongoInterface: Allows to connect plug-ins to the running MongoDB instance if necessary
+
+    Additionally, some example plug-ins are offered:
+
+        Demos:
+            - Telepath Commands: Runs all six robot commands once by utilizing a counter. Effectively demonstrates the ability to program the robot in Python
+            - Telepath Skilltree: Utilizing an ontology this plug-in simulates unlocking new robot abilities by using a level counter
+            - Telepath Sync: Demonstrates a way to control two robots with the same base code
+
+        Telepath Blueprints - a ontology based approach to dynamic robot control:
+            This plugin relies on a ontology modeling products, their parts, assembly instructions for each and the necessary assembly actions. By querying the relations between these elements it is able to determine a correct course of action. This might be especially interesting for large and complex processes, since the initial time investment is offset by having a system dynamically adapting to changes in assembly conditions, which is not seen in linear and static robot programs. The plug-in offers two example products, a drawing of a house and a stickman.
+
+_________________________________________
+
+3. Installation Guide
+
+    Pre-requisites:
+        -  A MacOS or Windows device
+        -  Python
+        -  Git
+        -  An IDE (e.g. VS Code)
+
+    Follow these steps and enter the commands in your terminal - always ensure the correct directory and an active virtual environment:
+
+        1. Create a project folder
+        2. Create a virtual environment to isolate dependencies in this folder: python3 -m venv venv (MAC) or python -m venv venv (WIN)
+        3. Activate the virtual environment: source venv/bin/activate (MAC) or venv\Scripts\activate (WIN)
+        4. Clone the repository: Recommend to use VS Code's command palette at the top by entering  ">git: clone" and adding the repository url found on GitHub under the green "Code" button
+        5. Install the requirements: pip install -r requirements.txt (WIN/MAC) (If PyQt5 is causing troubles, try installing it separately: pip install PyQt5)
+        6. Create the following folder structure in the same directory as main.py:  mongodb/
+                                                                                        │
+                                                                                        ├── data/
+                                                                                        │
+                                                                                        ├── logs/
+                                                                                        │
+                                                                                        └── bin/
+                                                                                            ├── macOS/
+                                                                                            └── windows/
+        7. Download the MongoDB Community Server from the website - make sure to select the correct OS: https://www.mongodb.com/try/download/community-kubernetes-operator
+        8. Unpack the bin files and add them to the corresponding directory you just created
+        
+        Additional recommendations:
+            - Download Postman to test the server and your plug-ins: https://www.postman.com
+            - Change the server host: The software is set-up to connect to the lab cobot. Instead comment out line 303 and 304 in the run() function of server and use line 307 and 308.
+            - Check the Known Issues section
+
+_________________________________________
+
+4. User Guide
+
+    Currently a hybrid approach to control combining the terminal and a GUI is utilized
+
+    The application is started by executing main.py, which will in turn display the GUI widget.
+    The widget offers basic controls and displays information:
+        - Start Button: Starts the Flask server and in turn MongoDB
+        - Stop Button: Stops MongoDB and shuts the app down, including the GUI. Requires a confirmation dialog to do so
+        - Client Counter: Shows the number of connected robots
+        - Status line: Displays some basic info on the server status and will urge the user to check the terminal
+        - Client table: An overview of clients including their identification token, the selected plug-in, their last command and its parameters
+
+    The terminal is used to select options. For example the user is prompted to select a plug-in during each login. To avoid confusion the status bar will signal the login attempt.
+    Some plugins also use the terminal for user input mostly during set-up.
+
+_________________________________________
+
+5. Plug-In Development
+
+    This is a short overview of key mechanisms for Plug-In development. For detailled information please refer to the master's thesis
+
+    A client should communicate in the following fashion:
+        1. Login
+        2. Loop until an Exit command is sent by the server:
+            1. Get a new command
+            2. Confirm the command - this is the sign for the server to generate the next command
+            3. Execute the command
+        3. End the program
+    
+    The server will thus mirror the client behaviour to ensure functionality of the whole system.
+    It is important to understand that the core application cannot create commands - this is entirely up to the plugins.
+
+    Plug-Ins adhere to the interface by implementing the following methods:
+        - The constructor __init__(): Called duirng every instantiation of the plug-in
+        - setup(): 
+            A method called during client login to generate the inital state of the application.
+            Returns a state
+        - run(state: dict): 
+            The core method of the application, similar to a main.py file this is used during the command confimation to execute the app logic and generate a new command
+            Takes in a state
+            Returns a command and a state
+
+    What is a command?
+        Commands include all information necessary for the robot the execute a certain behaviour
+        This includes
+            - LIN: linear movement, shortest path
+            - PTP: fastest movement, not linear
+            - CIRC: circular movement
+            - SEND: get some robot info
+            - LOG: get robot log files
+            - EXIT: end the program execution
+        
+        Movement require frames, point or coordinate systems in the workspace defined by their position (X, Y, Z) and rotation (A, B, C) relative to the robot's world coordinate system
+        Please always use the included command class to generate these commands
+
+    What is a state?
+        A state describes all variables of an application that allow it to resume seemless execution after instantiation.
+        It takes the form of a Python dictionary.
+
+        This variable is a result of the REST principle of statelessness: The server cannot save a state or client information in-between requests
+        To adhere to these constraints a plug-in instance exists only for the duration of a single method call
+        Therefore the state variable as well as MongoDB are used to recreate the necessary state
+
+        State is probably best demonstrated by an example:
+            Telepath Commands uses a counter to switch between methods. 
+            Since the plug-in is always newly instantiated during an API call it is not possible to just add +1 to the counter after every call.
+            Instead the setup() function creates a initial state = {"counter": 1} and passes it back to the Server into MongoDB.
+            During a new command generation the state is passed into the run() function, which uses it to select the next command
+            At the end the counter is updated to state = {"counter": 2} and once again returned to the Server.
+            This process repeats itself until the plug-in sends an EXIT command at counter = 6, prompting client to log out.
+
+    Outside of these constraints the possibilities of plug-in development are limitless. 
+    Even the design of the state variable is completely up to the developer, as long as compatibility with MongoDBs document based approach to storage is ensured.
+
+_________________________________________
+
+6. Known Issues
+
+    After finishing a complete run of Telepath Blueprints until completion the application will cause an Index Error, if the same plug-in is selected for a new client. 
+    Restarting the app and running Blueprints does not cause any issues.
+
+    The GUI might apperar distorted on some machines.
+
+    On Windows the GUI will become unresponsive after pressing start initially. Terminating execution and retrying will allow the app to work properly. This is probably due to MongoDB, which differs in start-up behaviour between Windows and Mac. Such an issues does not occur on Mac and makes it the recommended platform at the moment.
+
+    PyQt5 causes issues during the creation of a Docker container. Since the server will be mainly be used for the development of plug-ins and experimentation, running the code natively is recommended.
+    Otherwise removing the widget and making changes to the server and main.py will mirror earlier development stages and is the recommended approach for containerization.
+            
