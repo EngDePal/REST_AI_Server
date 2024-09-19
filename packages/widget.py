@@ -8,6 +8,8 @@ from PyQt5.QtCore import Qt
 from packages.server import Server
 #For server shutdown
 import requests
+#For correct GUI layout
+import platform
 
 class CockpitWidget(QWidget):
 
@@ -16,7 +18,14 @@ class CockpitWidget(QWidget):
 
         #Setting up GUI
         super().__init__()
-        self.design_interface()
+
+        #Switch between layouts depending on OS
+        if platform.system() == "Darwin" or platform.system() == "Linux": 
+            self.design_mac_interface()
+        elif platform.system() == "Windows":
+            self.design_windows_interface()
+        else:
+             raise Exception("Unknown operating system. No Widget template available.")
         
         #Server state: On -> True or Off -> False
         self.server_state = False
@@ -243,8 +252,8 @@ class CockpitWidget(QWidget):
         return target_row
          
 
-    #Defines all interface elements
-    def design_interface(self):
+    #Defines all interface elements for MacOS
+    def design_mac_interface(self):
         #Application window setup
             self.setWindowTitle("RemoteMind Telepath Cockpit")
             self.setStyleSheet("background-color: white")
@@ -488,3 +497,247 @@ class CockpitWidget(QWidget):
             self.info_label.setStyleSheet("color : grey")
             self.info_label.setFont(self.info_font)
 
+    #Defines all interface elements for Microsoft Windows
+    def design_windows_interface(self):
+         #Application window setup
+            self.setWindowTitle("RemoteMind Telepath Cockpit")
+            self.setStyleSheet("background-color: white")
+            self.setGeometry(100, 100, 800, 700)
+
+            #Stylish App Name
+            prefix_font = QFont()
+            prefix_font.setPointSize(40)
+            prefix_font.setBold(True)
+
+            self.prefix_label = QLabel("Telepath", self)
+            self.prefix_label.setStyleSheet("color : purple; font : Lucida" )
+            self.prefix_label.setFont(prefix_font)
+            self.prefix_label.move(550,50)
+
+            suffix_font = QFont()
+            suffix_font.setPointSize(22)
+            suffix_font.setItalic(True)
+            suffix_font.setBold(True)
+            suffix_font.setFamily("Arial")
+
+            self.suffix_label = QLabel("RemoteMind", self)
+            self.suffix_label.setStyleSheet("color : dark grey;")
+            self.suffix_label.setFont(suffix_font)
+            self.suffix_label.move(600,30)
+
+            #Defining some general fonts
+            self.button_font = QFont()
+            self.button_font.setFamily("Arial")
+            self.button_font.setPointSize(14)
+
+            #Defining some general style sheets
+            generic_button_style = """QPushButton {
+                    border: 3px solid black;
+                    color: solid black;
+                    background-color: white;
+                    font-weight: normal;
+                    border-radius: 7px
+                }
+                QPushButton:hover {
+                    font-weight: bold;
+                }
+            """
+
+            generic_textbox_style = """
+                QTextEdit {
+                    border: 2px solid grey;
+                    border-radius: 7px;         
+                    font-family: Courier New;          
+                    font-size: 12px;   
+                }
+            """
+
+            #Setting font for the section header
+            self.section_font = QFont()
+            self.section_font.setBold(True)
+            self.section_font.setFamily("Arial")
+            self.section_font.setPointSize(22)
+
+            #Cockpit section: Check clients
+            self.cockpit_label = QLabel("Cockpit", self)
+            self.cockpit_label.setGeometry(50, 50, 100, 50)
+            self.cockpit_label.setFont(self.section_font)
+
+            #Server control
+
+            #Start server button
+            self.start_button = QPushButton("Start Server", self)
+            self.start_button.clicked.connect(self.click_on_start)
+            self.start_button.setFixedSize(200,50)
+            self.start_button.move(50, 150)
+            self.start_button.setFont(self.button_font)
+            self.start_button.setStyleSheet("""
+                QPushButton {
+                    border: 3px solid green;
+                    color: black;
+                    background-color: white;
+                    border-radius : 7px;
+                }
+                QPushButton:hover {
+                    border: 3px solid green;
+                    color: green;
+                }
+            """)
+
+            #Stop server button
+            self.shutdown_button = QPushButton("Shutdown Server", self)
+            self.shutdown_button.clicked.connect(self.click_on_shutdown)
+            self.shutdown_button.setFixedSize(200,50)
+            self.shutdown_button.move(50, 215)
+            self.shutdown_button.setFont(self.button_font)
+            self.shutdown_button.setStyleSheet("""
+                QPushButton {
+                    border: 3px solid darkred;
+                    color: black;
+                    background-color: white;
+                    border-radius : 7px;
+                }
+                QPushButton:hover {
+                    border: 3px solid darkred;
+                    color: darkred;
+                }
+            """)
+
+            #Status line
+
+            self.status_font = QFont()
+            self.status_font.setPointSize(16)
+            self.status_font.setFamily("Arial")
+
+            self.status_label = QLabel("Status", self)
+            self.status_label.setGeometry(300, 100, 50, 50)
+            self.status_label.setFont(self.status_font)
+
+            self.status_line = QTextEdit(self)
+            self.status_line.setGeometry(300, 150, 450, 115)
+            self.status_line.setStyleSheet("""
+                        QTextEdit {
+                            background-color: white;
+                            border: 3px solid black;
+                            border-radius: 7px;
+                            font-family: 'Courier New';
+                            font-size: 14px;
+                            color: black;
+                        }
+                    """
+                    )
+            self.status_line.setReadOnly(True)
+            
+
+            #Number of active clients
+            self.counter_font = QFont()
+            self.counter_font.setPointSize(16)
+            self.counter_font.setFamily("Arial")
+
+            self.counter_label = QLabel("Active Clients: ", self)
+            self.counter_label.setGeometry(50, 100, 100, 50)
+            self.counter_label.setFont(self.counter_font)
+
+            self.counter_value = 0
+            self.client_counter = QLabel(f"{self.counter_value}", self)
+            self.client_counter.setGeometry(175, 100, 50, 50)
+            self.client_counter.setFont(self.counter_font)
+
+            #Table of registered clients
+            #Client is represented by the token
+            #Additionaly shows the plugin and the last command type plus its confirmations status
+            self.client_table = QTableWidget(self)
+            self.column_headers = ["Token", "Plugin", "Recent Command", "Recent Parameters"]
+            self.client_table.setColumnCount(len(self.column_headers))
+            self.client_table.setRowCount(0)
+            self.client_table.setHorizontalHeaderLabels(self.column_headers)
+            self.client_table.setGeometry(50, 280, 700, 400)
+
+            self.table_row_count = 0
+            self.table_column_count = len(self.column_headers)
+
+            #Setting coluumn width
+            row_widths = [80, 100, 125, 375]
+            for i in range(self.table_column_count):
+                self.client_table.setColumnWidth(i, row_widths[i])
+
+            self.client_table.setStyleSheet("""
+                            QTableWidget {
+                                border: 3px solid grey;
+                                border-radius: 7px;
+                                font-family: "Courier New";
+                                font-size: 14px;
+                            }
+                            QTableWidget::item {
+                                border-bottom: 1px solid grey
+                            }
+                            QTableWidget::item:selected {
+                                background-color: grey;
+                            }
+                            QHeaderView::section {
+                                background-color: white;
+                                color: black;
+                                font-family: "Arial";
+                                font-size: 14px
+                                border-bottom: 1px solid grey
+                            }
+                            QTableWidget::horizontalHeader {
+                                border-bottom: 1px solid grey
+                                color: black
+                                font-family: "Arial";
+                                font-size: 14px;      
+                            }
+                            QTableWidget::verticalHeader {
+                                border-bottom: 1px solid grey
+                                color: black
+                                font-family: "Arial";
+                                font-size: 14px;      
+                            }
+                        """)
+            
+            #Confirmation dialog
+
+            self.msg_box = QMessageBox()
+
+            #Dialog text
+            self.msg_box.setWindowTitle('Server Shutdown')
+            self.msg_box.setText('Do you really want to shut down the server? This will close the entire application.')
+
+            #Dialog Functionality
+            self.msg_box.setStandardButtons(QMessageBox.Yes | QMessageBox.Cancel)
+            self.msg_box.setDefaultButton(QMessageBox.Cancel)
+
+            #Dialog Styling
+            self.msg_box.setIcon(QMessageBox.Warning)
+
+            self.msg_box.setStyleSheet("""
+                QMessageBox {
+                    background-color: white;
+                    color: black;
+                    font-size: 14px;
+                    font-family: "Arial"
+                }
+                QPushButton {
+                    background-color: white;
+                    color: black;
+                    font-family: "Arial"
+                    border-radius: 7px;
+                    font-size: 14px;
+                    border: 3px solid black
+                                       
+                }
+                QPushButton:hover {
+                    font-weight: bold
+                }
+            """)
+
+            #Version and License
+            self.info_font = QFont()
+            self.info_font.setPointSize(8)
+            self.info_font.setFamily("Arial")
+
+            info = "@2024. Version 1.0: Initial release."
+            self.info_label = QLabel(info, self)
+            self.info_label.move(0,0)
+            self.info_label.setStyleSheet("color : grey")
+            self.info_label.setFont(self.info_font)
