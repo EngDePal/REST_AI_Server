@@ -560,7 +560,7 @@ class CockpitWidget(QWidget):
 
             #Cockpit section: Check clients
             self.cockpit_label = QLabel("Cockpit", self)
-            self.cockpit_label.setGeometry(50, 50, 100, 50)
+            self.cockpit_label.setGeometry(50, 50, 150, 50)
             self.cockpit_label.setFont(self.section_font)
 
             #Server control
@@ -610,7 +610,7 @@ class CockpitWidget(QWidget):
             self.status_font.setFamily("Arial")
 
             self.status_label = QLabel("Status", self)
-            self.status_label.setGeometry(300, 100, 50, 50)
+            self.status_label.setGeometry(300, 100, 100, 50)
             self.status_label.setFont(self.status_font)
 
             self.status_line = QTextEdit(self)
@@ -635,12 +635,12 @@ class CockpitWidget(QWidget):
             self.counter_font.setFamily("Arial")
 
             self.counter_label = QLabel("Active Clients: ", self)
-            self.counter_label.setGeometry(50, 100, 100, 50)
+            self.counter_label.setGeometry(50, 100, 150, 50)
             self.counter_label.setFont(self.counter_font)
 
             self.counter_value = 0
             self.client_counter = QLabel(f"{self.counter_value}", self)
-            self.client_counter.setGeometry(175, 100, 50, 50)
+            self.client_counter.setGeometry(200, 100, 50, 50)
             self.client_counter.setFont(self.counter_font)
 
             #Table of registered clients
