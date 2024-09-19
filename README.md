@@ -171,7 +171,7 @@ _________________________________________
     After finishing a complete run of Telepath Blueprints until completion the application will cause an Index Error, if the same plug-in is selected for a new client. 
     Restarting the app and running Blueprints does not cause any issues.
 
-    The GUI might apperar distorted on some machines.
+    The GUI might appear distorted on some machines.
 
     On Windows the GUI will become unresponsive after pressing start initially. Terminating execution and retrying will allow the app to work properly. This is probably due to MongoDB, which differs in start-up behaviour between Windows and Mac. Such an issues does not occur on Mac and makes it the recommended platform at the moment.
 
