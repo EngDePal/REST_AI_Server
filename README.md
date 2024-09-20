@@ -34,7 +34,7 @@ _________________________________________
 
     The core application is found under "packages" and includes the following components:
 
-        - Server: A Flask server calling on other modules to facilitate client-server communication in accordance with the REST-API specification and design principals
+        Server: A Flask server calling on other modules to facilitate client-server communication in accordance with the REST-API specification and design principals
         - TokenManager: Generates and stores tokens used for client verification
         - DataManager: Allows for access to a MongoDB database to store information
         - RobotLogicManager: The plug-in manager discovers and loads plug-ins during runtime
