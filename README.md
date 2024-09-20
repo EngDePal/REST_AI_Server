@@ -125,7 +125,7 @@ _________________________________________
     It is important to understand that the core application cannot create commands - this is entirely up to the plugins.
 
     Plug-Ins adhere to the interface by implementing the following methods:
-        - The constructor __init__(): Called duirng every instantiation of the plug-in
+        - The constructor __init__(): Called during every instantiation of the plug-in
         - setup(): 
             A method called during client login to generate the inital state of the application.
             Returns a state
@@ -133,6 +133,11 @@ _________________________________________
             The core method of the application, similar to a main.py file this is used during the command confimation to execute the app logic and generate a new command
             Takes in a state
             Returns a command and a state
+   
+   It is important to understand that a plug-in can consist of several modules.
+   However, it is necessary to have a main file, which only includes one class serving as the proper implementation of the interface.
+   This file must be named with the "telepath_" prefix in mind, in order to allow discovery by the robot logic manager.
+   Place the application somewhere inside the "plugin" directory or a subdirectory inside.
 
     What is a command?
         Commands include all information necessary for the robot to execute certain pre-defined behaviour
