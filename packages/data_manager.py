@@ -22,7 +22,6 @@ class DataManager:
         self.client = pymongo.MongoClient("mongodb://localhost:27017")
         
         #Loads or creates database if necessary
-        #Change this to 'REST_AI_Server' during deployment
         self.db = self.client["REST_AI_Server"]
 
         self.collections_list = ["app_state", "logs", "infos", "plugins", "commands"]
@@ -32,13 +31,13 @@ class DataManager:
             target_collection = self.db[collection]
             target_collection.delete_many({})
 
-        #Inserts collections with base entry if necessary
+        #Inserts collections with base entry, if necessary
         #View these as examples or formats 
         #Except for app state, which depends on the plugin
         for collection in self.collections_list:
             if collection not in self.db.list_collection_names():
                 new_col = self.db[collection]
-                #State restores app state of plugins ->RESTful
+                #State restores app state of plugins -> RESTful
                 if collection == "app_state":
                     #This is only an example of the robot coordinates as the state
                     #Properties of the state file are determined by the plugin
@@ -83,10 +82,10 @@ class DataManager:
                 
         print("Database is set-up!")
     
-    #Starts the mongod process
+    #Starts the MongoDB process accroding to OS expectation
     def start_mongodb(self):
         
-        # Define paths
+        #Define paths
         dir_path = os.path.dirname(os.path.realpath(__file__))
 
         if platform.system() == "Darwin" or platform.system() == "Linux":
@@ -98,17 +97,20 @@ class DataManager:
         db_path = os.path.join(dir_path, "../mongodb/data")
         log_path = os.path.join(dir_path, "../mongodb/logs/mongodb.log")
 
-        # Ensure paths exist
+        #Ensure paths exist
         os.makedirs(db_path, exist_ok=True)
         os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
-        # Start MongoDB process
+        #Start MongoDB process
+        #Darwin is MacOS
         if platform.system() == "Darwin" or platform.system() == "Linux":
             process = subprocess.Popen(
                 [mongodb_bin_path, "--dbpath", db_path, "--logpath", log_path, "--fork"],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE
             )
+        #Windows takes longer to start MongoDB, leading to a freezing GUI
+        #Stop code execution and restart, which should allow the server to work as intendede
         elif platform.system() == "Windows":
             process = subprocess.Popen(
                 [mongodb_bin_path, "--dbpath", db_path, "--logpath", log_path],
@@ -125,10 +127,10 @@ class DataManager:
         else:
             print(f"Error starting MongoDB: {stderr.decode()}")    
 
-    #Stops mongod
+    #Stops MongoDB
     def stop_mongodb(self):
 
-        # Define paths
+        #Define paths
         dir_path = os.path.dirname(os.path.realpath(__file__))
         if platform.system() == "Darwin" or platform.system() == "Linux":
             mongodb_bin_path = os.path.join(dir_path, "../mongodb/bin/macos/mongod")
@@ -137,7 +139,7 @@ class DataManager:
         else:
             raise Exception("Unknown operating system. No MongoDB binaries available.")
 
-        # Find MongoDB process ID and stop it
+        #Find MongoDB process ID and stop it
         try:
 
             if platform.system() == "Darwin" or platform.system() == "Linux":
@@ -151,11 +153,11 @@ class DataManager:
                     print("MongoDB process not found.")
             
             elif platform.system() == "Windows":
-                # Using psutil on Windows to find and terminate the process
+                #Using psutil on Windows to find and terminate the process
                 for proc in psutil.process_iter(['pid', 'name']):
                     if "mongod.exe" in proc.info['name']:
-                        proc.terminate()  # Send termination signal
-                        proc.wait()  # Wait until the process is terminated
+                        proc.terminate()  #Send termination signal
+                        proc.wait()  #Wait until the process is terminated
                         print(f"MongoDB process {proc.info['pid']} stopped successfully.")
                         break
                 else:

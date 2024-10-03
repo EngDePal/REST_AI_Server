@@ -1,4 +1,4 @@
-"""Test Plugin implementing the Plugin-Interface"""
+"""Test Plugin implementing the Plugin Interface to showcase all available commands"""
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
@@ -8,7 +8,7 @@ from packages.plugins.utils.plugin_interface import PluginInterface
 #Importing command objects
 from packages.plugins.utils.commands import *
 
-#This is a test plug-in
+#This is a test plugin
 class TestPlugin(PluginInterface):
 
     #Constructor not necessary here
@@ -27,11 +27,11 @@ class TestPlugin(PluginInterface):
         print("Telepath Commands active.")
         return state
     
-    #Checks every command possible in a total of 6 steps
-    def run(self, state):
+    #Shows off all commands in a total of 6 request cycles
+    def run(self, state: dict):
 
         #Application state is restored from DB info
-        #State is passed as a dict
+        #State is passed in as a dict
         self.counter = state["counter"]
 
         #Command generation

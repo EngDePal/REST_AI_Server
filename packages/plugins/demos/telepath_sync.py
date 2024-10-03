@@ -1,4 +1,4 @@
-"""This demo demonstrates a way to control two robots at once, which alternate in their requests"""
+"""This demo serves as an example for control of two robots at once, which alternate in their requests"""
 #Fixing imports
 import sys
 import os
@@ -51,17 +51,17 @@ class SynchronizedControl(PluginInterface):
         #Creating the initial state
         state = dict()
 
-        #If too many robots login, they will be given an EXIT command
+        #If too many robots log in, they will be given an EXIT command
         exit_condition = self.check_exit_condition()
         state["Exit condition"] = exit_condition
 
-        #Only create the correct state, if there are not enough robots
+        #Only create the correct state, if there are enough robots
         if exit_condition == False:
 
             #Here we will save a list of the synchronized robots
             state["Synced robots"] = self.get_clients()
 
-            #If too many robots login, they will be given an EXIT command
+            #If too many robots log in, they will be given an EXIT command
             exit_condition = self.check_exit_condition()
 
             #Saving the tasks done by the robot
@@ -81,7 +81,7 @@ class SynchronizedControl(PluginInterface):
     #Main method for robot control
     def run(self, state: dict):
 
-        #Immediately log-out all unnecessary clients
+        #Immediately log out all unnecessary clients
         if state["Exit condition"]  == True:
             kick_state = {"Exit condition": True, "Logout state": "Succesful"}
             command = CommandEXIT()
@@ -120,6 +120,7 @@ class SynchronizedControl(PluginInterface):
                     updated_state["Wait"] = True
 
                 #Wait before logging out, to allow the companion to catch this client's final tasks
+                #This demo only works if the client requests alternate, otherwise a new MongoDB collection must be used to store the info about task completion
                 if updated_state["Wait"] == True:
                     command = CommandSEND()
                     updated_state["Wait"] = False
@@ -174,7 +175,7 @@ class SynchronizedControl(PluginInterface):
             
             print(f"Stage II Available tasks: {available_tasks}")
             if len(available_tasks) > 0:
-                #Stage III: Select the task by prioritization
+                #Stage III: Select the task by priority
                 position = state["Position"]
                 recommended_task = self.prioritize_tasks(available_tasks, position)
             
@@ -200,7 +201,7 @@ class SynchronizedControl(PluginInterface):
             frame = command["parameters"]["destination"]
         base_distance = self.calculate_distance(frame, position)
 
-        #Checking whether other tasks are better
+        #Checking, whether other tasks are better
         for task_key in available_tasks:
             #Get the frame
             command = self.all_tasks[task_key]
@@ -218,7 +219,7 @@ class SynchronizedControl(PluginInterface):
         return recommended_task
 
     #Calculates the euclidean distance between the target frame and the client positions
-    #This used for the optimization of task seletion
+    #This is used for the optimization of task seletion
     def calculate_distance(self, target_frame: dict, client_position: dict):
 
         sum = 0
@@ -271,7 +272,7 @@ class SynchronizedControl(PluginInterface):
 
         #First look up, which robots are logged into this plugin as well
         collection1 = "plugins"
-        #Plug-In names end with .py
+        #Plugin names end with .py
         query1 = {"plugin_name": "telepath_sync.py"}
         query_results1 = self.mongo.query_data(collection1, query1)
 
@@ -299,12 +300,11 @@ class SynchronizedControl(PluginInterface):
         return pos1_selected, pos2_selected
     
     #Exit condition: 
-    #If there are already two robots registered
-    #This function will return True
+    #If there are already two robots registered, this function will return True
     def check_exit_condition(self):
         
         collection = "plugins"
-        #Plug-In names end with .py
+        #Plugin names end with .py
         query = {"plugin_name": "telepath_sync.py"}
         robot_list = self.mongo.query_data(collection, query) 
 
@@ -313,16 +313,16 @@ class SynchronizedControl(PluginInterface):
         elif len(robot_list) <= 2:
             return False
         
-    #Checks whether all necessary actors are logged in
+    #Checks, whether all necessary actors are logged in
     def get_clients(self):
 
-        #Query all clients using the plug-in
-        #Plug-In names end with .py
+        #Query all clients using the plugin
+        #Plugin names end with .py
         collection1 = "plugins"
         query1 = {"plugin_name": "telepath_sync.py"}
         robot_list = self.mongo.query_data(collection1, query1)
 
-        #Check whether any of these clients are about to be logged out
+        #Check, whether any of these clients are about to be logged out
         #Get a list of these tokens
         forbidden_tokens = list()
         for robot in robot_list:
@@ -347,7 +347,7 @@ class SynchronizedControl(PluginInterface):
     #Updates the state with the actual clients
     def update_synced_clients(self, state: dict):
 
-        #Fist add the clients own token to the state, if not already done
+        #First, add the clients own token to the state, if not already done
         if state["token"] not in state["Synced robots"]:
             state["Synced robots"].append(state["token"])
 
@@ -363,8 +363,8 @@ class SynchronizedControl(PluginInterface):
 
         return state
     
-    #Check ability to start the operation
-    #Need a list of clients as input like state["Synced robots"]
+    #Check the ability to start the operation
+    #Requires a list of clients as input like state["Synced robots"]
     def check_operational_capability(self, active_client_list: list):
 
         #Check ability to start the operation

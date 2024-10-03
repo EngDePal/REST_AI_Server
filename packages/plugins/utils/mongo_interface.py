@@ -1,4 +1,4 @@
-"""This serves as an interface to MongoDB for Plug-Ins in need of data access"""
+"""This serves as an interface to MongoDB for Plugins in need of additional data access beyond state"""
 #Pymongo is a Python driver for MongoDB
 import pymongo
 
@@ -34,7 +34,7 @@ class MongoInterface:
 
             chosen_collection.insert_one(db_file)
 
-    #Deletes data based on the search parameteres
+    #Deletes data based on the search parameters
     def delete_data(self, collection: str, parameters: dict):
         
         if collection not in self.collections_list:

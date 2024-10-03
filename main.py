@@ -7,7 +7,7 @@ import sys
 
 #Main function
 def main():
-    #Starting widget, which starts the server
+    #Starting widget, which enables the user to start the server
     widget_app = QApplication(sys.argv)
     widget = CockpitWidget()
     widget.show()

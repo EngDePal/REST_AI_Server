@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 
 #Importing owlready2
 from owlready2 import get_ontology, sync_reasoner
-#importing the commands
+#Importing the commands
 from packages.plugins.utils.commands import *
 #Importing interface
 from packages.plugins.utils.plugin_interface import PluginInterface
@@ -39,17 +39,17 @@ class Skilltree(PluginInterface):
         
         #Access the current level and query the corresponding individual
         level_individual = self.ontology.search_one(hasValue=state["level"])
-        #Checks the corresponding skill and gets data
+        #Checks the corresponding skill and get associated data
         unlocked_skills = level_individual.unlocks
         skill = unlocked_skills
         name = skill.hasName
 
-        #Generating command new command
+        #Generating a new command
         command = self.generate_command(skill)
 
         #Generating new state through reasoning
         #Only a previous_level property is explicitely modeled
-        #The reverse property must be found by the reasoner
+        #The reverse property next_level must be identified by the reasoner
 
         #Start the reasoner
         with self.ontology:

@@ -1,4 +1,4 @@
-"""This abstract class serves as an interface for all plug-ins"""
+"""This abstract class serves as an interface for all plugins"""
 #Importing modules
 from abc import ABC, abstractmethod
 import os
@@ -6,7 +6,7 @@ import inspect
 
 #File names must adhere to the naming convention telepath_"filename"
 #There must only be one class in this file, which must implement the interface
-#However the plugin can consist of several other files of course
+#However, the plugin itself can consist of several other files as well
 class PluginInterface(ABC):
 
     plugins = []
@@ -16,7 +16,7 @@ class PluginInterface(ABC):
     def __init__(self):
         pass
 
-    #For every class that inherits from the current,
+    #For every class that inherits from the current one,
     #the class name will be added to plugins
     #Source: https://gist.github.com/dorneanu/cce1cd6711969d581873a88e0257e312
     def __init_subclass__(cls, **kwargs):

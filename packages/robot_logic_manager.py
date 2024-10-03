@@ -1,4 +1,4 @@
-"""Plug-In Manager for robot logic modules attaching to the core server application"""
+"""Plugin Manager for robot logic modules attaching to the core server application"""
 #Importing necessary libraries
 import importlib
 import importlib.util
@@ -8,17 +8,17 @@ from packages.plugins.utils.plugin_interface import PluginInterface
 import inspect
 import pkgutil
 
-#Plug-In Manager handling robot logic
+#Plugin Manager handling robot logic
 class RobotLogicManager:
 
-    #Initalizes the Plug-In Manager
+    #Initalizes the Plugin Manager
     def __init__(self):
 
         #Plugin directory
         self.dir_path = os.path.dirname(os.path.realpath(__file__))
         self.plugin_directory = os.path.join(self.dir_path, "plugins")
 
-        #Allows for Plugin discovery
+        #Allows for plugin discovery
         #Allows Python to search in the plugin directory
         sys.path.append(self.plugin_directory)
 
@@ -84,7 +84,7 @@ class RobotLogicManager:
         return self.dicscovered_plugins
 
     #Creates a mapping of plugin_names to loaded_modules
-    def register_plugin(self, plugin_name: str, module: PluginInterface):
+    def register_plugin(self, plugin_name: str, module: type):
 
         #Allows the server to cache modules, which are already in use  
         self.plugin_mapping[plugin_name] = module
