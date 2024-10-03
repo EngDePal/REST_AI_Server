@@ -7,7 +7,7 @@ Contents:
 1. Introduction
 2. Overview
 3. Installation Guide
-4. User Guide
+4. Quick Start Guide
 5. Plug-In Development
 6. Known Issues
 
@@ -16,12 +16,15 @@ _________________________________________
 1. Introduction
 
     Industrial robots have become an increasingly important part of production systems across industries over past decades.
-   Robot programming is typically done offline using a proprietary programming languague or online directly in the robot cell over a programming device.
-   In both cases programs are saved on the robot controller and accessed during operations.
+    Robot programming is typically done offline using a proprietary programming languague or online directly in the robot cell over a programming device.
+    In both cases programs are saved on the robot controller and accessed during operations.
 
-    Decoupling the robot hardware from proprietary software systems can open up a new dimension of possibilities. This is especially a topic of interest considering the rise of artificial intelligence applications. These might be limited by the restrictions concerning the controller like computing power.
+    Decoupling the robot hardware from proprietary software systems can open up a new dimension of possibilities. This is especially a topic of interest considering the rise of artificial intelligence applications. These might be limited by the restrictions concerning the controller like the available computing power.
 
-    Therefore, a previous thesis resulted in the development of a REST-API running in Java on the Kuka LBR iiwa cobot in the laboratory of production technology at Technische Hochschule Ingolstadt. This alllows the robot controller to take on the role of a client connecting to a server, which can in turn feed it with a set of commands determined by arbitrary control or planning systems. My thesis is focusing on the development of such a AI server. While the architecture and design of the application are discussed in-depth in the thesis, this repository represents the practical implementation of these considerations.
+    Therefore, a previous thesis resulted in the development of a REST-API running in Java on the controller of a Kuka LBR iiwa cobot in the laboratory of production technology at Technische Hochschule Ingolstadt. 
+    This alllows the robot controller to take on the role of a client connecting to a server, which can in turn feed it with a set of commands determined by arbitrary control or planning systems. 
+    My thesis is focusing on the development of such an AI server. 
+    While the architecture and design of the application are discussed in-depth in the thesis, this repository represents the practical implementation of these considerations.
 
     NOTE: A client implementation is not included in this project and is significantly influenced by the supplier's hardware and software design.
 
@@ -30,11 +33,11 @@ _________________________________________
 2. Overview
 
     The application is built around a core system handling client-server-communication. This core integrates into a plug-in architecture, which allows for the dynamic loading of logic modules during runtime.
-    These modules generate commands for the robot and must adhere to a plug-in interface in order to function properly, which is demonstrated by some examples provided in the repository. Python has been chosen as the programming languague for implementation and will hopefully serve well in the development of further plugins as the leading language the machine learning space.
+    These modules generate commands for the robot and must adhere to a plug-in interface in order to function properly, which is demonstrated by some examples provided in the repository. Python has been chosen as the programming languague for implementation and will hopefully serve well in the development of further plugins as the leading language in the machine learning space.
 
     The core application is found under "packages" and includes the following components:
 
-        - Server: A Flask server calling on other modules to facilitate client-server communication in accordance with the REST-API specification and design principals
+        - Server: A Flask server calling on other modules to facilitate client-server communication in accordance with the REST-API specification and design principles
         - TokenManager: Generates and stores tokens used for client verification
         - DataManager: Allows for access to a MongoDB database to store information
         - RobotLogicManager: The plug-in manager discovers and loads plug-ins during runtime
@@ -53,15 +56,15 @@ _________________________________________
             - Telepath Skilltree: Utilizing an ontology, this plug-in simulates unlocking new robot abilities by using a level counter
             - Telepath Sync: Demonstrates a way to control two robots with the same base code
 
-        Telepath Blueprints - a ontology based approach to dynamic robot control:
-            This plugin relies on a ontology modeling products, their individual parts, assembly instructions for each part and the necessary assembly actions. By querying the relations between these elements it is able to determine a correct course of action. This might be especially interesting for large and complex processes, since the initial time investment is offset by having a system dynamically adapting to changes in assembly conditions, which is not seen in linear and static robot programs. The plug-in offers two example products, a drawing of a house and a stickman.
+        Telepath Blueprints - an ontology based approach to dynamic robot control:
+            This plugin relies on a ontology modeling products, their individual parts, assembly instructions for each part and the necessary assembly actions. By querying the relations between these elements, it is able to determine a correct course of action. This approach might be especially interesting for human-robot-collaboration, since the initial time investment is offset by having a system dynamically adapt to changes in assembly conditions, which is not seen in linear and static robot programs. The plug-in offers two example products, a drawing of a house and a stickman.
 
 _________________________________________
 
 3. Installation Guide
 
     Pre-requisites:
-        -  A MacOS or Windows device
+        -  A MacOS or Windows device (Linux should work, but was not tested)
         -  Python
         -  Git
         -  An IDE (e.g. VS Code)
@@ -87,25 +90,25 @@ _________________________________________
         
         Additional recommendations:
             - Download Postman to test the server and your plug-ins: https://www.postman.com
-            - Change the server host: The software is set-up to connect to the lab cobot. Instead comment out line 303 and 304 in the run() function of server and use line 307 and 308.
+            - Change the server host: The software is set-up to connect to the lab cobot. Instead comment out line 303 and 304 in the run() function of the server class. Instead, use line 307 and 308.
             - Check the Known Issues section
 
 _________________________________________
 
-4. User Guide
+4. Quick Start Guide
 
     Currently a hybrid approach to user control is utilized, combining the terminal and a GUI
 
     The application is started by executing main.py, which will in turn display the GUI widget.
     The widget offers basic controls and displays information:
         - Start Button: Starts the Flask server and in turn MongoDB
-        - Stop Button: Stops MongoDB and shuts the app down, including the GUI. Requires a confirmation dialog to do so
+        - Stop Button: Stops MongoDB and shuts the app down, including the GUI. Requires a confirmation dialogue to do so
         - Client Counter: Shows the number of connected robots
         - Status line: Displays some basic info on the server status and will urge the user to check the terminal
         - Client table: An overview of clients including their identification token, the selected plug-in, their last command and its parameters
 
     The terminal is used to select options. For example the user is prompted to select a plug-in during each login. To avoid confusion the status bar will signal the login attempt.
-    Some plugins also use the terminal for user input mostly during set-up.
+    Some plugins also use the terminal for user input, mostly during set-up.
 
 _________________________________________
 
@@ -130,9 +133,9 @@ _________________________________________
             A method called during client login to generate the inital state of the application.
             Returns a state
         - run(state: dict): 
-            The core method of the application, similar to a main.py file this is used during the command confimation to execute the app logic and generate a new command
+            The core method of the application, which is called during the command confimation to execute the app logic and generate a new command
             Takes in a state
-            Returns a command and a state
+            Returns a command and a updated state
    
    It is important to understand that a plug-in can consist of several modules.
    However, it is necessary to have a main file, which only includes one class serving as the proper implementation of the interface.
@@ -149,14 +152,14 @@ _________________________________________
             - LOG: get robot log files
             - EXIT: exit the request loop and end program execution
         
-        Movement require frames: point or coordinate systems in the workspace defined by their position (X, Y, Z) and rotation (A, B, C) relative to the robot's world coordinate system
+        Movement requires frames: points or coordinate systems in the workspace defined by their position (X, Y, Z) and rotation (A, B, C) relative to the robot's world coordinate system
         Please always use the included command classes to generate these commands
 
     What is a state?
         A state describes all variables of an application that allow it to resume seemless execution despite repeated instantiation.
         It takes the form of a Python dictionary.
 
-        This variable is a result of the REST principle of statelessness: The server cannot save a state or client information in-between requests
+        This variable is a result of the REST principle of statelessness: The server must not save a state or client information in-between requests
         To adhere to these constraints a plug-in instance exists only for the duration of a single method call
         Therefore the state variable as well as MongoDB are used to recreate the necessary state
 

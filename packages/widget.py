@@ -1,5 +1,4 @@
 """GUI for the REST AI Server"""
-#NOT FUNCTIONAL
 #Importing the PyQt5 GUI framework and other modules
 from PyQt5.QtWidgets import QWidget, QLabel, QTableWidget, QTableWidgetItem, QPushButton, QTextEdit, QMessageBox
 from PyQt5.QtGui import QFont
@@ -42,7 +41,7 @@ class CockpitWidget(QWidget):
         #False -> Add data
         if remove == False:
 
-            #Check whether new data is added or just updated
+            #Check, whether new data is added or just updated
 
             #False -> Create a new line
             if update == False:
@@ -91,7 +90,7 @@ class CockpitWidget(QWidget):
             #Setting up server
             self.server = Server()
 
-            #Conenct signals
+            #Connect signals
             self.connect_signals()
 
             #Start server in separate thread and get the url
@@ -147,7 +146,7 @@ class CockpitWidget(QWidget):
             target_row = None
 
             #Preparing data
-            #Token and plugin name are added during log-in
+            #Token and plugin name are added during login
             if "token" in data.keys():
                     value = data["token"]
                     target_row = self.determine_row(value)
@@ -216,7 +215,6 @@ class CockpitWidget(QWidget):
 
         target_row = self.search_client(token)
 
-        #If there are no rows yet, one will be created
         if target_row == None:
             #If there are no rows yet, one will be created
             if self.table_row_count == 0:
@@ -236,7 +234,7 @@ class CockpitWidget(QWidget):
         return target_row
     
     #Searches for an existing client in the table
-    #Returns none if there is no match
+    #Returns None, if there is no match
     def search_client(self, token: str):
          
         target_row = None
@@ -400,7 +398,7 @@ class CockpitWidget(QWidget):
 
             #Table of registered clients
             #Client is represented by the token
-            #Additionaly shows the plugin and the last command type plus its confirmations status
+            #Additionaly shows the plugin and the last command type plus its confirmation status
             self.client_table = QTableWidget(self)
             self.column_headers = ["Token", "Plugin", "Recent Command", "Recent Parameters"]
             self.client_table.setColumnCount(len(self.column_headers))
@@ -411,7 +409,7 @@ class CockpitWidget(QWidget):
             self.table_row_count = 0
             self.table_column_count = len(self.column_headers)
 
-            #Setting coluumn width
+            #Setting column width
             row_widths = [80, 100, 125, 375]
             for i in range(self.table_column_count):
                 self.client_table.setColumnWidth(i, row_widths[i])
@@ -645,7 +643,7 @@ class CockpitWidget(QWidget):
 
             #Table of registered clients
             #Client is represented by the token
-            #Additionaly shows the plugin and the last command type plus its confirmations status
+            #Additionaly shows the plugin and the last command type plus its confirmation status
             self.client_table = QTableWidget(self)
             self.column_headers = ["Token", "Plugin", "Recent Command", "Recent Parameters"]
             self.client_table.setColumnCount(len(self.column_headers))
@@ -656,7 +654,7 @@ class CockpitWidget(QWidget):
             self.table_row_count = 0
             self.table_column_count = len(self.column_headers)
 
-            #Setting coluumn width
+            #Setting column width
             row_widths = [80, 100, 125, 375]
             for i in range(self.table_column_count):
                 self.client_table.setColumnWidth(i, row_widths[i])

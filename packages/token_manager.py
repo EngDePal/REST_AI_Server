@@ -21,7 +21,7 @@ class TokenManager:
             random_number = random.randint(0, len(self.eligible_characters) - 1)
             token = "".join([token, self.eligible_characters[random_number]])
         
-        #Checking conditions and regenrating, if they are not met
+        #Checking conditions and generating a new token, if they are not met
         if self.check_token_authenticity(token) == False:
             if self.check_token_conformity(token) == True:
                 self.token_list.append(token)
@@ -46,14 +46,14 @@ class TokenManager:
             return False
 
 
-    #Takes in a token as a string and compares to existing tokens, verifying the input, returning True for an existing token
+    #Takes in a token as a string and compares it to existing tokens, verifying the input, returning True for an existing token
     def check_token_authenticity(self, token: str):
         if token in  self.token_list:
             return True
         else:
             return False
         
-    #Remove a token during log-out  
+    #Remove a token during log out  
     def delete_token(self, token: str):
         self.token_list.remove(token)
 

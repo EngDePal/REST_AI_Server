@@ -4,18 +4,13 @@ import json
 
 class Command(dict, ABC):
 
-    #If input is not given, frames default to this command
-    #Should raise a error, due to faulty media type
-
-
-    #Initialize a custom dict with the shared keys for command, parameters and type
+    #Initialize a custom dict with the keys command, parameters and type
     #If input is not given, frames default to {}
     #Should raise a error, due to faulty media type
     def __init__(self, command: str, frame: dict = {}, auxiliaryFrame: dict = {}, destination: dict = {}):
 
         #Checks input frames
         if command in ["LIN", "PTP"]:
-            #Checks for potential input frames
             self.verify_frame(frame)
         elif command == "CIRC":
             self.verify_frame(auxiliaryFrame)
@@ -55,7 +50,7 @@ class Command(dict, ABC):
                 print(e)
                 break
     
-    #Returns the command istelf
+    #Returns the command itself
     def return_dict(self):
         # Convert instance to dictionary
         return dict(self)
@@ -98,7 +93,7 @@ class CommandSEND(Command):
     def __init__(self):
         super().__init__(command = "SEND", frame = {}, auxiliaryFrame = {}, destination = {})
 
-    #No specifics for EXIT
+    #No specifics for SEND
     def set_specifics(self, frame: dict, auxiliaryFrame: dict, destination: dict):
         pass
 
@@ -108,7 +103,7 @@ class CommandLIN(Command):
     def __init__(self, frame: dict):
         super().__init__(command = "LIN", frame = frame, auxiliaryFrame = {}, destination = {})
 
-    #Frame with 6 parameters
+    #Frame with 6 values
     def set_specifics(self, frame: dict, auxiliaryFrame: dict, destination: dict):
         self["parameters"]["Frame"] = frame
 
@@ -118,7 +113,7 @@ class CommandPTP(Command):
     def __init__(self, frame: dict):
         super().__init__(command = "PTP", frame = frame, auxiliaryFrame = {}, destination = {})
 
-    #Frame with 6 parameters
+    #Frame with 6 values
     def set_specifics(self, frame: dict, auxiliaryFrame: dict, destination: dict):
         self["parameters"]["Frame"] = frame
 
@@ -128,7 +123,7 @@ class CommandCIRC(Command):
     def __init__(self, auxiliaryFrame: dict, destination: dict):
         super().__init__(command = "CIRC", frame = {}, auxiliaryFrame = auxiliaryFrame, destination = destination)
 
-    #2 Frames with 6 parameters each
+    #2 Frames with 6 values each
     def set_specifics(self, frame: dict, auxiliaryFrame: dict, destination: dict):
         self["parameters"]["auxiliaryFrame"] = auxiliaryFrame
         self["parameters"]["destination"] = destination
