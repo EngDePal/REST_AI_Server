@@ -7,6 +7,7 @@ import sys
 from packages.plugins.utils.plugin_interface import PluginInterface
 import inspect
 import pkgutil
+import types
 
 #Plugin Manager handling robot logic
 class RobotLogicManager:
@@ -51,7 +52,7 @@ class RobotLogicManager:
         return name
     
     #Creates and returns an instance of the main class of the plugin
-    def instantiate_plugin(self, module: PluginInterface):
+    def instantiate_plugin(self, module: types.ModuleType):
         #There should be only one class inheriting from PluginInterface
         for name, object in inspect.getmembers(module):
         #Check if the object is a class and subclasses PluginInterface
@@ -84,7 +85,7 @@ class RobotLogicManager:
         return self.dicscovered_plugins
 
     #Creates a mapping of plugin_names to loaded_modules
-    def register_plugin(self, plugin_name: str, module: type):
+    def register_plugin(self, plugin_name: str, module: types.ModuleType):
 
         #Allows the server to cache modules, which are already in use  
         self.plugin_mapping[plugin_name] = module
